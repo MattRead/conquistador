@@ -20,10 +20,7 @@ Format::apply( 'nice_date', 'comment_date_out', 'l, F jS Y' );
 
 Format::apply( 'autop', 'comment_content_out', 'l, F jS Y' );
 
-// Set a custom theme to use for all public page (UserThemeHandler) theme output
-define('THEME_CLASS', 'MGSTheme');
-
-class MGSTheme extends Theme
+class Conquistador extends Theme
 {
 	/**
 	 * function constructor
@@ -113,6 +110,31 @@ class MGSTheme extends Theme
 		}
 		return $nav;
 	}
+
+    public function action_theme_ui( $theme )
+    {
+        $ui = new FormUI( __CLASS__ );
+        // This is a fudge as I only need to add a little bit of styling to make things look nice.
+        $ui->append( 'static', 'style', '<style type="text/css">#conquistador .formcontrol { line-height: 2.5em; }</style>');
+        $social = $ui->append( 'fieldset', 'social', 'Social Media Links');
+        foreach (array('twitter', 'lastfm', 'facebook', 'flickr', 'viddler', 'googleplus') as $media) {
+            $social->append('text', "{$media}_name", __CLASS__."__{$media}_name", "$media username:", 'optionscontrol_text');
+            $social->{$media.'_name'}->helptext = _t("Set your $media username for social media icon link.");
+        }
+        
+        $copy = $ui->append( 'fieldset', 'copy', 'Author Copyright/Signature');
+        $copy->append('text', "author_name", __CLASS__."__author_name", "Author Name:", 'optionscontrol_text');
+        $copy->author_name->helptext = _t("Author name to appear in signature on site footer.");
+        $copy->append('text', "author_email", __CLASS__."__author_email", "Author Email:", 'optionscontrol_text');
+        $copy->author_email->helptext = _t("Author email to appear in signature on site footer.");
+        $copy->append('text', "copy_year", __CLASS__."__copy_year", "Copyright Year:", 'optionscontrol_text');
+        $copy->copy_year->helptext = _t("Copyright year to appear in signature on site footer.");
+        
+        // Save
+        $ui->append( 'submit', 'save', _t( 'Save' ) );
+        $ui->set_option( 'success_message', _t( 'Options saved' ) );
+        $ui->out();
+    }
 }
 
 ?>
