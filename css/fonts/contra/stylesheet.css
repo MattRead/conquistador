@@ -4,11 +4,11 @@
 
 @font-face {
     font-family: 'ContraRegular';
-    src: url('fonts/contra/contra-webfont.eot');
-    src: url('fonts/contra/contra-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/contra/contra-webfont.woff') format('woff'),
-         url('fonts/contra/contra-webfont.ttf') format('truetype'),
-         url('fonts/contra/contra-webfont.svg#ContraRegular') format('svg');
+    src: url('../css/fonts/contra/contra-webfont.eot');
+    src: url('../css/fonts/contra/contra-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../css/fonts/contra/contra-webfont.woff') format('woff'),
+         url('../css/fonts/contra/contra-webfont.ttf') format('truetype'),
+         url('../css/fonts/contra/contra-webfont.svg#ContraRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -16,11 +16,11 @@
 
 @font-face {
     font-family: 'ContraItalic';
-    src: url('fonts/contra/contra-italic-webfont.eot');
-    src: url('fonts/contra/contra-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/contra/contra-italic-webfont.woff') format('woff'),
-         url('fonts/contra/contra-italic-webfont.ttf') format('truetype'),
-         url('fonts/contra/contra-italic-webfont.svg#ContraItalic') format('svg');
+    src: url('../css/fonts/contra/contra-italic-webfont.eot');
+    src: url('../css/fonts/contra/contra-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../css/fonts/contra/contra-italic-webfont.woff') format('woff'),
+         url('../css/fonts/contra/contra-italic-webfont.ttf') format('truetype'),
+         url('../css/fonts/contra/contra-italic-webfont.svg#ContraItalic') format('svg');
     font-weight: normal;
     font-style: normal;
 

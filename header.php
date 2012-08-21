@@ -18,13 +18,8 @@
 	<!--[if lte IE 8]>
 	<script src="<?php Site::out_url('theme') ?>/js/ie.js"></script>
 	<![endif]-->
-    <link type="text/css" media="screen" rel="stylesheet" href="<?php Site::out_url('theme') ?>/css/screen-min.css">
     <link type="text/css" media="print" rel="stylesheet" href="<?php Site::out_url('theme') ?>/css/print.css">
-
-    <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script  type="text/javascript" src="<?php Site::out_url('theme') ?>/js/site-min.js"></script>
-	<?php Stack::out( 'theme_headers' ); ?>
-
+    <?php echo $theme->header(); ?>
 </head>
 <body>
 
