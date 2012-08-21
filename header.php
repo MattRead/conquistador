@@ -18,7 +18,6 @@
 	<!--[if lte IE 8]>
 	<script src="<?php Site::out_url('theme') ?>/js/ie.js"></script>
 	<![endif]-->
-    <link type="text/css" media="print" rel="stylesheet" href="<?php Site::out_url('theme') ?>/css/print.css">
     <?php echo $theme->header(); ?>
 </head>
 <body>

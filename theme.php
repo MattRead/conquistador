@@ -135,6 +135,14 @@ class Conquistador extends Theme
         $ui->set_option( 'success_message', _t( 'Options saved' ) );
         $ui->out();
     }
+
+    public function action_template_header_10()
+    {
+        $assets = $this->load_assets();
+        foreach($assets['print'] as $print) {
+            Stack::add('template_stylesheet', array($print , 'print', array('rel' => 'text/css')));
+        }
+    }
 }
 
 ?>
