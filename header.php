@@ -23,10 +23,10 @@
 <body>
 
 <nav class="site" id="top" style="position:relative">
-    &#x26B6; <a class="home" href="/">Home</a> |
-    <a href="/about">About</a> |
-    <a href="/blogroll">Blogroll</a> :
+    &#x26B6; <a class="home" href="<?php Site::out_url('habari'); ?>/">Home</a> |
+    <a href="<?php Site::out_url('habari'); ?>/about">About</a> |
+    <a href="<?php Site::out_url('habari'); ?>/blogroll">Blogroll</a> :
     /<?php echo Controller::get_stub(); ?>
 
 </nav>
-   
+
