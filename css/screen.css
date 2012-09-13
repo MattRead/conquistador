@@ -133,10 +133,10 @@ abbr {
 }
 
 img {
-    max-width: 92%;
+    max-width: 91%;
     height: auto;
     margin: 1em;
-    border: 6px solid #222;
+    border: 5px solid #333;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -241,11 +241,11 @@ ul.posts .rating {
 .asin a { color: #777; }
 
 .rating span.star-0 {background-position:0 0}
-.rating span.star-1 {background-position:0 -15px}
-.rating span.star-2 {background-position:0 -30px}
-.rating span.star-3 {background-position:0 -45px}
-.rating span.star-4 {background-position:0 -60px}
-.rating span.star-5 {background-position:0 -75px}
+.rating span.star-1 {background-position:0 -14px}
+.rating span.star-2 {background-position:0 -29px}
+.rating span.star-3 {background-position:0 -44px}
+.rating span.star-4 {background-position:0 -59px}
+.rating span.star-5 {background-position:0 -74px}
 
 .social a {
     color: #bbb;
