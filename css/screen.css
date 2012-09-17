@@ -174,7 +174,7 @@ ul.posts time {
 
 ul.posts li.tag-gist { list-style: square outside url(../images/clip.png); }
 
-.meta {
+.meta, .footnotes {
     font-size: 18px;
     line-height: 24px;
     color: #777;
