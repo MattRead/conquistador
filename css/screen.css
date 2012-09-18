@@ -108,6 +108,11 @@ blockquote {
     font-style: italic;
     margin: 1.5em 1.5em 1.5em 2em;
 }
+
+dt { font-style: italic; }
+dd { margin: 0 3em 1em; }
+dd > p:first-child { margin-top: 0; }
+
 q:before { content: open-quote; }
 q:after { content: close-quote; }
 
@@ -178,6 +183,15 @@ ul.posts li.tag-gist { list-style: square outside url(../images/clip.png); }
     font-size: 18px;
     line-height: 24px;
     color: #777;
+}
+
+.footnotes hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    width: 30%;
+    text-align: left;
+    margin-left: 0;
 }
 
 article.comment {
