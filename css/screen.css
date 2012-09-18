@@ -210,14 +210,14 @@ article.comment > header:after { content: none; }
 article.comment > header { text-align: left; }
 
 form { padding: 0 1em; }
-form#comment-public label {
+form.formui label {
     display: block;
     margin: 1em 0 0;
 }
-form#comment-public input[type=text],
-form#comment-public input[type=url],
-form#comment-public input[type=email],
-form#comment-public textarea {
+form.formui input[type=text],
+form.formui input[type=url],
+form.formui input[type=email],
+form.formui textarea {
     width: 95%;
     border: 1px solid #777;
     padding: 6px;
