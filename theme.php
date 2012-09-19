@@ -161,6 +161,59 @@ class Conquistador extends Theme
         $ui->set_option( 'success_message', _t( 'Options saved' ) );
         $ui->out();
     }
+
+//----------- archives work ----------------//
+    public function act_display_archives()
+    {
+        $years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} ORDER BY year DESC', array(), 'QueryRecord' );
+        $this->assign( 'collection_years', $years );
+
+        if ( Controller::get_var('year') ) {
+            $year = intval(Controller::get_var('year'));
+            $this->assign('year', $year);
+        }
+        else {
+            $year = 0;
+            foreach ( $years as $y ) {
+                if ( $y->year > $year ) {
+                    $year = intval($y->year);
+                }
+            }
+            $this->assign( 'year', $year ? $year : intval(date('Y')) );
+        }
+        $collections = array();
+        foreach ( array( 1=>'winter', 4=>'spring', 7=>'summer', 10=>'autumn' ) as $month => $season ) {
+            $startDate = new HabariDateTime;
+            $startDate->set_date($year, $month, 1);
+            $endDate = clone $startDate;
+            $endDate->modify('+3 month -1 day');
+
+            $posts = Posts::get(array(
+                'after' => $startDate,
+                'before'=> $endDate,
+                'content_type' => Post::type('entry'),
+                'status' => Post::status('published'),
+            ));
+            if ( !count($posts) ) continue;
+
+            $collection = new stdClass;
+            $collection->posts = $posts;
+            $collection->start_month = $startDate;
+            $collection->end_month = $endDate;
+            $collection->description = $startDate->format('F jS') . ' to ' . $endDate->format('F jS');
+            $collection->name = ucfirst( $season ) . ' ' . $year;
+            $collection->image = file_exists( HABARI_PATH . '/user/themes/simpla/images/' . $season . '_' . $year . '.png' ) ? $season . '_' . $year . '.png' : $season . '.png';
+            $collection->posts_count = count($collection->posts);
+
+            $collections[$season] = $collection;
+        }
+        $this->assign( 'collections', $collections );
+
+        $this->set_title( $year . ' Archives' );
+        $this->add_template_vars();
+        $this->display( 'entry.archives' );
+    }
+
 }
 
 ?>

@@ -1,4 +1,4 @@
-header, section, article, footer, nav, figure, figcaption {
+header, section, article, footer, nav, figure, figcaption, progress {
     display: block;
     padding: 0;
     margin: 0;
@@ -9,10 +9,10 @@ time {
 }
 
 body {
-    max-width: 760px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 0 1em;
-    font: normal 24px/36px "ContraRegular", serif;
+    font: normal 24px/36px "DroidSerifRegular", serif;
     word-spacing: 0.1em;
     color: #222;
     background: #fcfcfc;
@@ -21,8 +21,8 @@ body {
 }
 
 nav.site {
-    padding: 20px 30px;
-    margin: 10px 0 4em;
+    padding: 10px 20px;
+    margin: 0 0 3em;
     font-size: 18px;
     color: #999;
     background:#222 url('../images/pattern.png') repeat;
@@ -42,10 +42,10 @@ div.admin a { padding: 0; }
 
 div.admin {
     position: absolute;
-    top: 12px;
+    top: 2px;
     background: #c30;
     padding: 4px 10px;
-    margin-left: 660px;
+    margin-left: 620px;
     font: normal 12px/18px sans-serif;
     color: #999;
     text-transform: uppercase;
@@ -78,27 +78,29 @@ header time, header span {
 }
 
 figure, figcaption { margin: 1em 0; }
-figure > img {
-    display: block;
-    margin: 1em auto;
-}
 figcaption {
-    margin-bottom: 2em;
-    text-align: center;
+    margin: -1em 3em 2em;
     font-style: italic;
     // @see .meta
 }
 
-h1, h2, h3, h4, h5 {
-    font-weight: normal;
-    font-family: "LeagueGothicRegular";
-    text-transform: uppercase;
-    color: #555;
+progress {
+    border: 1px solid #333;
+    padding: 5px;
+    margin: 1em;
+    background: #fcfcfc;
 }
 
-h1 { font-size: 60px; }
-h2, h3 { font-size: 48px; }
-h4,h5 { font-size: 36px; }
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+    font-family: "GoodDogRegular";
+    text-transform: uppercase;
+    color: #333;
+}
+
+h1 { font-size: 72px; line-height: 58px; }
+h2, h3 { font-size: 58px; }
+h4,h5 { font-size: 46px; }
 
 p + p { text-indent: 2em; }
 
@@ -107,7 +109,7 @@ pre {
     padding: 1em;
     border: 1px solid #ddd;
     font-size: 14px;
-    line-height: 1.2em;
+    line-height: 14px;
     overflow: auto;
     white-space: pre-wrap;
     white-space:-moz-pre-wrap; white-space:-hp-pre-wrap; white-space:-o-pre-wrap; white-space:-pre-wrap; word-wrap:break-word;
@@ -156,6 +158,8 @@ abbr {
     font-size: 1.7ex;
 }
 
+mark { background-color: #FFF380; }
+
 img {
     max-width: 91%;
     height: auto;
@@ -169,6 +173,10 @@ img {
     box-shadow: 3px 3px 3px #999;
 }
 img.habari-smiley { margin: 0; border: 0; }
+img.right, img.left, img.center { display: block; }
+img.right { float: right; }
+img.left { float: left; }
+img.center { margin: 1em auto; }
 
 p.gist {
     font-size: 14px;
@@ -183,19 +191,18 @@ p.gist {
 p.gist + pre { margin-top: 0; }
 
 ul.posts { list-style-type: none; }
-ul.posts { margin: 1.3em 0; }
-ul.posts li a { overflow: hidden; }
-
+ul.posts { margin: 1.3em 0; padding: 0; }
 ul.posts time {
     display: block;
-    float: left;
-    width: 7.5em;
+    position: absolute;
+    width: 7em;
     padding-right: 1em;
+    margin-left: -8em;
     text-align: right;
     color: #999;
     font-size: .8em;
 }
-
+ul.posts li { padding-left: 7em; }
 ul.posts li.tag-gist { list-style: square outside url(../images/clip.png); }
 
 .meta, .footnotes, figcaption {
@@ -243,8 +250,22 @@ form.formui textarea {
     padding: 6px;
 }
 
-ul.messages { padding: 0; margin: 0; }
-.error { color: #800; }
+textarea#comment_content, input#comment_name, input#comment_email {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAQCAYAAAD52jQlAAAABGdBTUEAAK/INwWK6QAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAIHSURBVDhPrZTdTxpBFMXPLCkaoFq6QUwIRk1MU2Oj8UEf7ZMPxv/aPhESEzV+BDTY8mHBjagoCcWZnjswG7AgPvQmk929O/ubc8+dWWUY+M+hBqGtRAK6v4BcP7Va9umWeQnJiYJ0Pz9Oi+deCNDzfUR3dhDd2/tnfmJ3Fx/X1iy40l9kItQqnJqCSqehUil84L0orHPEkkmoWMzmZZ6rZiJ0hiV1qlXooyN+peGtroblqoUFGOb02ZnNZd9bvqwqHrbPz6EPD+GtrFj/ZtbX4S0tQZ+cILi5mQgUjtdkeTJciJJHAtDtYpbeqkwGptFAcHU1VHYhHscFx6iwjYrSM/FPhuuwCQILRqdj7XBeXhIkwKRSY71VQTxuYlTkZbPQtRrw9NRbXFQ8PwMvL0AkArTbMHxWUhXfmXIZxeNjfHPzBySrBqGum+KhU/R5e7sHoFqBVXO58J3M+cPBOrA5Cvr6RMkelI9S+/vA/T29icI0myjn8zb/ZQTkta/h5h9slL+8zG49onZwAHN9DUXPM3NzVtl7Ygj6iyr9+XlENjagT0/R5W/hZ6EAXSzafbs4PY38mI4PLhZCLZCKvK0tmIcHVOr10MNOqdQ7EDymPrv+g6frrQih4tfvuzsYKpSN7vz7Sg9LVCx7VfIVwifZMPSXkj3oui9XAUrkmBcrJCfA77LV3oi/wvv2h3rXoOcAAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+textarea#comment_content { background-position: right 5px; }
+
+ul.messages {
+    padding: 1em;
+    margin: 1em 2em;
+    border: 1px solid #333;
+    background-color: #fff381;
+    list-style-type: none;
+}
+
+ul.messages.error { background-color: #f99; }
 
 .rating span {
     display: block;

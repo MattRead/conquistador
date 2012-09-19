@@ -1,5 +1,3 @@
-<?php if ( !$content->info->comments_disabled ) : ?>
-
 <?php if( $content->comments->moderated->count ) : ?>
 <section id="comments">
 	<h3 id="comments">Comments</h3>
@@ -13,6 +11,7 @@
 </section>
 <?php endif; ?>
 
+<?php if ( !$content->info->comments_disabled ) : ?>
 
 <section id="respond" class="comments-form">
 	<h3>Leave a Comment</h3>
@@ -20,8 +19,7 @@
 
 	<?php
 		if ( Session::has_messages() ) { Session::messages_out(); }
-		Plugins::act('comment_form_header');
-		$content->comment_form()->out(); 
+		$content->comment_form()->out();
 	?>
 </section>
 

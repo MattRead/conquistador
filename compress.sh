@@ -10,7 +10,7 @@ echo "compressed CSS to screen-min.css"
 
 echo "compressing JS"
 cd js/
-cat *.js > site.tmp.js
+cat site.js > site.tmp.js
 yui-compressor --type js site.tmp.js > ../assets/site-min.js
 rm site.tmp.js
 cd ..

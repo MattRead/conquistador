@@ -2,5 +2,5 @@
 <time datetime="<?php echo $content->pubdate->format('c'); ?>">
     <?php echo $content->pubdate_out_short; ?>
 </time>
-<a href="<?php echo $content->permalink; ?>"><?php echo $content->title_out; ?></a>
+<span><a href="<?php echo $content->permalink; ?>"><?php echo $content->title_out; ?></a></span>
 </li>
