@@ -192,7 +192,7 @@ class Conquistador extends Theme
 		$max_year = $years[0]->year;
 		$min_year = $years[count($years)-1]->year;
 		$this->assign( 'max_year', $max_year );
-		$this->assign( 'min_year', $max_year );
+		$this->assign( 'min_year', $min_year );
 
 		$collections = array();
 		foreach ( $years as $y ) {
@@ -226,9 +226,9 @@ class Conquistador extends Theme
 		}
 		$this->assign( 'collections', $collections );
 
-		$this->set_title( $year . ' Archives' );
+		$this->set_title('The Archives (' . $min_year . ' to ' . $max_year . ')');
 		$this->add_template_vars();
-		$this->display( 'entry.archives' );
+		$this->display('entry.archives');
 	}
 
 }
