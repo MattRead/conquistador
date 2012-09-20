@@ -9,10 +9,7 @@
 
 <section>
 <h2>The <?php echo $collection->name; ?> Collection</h2>
-<p class="meta">
-	Posts made from <?php echo $collection->description; ?>
-	<img src="<?php Site::out_url('theme') ?>/images/archives/<?php echo $collection->image; ?>" class="right">
-</p>
+<p><img src="<?php Site::out_url('theme') ?>/images/archives/<?php echo $collection->image; ?>" class="right"></p>
 
 <ul class="posts">
 	<?php foreach ( $collection->posts as $post ) : ?>
@@ -23,6 +20,6 @@
 
 <?php endforeach; ?>
 
-<footer class="meta" style="margin-top:2em;">inspired by the archives at <a href="http://www.mezzoblue.com/" title="mezzoblue: the home of Dave Shea.">mezzoblue</a></footer>
+<footer class="meta" style="margin-top:3em; clear: both;">inspired by the archives at <a href="http://www.mezzoblue.com/" title="mezzoblue: the home of Dave Shea.">mezzoblue</a></footer>
 
 <?php $theme->display('footer'); ?>
