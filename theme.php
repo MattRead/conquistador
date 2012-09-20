@@ -15,8 +15,8 @@ class Conquistador extends Theme
 		);
 
 	/**
-	 * function constructor
-	 */
+	* function constructor
+	*/
 	public function __construct( $themedata )
 	{
 		parent::__construct( $themedata );
@@ -31,9 +31,9 @@ class Conquistador extends Theme
 		$social_media_icons = array();
 		foreach ( $this->social_media_icons as $name => $media ) {
 			list($key, $url, $label) = $media;
-		    if ( $option = Options::get(self::OPTION_NAME . "__{$name}_name") ) {
+			if ( $option = Options::get(self::OPTION_NAME . "__{$name}_name") ) {
 				$social_media_icons[$name] = array($key, sprintf($url, $option), $label );
-		    }
+			}
 		}
 		$this->assign('social_media_icons', $social_media_icons);
 		$this->assign('author_name', Options::get(self::OPTION_NAME . '__author_name'));
@@ -87,14 +87,14 @@ class Conquistador extends Theme
 						'content_type' => $post->content_type,
 						'status' => Post::status('published'),
 						'not:id' => $post->id,
-                        'limit' => 5,
-                        'orderby' => 'Rand()'
-    				));
+						'limit' => 5,
+						'orderby' => 'Rand()'
+					));
 					$this->assign( 'related_posts', $related );
 				}
-                else {
-                    $this->assign( 'realted_posts', array() );
-                }
+				else {
+					$this->assign( 'realted_posts', array() );
+				}
 			}
 		}
 		elseif ( URL::get_matched_rule() == null ) {
@@ -121,10 +121,10 @@ class Conquistador extends Theme
 		return parent::act_search($user_filters);
 	}
 
-    public function act_display_blogroll() {
-        $this->set_title('Blogroll');
-        $this->display('blogroll.multiple');
-    }
+	public function act_display_blogroll() {
+		$this->set_title('Blogroll');
+		$this->display('blogroll.multiple');
+	}
 
 	public function theme_paged_nav( $theme )
 	{
@@ -138,30 +138,30 @@ class Conquistador extends Theme
 		return $nav;
 	}
 
-    public function action_theme_ui( $theme )
-    {
-        $ui = new FormUI( __CLASS__ );
-        // This is a fudge as I only need to add a little bit of styling to make things look nice.
-        $ui->append( 'static', 'style', '<style type="text/css">#conquistador .formcontrol { line-height: 2.5em; }</style>');
-        $social = $ui->append( 'fieldset', 'social', 'Social Media Links');
-        foreach ($this->social_media_icons as $media => $data) {
-            $social->append('text', "{$media}_name", __CLASS__."__{$media}_name", "$media username:", 'optionscontrol_text');
-            $social->{$media.'_name'}->helptext = _t("Set your $media username for social media icon link.");
-        }
+	public function action_theme_ui( $theme )
+	{
+		$ui = new FormUI( __CLASS__ );
+		// This is a fudge as I only need to add a little bit of styling to make things look nice.
+		$ui->append( 'static', 'style', '<style type="text/css">#conquistador .formcontrol { line-height: 2.5em; }</style>');
+		$social = $ui->append( 'fieldset', 'social', 'Social Media Links');
+		foreach ($this->social_media_icons as $media => $data) {
+			$social->append('text', "{$media}_name", __CLASS__."__{$media}_name", "$media username:", 'optionscontrol_text');
+			$social->{$media.'_name'}->helptext = _t("Set your $media username for social media icon link.");
+		}
 
-        $copy = $ui->append( 'fieldset', 'copy', 'Author Copyright/Signature');
-        $copy->append('text', "author_name", __CLASS__."__author_name", "Author Name:", 'optionscontrol_text');
-        $copy->author_name->helptext = _t("Author name to appear in signature on site footer.");
-        $copy->append('text', "author_email", __CLASS__."__author_email", "Author Email:", 'optionscontrol_text');
-        $copy->author_email->helptext = _t("Author email to appear in signature on site footer.");
-        $copy->append('text', "copy_year", __CLASS__."__copy_year", "Copyright Year:", 'optionscontrol_text');
-        $copy->copy_year->helptext = _t("Copyright year to appear in signature on site footer.");
+		$copy = $ui->append( 'fieldset', 'copy', 'Author Copyright/Signature');
+		$copy->append('text', "author_name", __CLASS__."__author_name", "Author Name:", 'optionscontrol_text');
+		$copy->author_name->helptext = _t("Author name to appear in signature on site footer.");
+		$copy->append('text', "author_email", __CLASS__."__author_email", "Author Email:", 'optionscontrol_text');
+		$copy->author_email->helptext = _t("Author email to appear in signature on site footer.");
+		$copy->append('text', "copy_year", __CLASS__."__copy_year", "Copyright Year:", 'optionscontrol_text');
+		$copy->copy_year->helptext = _t("Copyright year to appear in signature on site footer.");
 
-        // Save
-        $ui->append( 'submit', 'save', _t( 'Save' ) );
-        $ui->set_option( 'success_message', _t( 'Options saved' ) );
-        $ui->out();
-    }
+		// Save
+		$ui->append( 'submit', 'save', _t( 'Save' ) );
+		$ui->set_option( 'success_message', _t( 'Options saved' ) );
+		$ui->out();
+	}
 
 //----------- archives work ----------------//
 
@@ -184,49 +184,52 @@ class Conquistador extends Theme
 		}
 	}
 
-    public function act_display_archives()
-    {
-        $years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} ORDER BY year DESC', array(), 'QueryRecord' );
-        $this->assign( 'collection_years', $years );
+	public function act_display_archives()
+	{
+		$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} ORDER BY year DESC', array(), 'QueryRecord' );
+		$this->assign( 'collection_years', $years );
 
 		$max_year = $years[0]->year;
 		$min_year = $years[count($years)-1]->year;
 		$this->assign( 'max_year', $max_year );
 		$this->assign( 'min_year', $max_year );
 
-        $collections = array();
-        foreach ( $years as $y ) {
+		$collections = array();
+		foreach ( $years as $y ) {
 			$year = $y->year;
-            $startDate = new HabariDateTime;
-            $startDate->set_date($year, 1, 1);
-            $endDate = clone $startDate;
-            $endDate->modify('+1 year -1 day');
+			$startDate = new HabariDateTime;
+			$startDate->set_date($year, 1, 1);
+			$endDate = clone $startDate;
+			$endDate->modify('+1 year -1 day');
 
-            $posts = Posts::get(array(
-                'after' => $startDate,
-                'before'=> $endDate,
-                'content_type' => Post::type('entry'),
-                'status' => Post::status('published'),
-            ));
-            if ( !count($posts) ) continue;
+			$posts = Posts::get(array(
+				'after' => $startDate,
+				'before'=> $endDate,
+				'content_type' => Post::type('entry'),
+				'status' => Post::status('published'),
+			));
+			if ( !count($posts) ) continue;
 
-            $collection = new stdClass;
-            $collection->posts = $posts;
-            $collection->start_month = $startDate;
-            $collection->end_month = $endDate;
-            $collection->description = $startDate->format('F jS, Y') . ' to ' . $endDate->format('F jS, Y');
-            $collection->name = $year;
-            $collection->image = file_exists( dirname(__FILE__) . '/images/archives/' . $year . '.png' ) ? $year . '.png' : 'autumn.png';
-            $collection->posts_count = count($collection->posts);
+			$images = glob(dirname(__FILE__) . '/images/archives/*.png');
+			$image = basename($images[array_rand($images, 1)]);
 
-            $collections[$year] = $collection;
-        }
-        $this->assign( 'collections', $collections );
+			$collection = new stdClass;
+			$collection->posts = $posts;
+			$collection->start_month = $startDate;
+			$collection->end_month = $endDate;
+			$collection->description = $startDate->format('F jS, Y') . ' to ' . $endDate->format('F jS, Y');
+			$collection->name = $year;
+			$collection->image = $image;
+			$collection->posts_count = count($collection->posts);
 
-        $this->set_title( $year . ' Archives' );
-        $this->add_template_vars();
-        $this->display( 'entry.archives' );
-    }
+			$collections[$year] = $collection;
+		}
+		$this->assign( 'collections', $collections );
+
+		$this->set_title( $year . ' Archives' );
+		$this->add_template_vars();
+		$this->display( 'entry.archives' );
+	}
 
 }
 

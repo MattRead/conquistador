@@ -20,7 +20,6 @@
 	<?php endforeach; ?>
 </ul>
 </section>
-<hr>
 
 <?php endforeach; ?>
 
