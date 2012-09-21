@@ -11,6 +11,8 @@
 
 <?php echo $content->content_out; ?>
 
+<?php echo $theme->content($content, 'navigation'); ?>
+
 <?php echo $theme->content($content, 'comments'); ?>
 
 <?php echo $theme->content($related_posts, 'related'); ?>
