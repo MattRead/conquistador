@@ -1,4 +1,4 @@
-\header, section, article, footer, nav, figure, figcaption, progress {
+header, section, article, footer, nav, figure, figcaption, progress {
 	display: block;
 	padding: 0;
 	margin: 0;
@@ -203,7 +203,6 @@ ul.posts time {
 	font-size: .8em;
 }
 ul.posts li { padding-left: 7em; }
-ul.posts li.tag-gist { list-style: square outside url(../images/clip.png); }
 
 .meta, .footnotes, figcaption {
 	font-size: 18px;
