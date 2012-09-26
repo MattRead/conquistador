@@ -15,7 +15,6 @@
 	</p>
 
 	<?php echo $theme->footer(); ?>
-
 </footer>
 </body>
 </html>

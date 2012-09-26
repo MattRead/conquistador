@@ -103,7 +103,7 @@ class Conquistador extends Theme
 		parent::add_template_vars();
 	}
 
-	public function act_display_tag( $user_filters= array() )
+    public function act_display_tag( $user_filters= array() )
 	{
 		$this->set_title( 'Posts Tagged With "' . Controller::get_var( 'tag' ) . '"' );
 		return parent::act_display_tag( $user_filters );

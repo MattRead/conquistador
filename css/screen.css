@@ -1,4 +1,4 @@
-header, section, article, footer, nav, figure, figcaption, progress {
+\header, section, article, footer, nav, figure, figcaption, progress {
 	display: block;
 	padding: 0;
 	margin: 0;
@@ -341,3 +341,13 @@ img.tweet-image {
 	border: 0;
 	margin: 0 1em 1em 0;
 }
+
+.gsc table, .gsc th, .gsc td { border: none; }
+
+/* language settings */
+:lang(en) { quotes: "\201C" "\201D" "\2018" "\2019"; }
+:lang(fr) { quotes: "\00AB" "\00BB" "\2039" "\203A"; }
+:lang(de) { quotes: "\201C" "\201D" "\2018" "\2019"; }
+q:before { content: open-quote; }
+q:after { content: close-quote; }
+

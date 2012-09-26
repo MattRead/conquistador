@@ -13,6 +13,18 @@
 
 <?php echo $theme->content($content, 'navigation'); ?>
 
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5873102452276594";
+/* Homepage 468x60 */
+google_ad_slot = "3997496189";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
 <?php echo $theme->content($content, 'comments'); ?>
 
 <?php echo $theme->content($related_posts, 'related'); ?>
