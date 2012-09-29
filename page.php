@@ -11,5 +11,7 @@
 
 <?php echo $content->content_out; ?>
 
+<?php echo $theme->area('post_footer'); ?>
+
 <?php echo $theme->content($related_posts, 'related'); ?>
 

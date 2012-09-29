@@ -1,4 +1,4 @@
-<?php echo $theme->display('header'); ?>
+<?php $theme->set_title('Page Not Found'); echo $theme->display('header'); ?>
 
 <article>
     <header>

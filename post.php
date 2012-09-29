@@ -13,6 +13,8 @@
 
 <?php echo $theme->content($content, 'navigation'); ?>
 
+<?php echo $theme->area('post_footer'); ?>
+
 <?php echo $theme->content($content, 'comments'); ?>
 
 <?php echo $theme->content($related_posts, 'related'); ?>

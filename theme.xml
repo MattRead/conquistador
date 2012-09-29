@@ -9,4 +9,19 @@
 	<version>1.0</version>
     <description><![CDATA[Conquistador is a simple theme for Habari with advanced features. Or something like that. It is also HTML5 and image lean.]]></description>
 	<template_engine>rawphpengine</template_engine>
+
+  <help>
+    <value>
+      <![CDATA[Add foo and bar to your theme, to display the foo and bar.]]>
+    </value>
+  </help>
+
+  <areas>
+    <area name="post_footer">
+      <description><![CDATA[The post footer area]]></description>
+    </area>
+    <area name="nav">
+      <description><![CDATA[The navigation area]]></description>
+    </area>
+  </areas>
 </pluggable>

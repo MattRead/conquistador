@@ -10,6 +10,8 @@
 	<meta name="keywords" content="habari wordpress technology tech css design website php plugin matt" />
 	<meta name="verify-v1" content="xSimSi8n9M7MqFEaRhgNt3smByGje0Iki3S45666/jQ=" />
 
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 	<link rel="Shortcut Icon" href="/favicon.ico" />
 
@@ -25,8 +27,8 @@
 <nav class="site" id="top" style="position:relative">
     &#x26B6; <a class="home" href="<?php Site::out_url('habari'); ?>/">Home</a> |
     <a href="<?php Site::out_url('habari'); ?>/about">About</a> |
-    <a href="<?php Site::out_url('habari'); ?>/blogroll">Blogroll</a> :
-    /<?php echo Controller::get_stub(); ?>
+    <a href="<?php Site::out_url('habari'); ?>/blogroll">Blogroll</a>
+    <span class="stub"> : /<?php echo Controller::get_stub(); ?></span>
 
 </nav>
 
