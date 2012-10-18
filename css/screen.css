@@ -115,9 +115,11 @@ pre {
 	white-space:-moz-pre-wrap; white-space:-hp-pre-wrap; white-space:-o-pre-wrap; white-space:-pre-wrap; word-wrap:break-word;
 }
 
+object { text-align: center; }
+
 ul { list-style-type: circle; }
 ol, ul { list-style-position: outside; }
-ol, ul { margin: 1.5em 1em }
+ol, ul { margin: 1.5em 1em; }
 blockquote {
 	font-style: italic;
 	margin: 1.5em 2em 1.5em 2em;
@@ -210,8 +212,11 @@ ul.posts li { padding-left: 7em; }
 	color: #777;
 }
 
+hr { border: 0; }
+hr:after { content: ""; }
+hr + p:first-letter { font-size: 3em; line-height: 1em; margin-right: 2px; display: block; float: left; }
+
 .footnotes hr {
-	border: 0;
 	height: 1px;
 	background: #ccc;
 	width: 30%;
