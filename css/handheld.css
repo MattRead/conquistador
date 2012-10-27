@@ -1,3 +1,6 @@
+@media screen and (max-width: 740px) {
+	div.admin { margin-left: 75% !important; }
+}
 @media screen and (max-width: 700px) {
     .stub { display: none; }
 }

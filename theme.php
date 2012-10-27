@@ -203,7 +203,7 @@ class Conquistador extends Theme
 			$base = Plugins::filter(self::REWRITE_NAME . '_rewriterule_base', '');
 			$rule = new RewriteRule( array(
 				'name' => self::REWRITE_NAME,
-				'parse_regex' => $base . '%archives(?:/(?P<year>.*))?$%',
+				'parse_regex' => '%' . $base . 'archives(?:/(?P<year>.*))?$%',
 				'build_str' => $base . 'archives(/{$year})',
 				'handler' => 'UserThemeHandler',
 				'action' => 'display_archives',

@@ -7,6 +7,7 @@
 	<meta name="generator" content="Habari <?php echo Version::get_habariversion() ?>">
 	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
 
+	<script>var HABARI_URL = "<?php Site::out_url('habari') ?>";</script>
 	<!--[if lte IE 8]>
 	<script src="<?php Site::out_url('theme') ?>/js/ie.js"></script>
 	<![endif]-->
