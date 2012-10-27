@@ -39,6 +39,7 @@ class Conquistador extends Theme
 		$this->assign('author_name', Options::get(self::OPTION_NAME . '__author_name'));
 		$this->assign('author_email', Options::get(self::OPTION_NAME . '__author_email', 'webmaster'));
 		$this->assign('copy_year', Options::get(self::OPTION_NAME . '__copy_year', '2012'));
+		$this->assign('custom_headers', Options::get(self::OPTION_NAME . '__custom_headers'));
 	}
 
 	private function apply_formatters()
@@ -156,6 +157,12 @@ class Conquistador extends Theme
 		$copy->author_email->helptext = _t("Author email to appear in signature on site footer.");
 		$copy->append('text', "copy_year", __CLASS__."__copy_year", "Copyright Year:", 'optionscontrol_text');
 		$copy->copy_year->helptext = _t("Copyright year to appear in signature on site footer.");
+
+		$head = $ui->append( 'fieldset', 'heads', 'Custom Headers');
+		$head->append('textarea', "custom_headers", __CLASS__."__custom_headers", "Custom HTML Headers:", 'optionscontrol_textarea');
+        $head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
+		$head->custom_headers->raw = true;
+
 
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save' ) );
