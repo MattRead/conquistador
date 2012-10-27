@@ -36,6 +36,8 @@ nav.site {
 	text-shadow: 3px 3px 3px #222;
 }
 
+nav.site ol, nav.site li { display: inline; }
+
 div.admin a, nav.site a { color: #eee; }
 div.admin a:hover, nav.site a:hover { color: #888; }
 div.admin a { padding: 0; }
