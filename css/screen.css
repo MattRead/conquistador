@@ -37,6 +37,8 @@ nav.site {
 }
 
 nav.site ol, nav.site li { display: inline; }
+nav.site ol li:after { content: " | "; }
+nav.site ol li:last-child:after { content: ""; }
 
 div.admin a, nav.site a { color: #eee; }
 div.admin a:hover, nav.site a:hover { color: #888; }
