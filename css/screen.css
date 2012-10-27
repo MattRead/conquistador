@@ -256,6 +256,7 @@ form.formui textarea {
 	width: 95%;
 	border: 1px solid #777;
 	padding: 6px;
+	margin: 0;
 }
 
 textarea#comment_content, input#comment_name, input#comment_email {
@@ -265,15 +266,21 @@ textarea#comment_content, input#comment_name, input#comment_email {
 }
 textarea#comment_content { background-position: right 5px; }
 
-ul.messages {
-	padding: 1em;
-	margin: 1em 2em;
-	border: 1px solid #333;
-	background-color: #fff381;
+form.formui ul.error {
 	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
-
-ul.messages.error { background-color: #f99; }
+form.formui ul.error li {
+	width: 85%;
+	padding: .5em;
+	margin: 0;
+	border: 1px solid #777;
+	border-top: none;
+	background-color: #ee9a4d;
+	line-height: 14px;
+	font-size: 14px;
+}
 
 .rating span {
 	display: block;
