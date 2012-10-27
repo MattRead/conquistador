@@ -10,7 +10,7 @@ class Conquistador extends Theme
 		'lastfm' => array('6', 'http://www.last.fm/user/%s', 'Last.fm'),
 		'facebook' => array('f', 'http://facebook.com/%s', 'Facebook'),
 		'flickr' => array('n', 'http://www.flickr.com/photos/%s', 'Flickr'),
-		'viddler' => array('v', 'http://www.viddler.com/channel/%s', 'Viddler'),
+		'vimeo' => array('v', 'https://vimeo.com/%s', 'Vimeo'),
 		'googleplus' => array('1', 'https://plus.google.com/%s/posts', 'Google+')
 		);
 
@@ -163,10 +163,35 @@ class Conquistador extends Theme
 		$ui->out();
 	}
 
-//----------- archives work ----------------//
+	public function filter_block_list( $block_list ) {
+		$block_list['conquistador_related'] = _t( 'Related Posts (Conquistador)' );
+		$block_list['conquistador_navigation'] = _t( 'Post Navigation (Conquistador)' );
+		return $block_list;
+	}
 
 	public function action_theme_activated($theme_name, $theme)
 	{
+		$blocks = $this->get_blocks( 'post_footer', 0, $this );
+		if( count( $blocks ) == 0 ) {
+			$block = new Block( array(
+				'title' => _t( 'Realted Posts' ),
+				'type' => 'conquistador_related',
+			) );
+
+			$block->add_to_area( 'post_footer' );
+			Session::notice( _t( 'Added Realted Posts block to post_footer area.' ) );
+		}
+		$blocks = $this->get_blocks( 'post_comments_header', 0, $this );
+		if( count( $blocks ) == 0 ) {
+			$block = new Block( array(
+				'title' => _t( 'Previous/Next Post Navigation' ),
+				'type' => 'conquistador_navigation',
+			) );
+
+			$block->add_to_area( 'post_comments_header' );
+			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
+		}
+
 		if ( !RewriteRules::by_name(self::REWRITE_NAME) ) {
 			$base = Plugins::filter(self::REWRITE_NAME . '_rewriterule_base', '');
 			$rule = new RewriteRule( array(

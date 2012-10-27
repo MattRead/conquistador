@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <pluggable type="theme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://schemas.habariproject.org/pluggable/0.8">
 	<name>Conquistador</name>
-    <class>Conquistador</class>
-    <license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
-    <author url="http://mattread.com/">Matt Read</author>
+	<class>Conquistador</class>
+	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
+
+	<author url="http://mattread.com/">Matt Read</author>
 	<url>http://mattread.com/</url>
-    <copyright>2012</copyright>
+	<copyright>2012</copyright>
 	<version>1.0</version>
-    <description><![CDATA[Conquistador is a simple theme for Habari with advanced features. Or something like that. It is also HTML5 and image lean.]]></description>
 	<template_engine>rawphpengine</template_engine>
 
-  <help>
-    <value>
-      <![CDATA[Add foo and bar to your theme, to display the foo and bar.]]>
-    </value>
-  </help>
+	<description><![CDATA[Conquistador is a simple theme for Habari with advanced features. It is also HTML5 and image lean.]]></description>
 
-  <areas>
-    <area name="post_footer">
-      <description><![CDATA[The post footer area]]></description>
-    </area>
-    <area name="nav">
-      <description><![CDATA[The navigation area]]></description>
-    </area>
-  </areas>
+	<help>
+		<value>
+			<![CDATA[Add foo and bar to your theme, to display the foo and bar.]]>
+		</value>
+	</help>
+
+	<areas>
+		<area name="site_navigation">
+			<description><![CDATA[The navigation area]]></description>
+		</area>
+		<area name="post_header">
+			<description><![CDATA[The post header area]]></description>
+		</area>
+		<area name="post_comments_header">
+			<description><![CDATA[The post comments header area]]></description>
+		</area>
+		<area name="post_footer">
+			<description><![CDATA[The post footer area]]></description>
+		</area>
+	</areas>
+
+	<provides>
+		<feature url="http://wiki.habariproject.org/en/feature/area">area</feature>
+	</provides>
 </pluggable>

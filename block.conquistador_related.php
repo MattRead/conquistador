@@ -4,7 +4,7 @@
 
         <ul class="posts">
             <?php
-            foreach ($content as $post) {
+            foreach ($related_posts as $post) {
                 echo $theme->content($post, 'list');
             }
             ?>
