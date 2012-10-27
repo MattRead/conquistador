@@ -5,21 +5,18 @@
 	<title><?php echo $title; ?></title>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 	<meta name="generator" content="Habari <?php echo Version::get_habariversion() ?>">
-    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
+	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
 
 	<!--[if lte IE 8]>
 	<script src="<?php Site::out_url('theme') ?>/js/ie.js"></script>
 	<![endif]-->
-    <?php echo $theme->header(); ?>
+	<?php echo $theme->header(); ?>
 	<?php echo $custom_headers; ?>
 </head>
 <body>
 
 <nav class="site" id="top" style="position:relative">
-    &#x26B6; <a class="home" href="<?php Site::out_url('habari'); ?>/">Home</a> |
-    <a href="<?php Site::out_url('habari'); ?>/about">About</a> |
-    <a href="<?php Site::out_url('habari'); ?>/blogroll">Blogroll</a>
-    <span class="stub"> : /<?php echo Controller::get_stub(); ?></span>
-
+	<?php echo $theme->area('site_navigation'); ?>
+	<span class="stub"> : /<?php echo Controller::get_stub(); ?></span>
 </nav>
 
