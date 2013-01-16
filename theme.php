@@ -24,6 +24,7 @@ class Conquistador extends Theme
 		$this->apply_formatters();
 		$this->set_title();
 		$this->load_options();
+		Stack::add( 'template_footer_javascript', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
 	}
 
 	private function load_options()
@@ -218,7 +219,7 @@ class Conquistador extends Theme
 
 	public function act_display_archives()
 	{
-		$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} ORDER BY year DESC', array(), 'QueryRecord' );
+		$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} WHERE status = ? AND content_type = ? ORDER BY year DESC', array(Post::status('published'), Post::type('entry')), 'QueryRecord' );
 		$this->assign( 'collection_years', $years );
 
 		$max_year = $years[0]->year;
@@ -239,6 +240,7 @@ class Conquistador extends Theme
 				'before'=> $endDate,
 				'content_type' => Post::type('entry'),
 				'status' => Post::status('published'),
+				'nolimit' => 1
 			));
 			if ( !count($posts) ) continue;
 
