@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <?php if( $content->comments->moderated->count ) : ?>
 <section id="comments">
 	<h3 id="comments">Comments</h3>

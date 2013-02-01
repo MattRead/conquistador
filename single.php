@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <?php
 $theme->display('header');
 echo $theme->content($post, 'admin');

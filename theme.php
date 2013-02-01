@@ -1,5 +1,7 @@
 <?php
 
+namespace Habari;
+
 class Conquistador extends Theme
 {
 	const OPTION_NAME = 'Conquistador';

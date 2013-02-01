@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <header id="post-<?php echo $content->id; ?>" class="post type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?>">
 	<h1><?php echo $content->title_out; ?></h1>
 	<p>
