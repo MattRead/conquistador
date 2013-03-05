@@ -9,7 +9,7 @@
 
 <?php
 echo $theme->area('post_header');
-echo $content->content_out;
+echo $content->cached_content ? $content->cached_content : $content->content_out;
 echo $theme->area('post_comments_header');
 echo $theme->content($content, 'comments');
 echo $theme->area('post_footer');

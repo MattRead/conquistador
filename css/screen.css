@@ -9,10 +9,11 @@ time {
 }
 
 body {
-	max-width: 720px;
+	position: relative;
+	max-width: 600px;
 	margin: 0 auto;
 	padding: 0 1em;
-	font: normal 24px/36px "DroidSerifRegular", serif;
+	font: 400 19px/1.5 'Source Sans Pro', sans-serif;
 	word-spacing: 0.1em;
 	color: #222;
 	background: #fcfcfc;
@@ -37,7 +38,7 @@ nav.site {
 }
 
 nav.site ol, nav.site li { display: inline; padding: 0; margin: 0; }
-nav.site ol li:after { content: " | "; }
+nav.site ol li:after { content: " \25AA "; }
 nav.site ol li:last-child:after { content: ""; }
 
 div.admin a, nav.site a { color: #eee; }
@@ -47,9 +48,9 @@ div.admin a { padding: 0; }
 div.admin {
 	position: absolute;
 	top: 2px;
+	right: 50px;
 	background: #c30;
 	padding: 4px 10px;
-	margin-left: 620px;
 	font: normal 12px/18px sans-serif;
 	color: #999;
 	text-transform: uppercase;
@@ -74,7 +75,7 @@ header {
 }
 header:after { content: "\2766"; font-size: 1.2em; }
 header h1 { margin-bottom: 0; }
-header p { margin: .5em 0 1.5em; }
+header p { margin: 0 0 1.5em; }
 
 header time, header span {
 	color: #999;
@@ -95,17 +96,16 @@ progress {
 }
 
 h1, h2, h3, h4, h5 {
-	font-weight: normal;
-	font-family: "GoodDogRegular";
-	text-transform: uppercase;
+	font-weight: 300;
+	font-family: 'Source Sans Pro', sans-serif;
 	color: #333;
 }
 
-h1 { font-size: 72px; line-height: 58px; }
-h2, h3 { font-size: 58px; }
-h4,h5 { font-size: 46px; }
+h1 { font-size: 2.2em; line-height: 1.2; }
+h2, h3 { font-size: 1.6em; }
+h4,h5 { font-size: 1.3em; }
 
-p + p { text-indent: 2em; }
+p + p { text-indent: 1.5em; }
 
 pre {
 	margin: 2em 0;
@@ -210,14 +210,15 @@ ul.posts time {
 ul.posts li { padding-left: 7em; }
 
 .meta, .footnotes, figcaption {
-	font-size: 18px;
-	line-height: 24px;
+	font-size: .8em;
+	font-weight: 300;
+	line-height: 1.5;
 	color: #777;
 }
 
 hr { border: 0; }
 hr:after { content: ""; }
-hr + p:first-letter { font-size: 3em; line-height: 1em; margin-right: 2px; display: block; float: left; }
+hr + p:first-letter { font-weight: 300; font-size: 2.6em; line-height: 1.2; margin-right: 2px; display: block; float: left; }
 
 .footnotes hr {
 	height: 1px;

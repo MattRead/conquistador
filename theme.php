@@ -17,14 +17,19 @@ class Conquistador extends Theme
 	/**
 	* function constructor
 	*/
-	public function __construct( $themedata )
+	public function action_init_theme( $id, $theme )
 	{
-		parent::__construct( $themedata );
 		$this->assign( 'tagline', Options::get('tagline') );
 		$this->apply_formatters();
 		$this->set_title();
 		$this->load_options();
 		Stack::add( 'template_footer_javascript', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
+		Stack::add( 'template_stylesheet', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic,700italic', 'screen'));
+		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/screen.css', 'screen'));
+		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/tables.css', 'screen'));
+		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/syntax.css', 'screen'));
+		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/handheld.css', 'screen'));
+		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/fonts/socialico/stylesheet.css', 'screen'));
 	}
 
 	private function load_options()
