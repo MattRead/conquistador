@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <?php $theme->display('header'); ?>
 
 	<h1>
@@ -5,7 +6,7 @@
 	</h1>
 
 	<ul class="posts">
-		<?php 
+		<?php
 		foreach ($posts as $post) {
 			echo $theme->content($post, 'list');
 		}

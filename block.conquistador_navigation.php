@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <nav>
 <?php if ( isset($next) && $next ) : ?>
 <a href="<?php echo $next->permalink; ?>" title="<?php echo htmlentities($next->title); ?>">&larr; Next Post</a> &nbsp;|&nbsp;

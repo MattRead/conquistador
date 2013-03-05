@@ -1,12 +1,13 @@
+<?php namespace Habari; ?>
 <section id="jambo">
 <form method="post" action="<?php echo $jambo->form_action; ?>" id="comment-public">
-	
+
 	<?php if ( $jambo->success ) { ?>
 		<ul class="messages success">
 			<li><?php echo $jambo->success_msg; ?></li>
 		</ul>
 	<?php } ?>
-	
+
 	<?php if ( $jambo->error ) { ?>
 			<ul class="messages error">
 				<li><?php echo $jambo->error_msg; ?></li>
@@ -15,7 +16,7 @@
 			<?php } ?>
 			</ul>
 	<?php } ?>
-	
+
 	<?php if ( $jambo->show_form ) { ?>
 		<label>
 			Your Name: (required)
@@ -36,6 +37,6 @@
 		<?php echo $jambo->osa; ?>
 		<input type="submit" value="Send It!" name="submit" class="button" />
 	<?php } ?>
-	
+
 	</form>
 </section>

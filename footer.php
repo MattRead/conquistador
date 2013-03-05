@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <footer>
 	<address>
 		<?php echo $author_name; ?> &lt;<?php echo $author_email; ?>&gt;

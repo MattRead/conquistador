@@ -1,3 +1,4 @@
+<?php namespace Habari; ?>
 <ul class="posts">
 	<?php if ( ! empty( $blogs ) ) { foreach( $blogs as $blog ) { ?>
     <?php
