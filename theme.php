@@ -19,19 +19,23 @@ class Conquistador extends Theme
 	/**
 	* function constructor
 	*/
-	public function action_init_theme( $id, $theme )
+	public function action_init_theme( $theme )
 	{
 		$this->assign( 'tagline', Options::get('tagline') );
 		$this->apply_formatters();
 		$this->set_title();
 		$this->load_options();
-		Stack::add( 'template_footer_javascript', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
-		Stack::add( 'template_stylesheet', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic,700italic', 'screen'));
-		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/screen.css', 'screen'));
-		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/tables.css', 'screen'));
-		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/syntax.css', 'screen'));
-		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/handheld.css', 'screen'));
-		Stack::add( 'template_stylesheet', array(Site::get_url('theme') . '/css/fonts/socialico/stylesheet.css', 'screen'));
+
+		Stack::dependent('template_header_javascript', 'template_footer_javascript');
+		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
+		$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
+
+		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic,700italic', 'screen'));
+		$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
+		$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
+		$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
+		$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
+		$this->add_style( 'header', array(Site::get_url('theme') . '/css/fonts/socialico/stylesheet.css', 'screen'), 'socialcio');
 	}
 
 	private function load_options()
@@ -57,6 +61,8 @@ class Conquistador extends Theme
 
 		Format::apply( 'tabasamu', 'post_content_summary' );
 		Format::apply( 'tabasamu', 'post_content_microsummary' );
+
+		Format::apply( 'tag_and_list', 'post_tags_out' );
 
 		Format::apply( 'do_highlight', 'post_content_summary' );
 		Format::apply( 'do_highlight', 'post_content_microsummary' );
@@ -181,6 +187,7 @@ class Conquistador extends Theme
 	public function filter_block_list( $block_list ) {
 		$block_list['conquistador_related'] = _t( 'Related Posts (Conquistador)' );
 		$block_list['conquistador_navigation'] = _t( 'Post Navigation (Conquistador)' );
+		$block_list['conquistador_tags'] = _t( 'Post Tag List (Conquistador)' );
 		return $block_list;
 	}
 
@@ -201,6 +208,14 @@ class Conquistador extends Theme
 			$block = new Block( array(
 				'title' => _t( 'Previous/Next Post Navigation' ),
 				'type' => 'conquistador_navigation',
+			) );
+
+			$block->add_to_area( 'post_comments_header' );
+			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
+
+			$block = new Block( array(
+				'title' => _t( 'Post Tags list' ),
+				'type' => 'conquistador_tags',
 			) );
 
 			$block->add_to_area( 'post_comments_header' );
@@ -237,7 +252,7 @@ class Conquistador extends Theme
 		$collections = array();
 		foreach ( $years as $y ) {
 			$year = $y->year;
-			$startDate = new HabariDateTime;
+			$startDate = new DateTime;
 			$startDate->set_date($year, 1, 1);
 			$endDate = clone $startDate;
 			$endDate->modify('+1 year -1 day');
@@ -254,7 +269,7 @@ class Conquistador extends Theme
 			$images = glob(dirname(__FILE__) . '/images/archives/*.png');
 			$image = basename($images[array_rand($images, 1)]);
 
-			$collection = new stdClass;
+			$collection = new \stdClass;
 			$collection->posts = $posts;
 			$collection->start_month = $startDate;
 			$collection->end_month = $endDate;

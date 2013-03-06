@@ -19,6 +19,5 @@
 
 <nav class="site" id="top" style="position:relative">
 	<?php echo $theme->area('site_navigation'); ?>
-	<!--<span class="stub"> : /<?php echo Controller::get_stub(); ?></span>-->
 </nav>
 

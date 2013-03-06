@@ -38,7 +38,7 @@ nav.site {
 }
 
 nav.site ol, nav.site li { display: inline; padding: 0; margin: 0; }
-nav.site ol li:after { content: " \25AA "; }
+nav.site ol li:after { content: " \00B7 "; padding: 0 .2em; }
 nav.site ol li:last-child:after { content: ""; }
 
 div.admin a, nav.site a { color: #eee; }
@@ -106,6 +106,7 @@ h2, h3 { font-size: 1.6em; }
 h4,h5 { font-size: 1.3em; }
 
 p + p { text-indent: 1.5em; }
+p.meta + p.meta { text-indent: 0; }
 
 pre {
 	margin: 2em 0;
@@ -149,11 +150,15 @@ a:link {
 	padding:.3em 0;
 }
 
+.tags a:link {
+	color:#777;
+}
+
 a:visited {
 	color:#c30;
 }
 
-a:hover, * a:hover {
+a:hover, * a:hover, .tags a:hover {
 	color: #999;
 }
 
@@ -259,12 +264,12 @@ form.formui textarea {
 	margin: 0;
 }
 
-textarea#comment_content, input#comment_name, input#comment_email {
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAQCAYAAAD52jQlAAAABGdBTUEAAK/INwWK6QAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAIHSURBVDhPrZTdTxpBFMXPLCkaoFq6QUwIRk1MU2Oj8UEf7ZMPxv/aPhESEzV+BDTY8mHBjagoCcWZnjswG7AgPvQmk929O/ubc8+dWWUY+M+hBqGtRAK6v4BcP7Va9umWeQnJiYJ0Pz9Oi+deCNDzfUR3dhDd2/tnfmJ3Fx/X1iy40l9kItQqnJqCSqehUil84L0orHPEkkmoWMzmZZ6rZiJ0hiV1qlXooyN+peGtroblqoUFGOb02ZnNZd9bvqwqHrbPz6EPD+GtrFj/ZtbX4S0tQZ+cILi5mQgUjtdkeTJciJJHAtDtYpbeqkwGptFAcHU1VHYhHscFx6iwjYrSM/FPhuuwCQILRqdj7XBeXhIkwKRSY71VQTxuYlTkZbPQtRrw9NRbXFQ8PwMvL0AkArTbMHxWUhXfmXIZxeNjfHPzBySrBqGum+KhU/R5e7sHoFqBVXO58J3M+cPBOrA5Cvr6RMkelI9S+/vA/T29icI0myjn8zb/ZQTkta/h5h9slL+8zG49onZwAHN9DUXPM3NzVtl7Ygj6iyr9+XlENjagT0/R5W/hZ6EAXSzafbs4PY38mI4PLhZCLZCKvK0tmIcHVOr10MNOqdQ7EDymPrv+g6frrQih4tfvuzsYKpSN7vz7Sg9LVCx7VfIVwifZMPSXkj3oui9XAUrkmBcrJCfA77LV3oi/wvv2h3rXoOcAAAAASUVORK5CYII=");
-	background-repeat: no-repeat;
-	background-position: right center;
+.required {
+	font-size: .8em;
+	font-weight: 300;
+	color: #b20;
+	padding-left: .5em;
 }
-textarea#comment_content { background-position: right 5px; }
 
 form.formui ul.error {
 	list-style-type: none;
@@ -319,7 +324,7 @@ ul.posts .rating {
 
 .social a {
 	color: #bbb;
-	font: normal 48px/48px "SocialicoRegular", serif;
+	font: normal 40px/1 "SocialicoRegular", serif;
 }
 .social{ text-align: right; }
 .social a:hover { color: #c30; }
