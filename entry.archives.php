@@ -10,7 +10,6 @@
 
 <section>
 <h2>The <?php echo $collection->name; ?> Collection</h2>
-<p><img src="<?php Site::out_url('theme') ?>/images/archives/<?php echo $collection->image; ?>" class="right"></p>
 
 <ul class="posts">
 	<?php foreach ( $collection->posts as $post ) : ?>

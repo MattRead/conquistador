@@ -207,10 +207,12 @@ ul.posts time {
 	position: absolute;
 	width: 7em;
 	padding-right: 1em;
+	padding-top: .35em;
 	margin-left: -8em;
 	text-align: right;
 	color: #999;
 	font-size: .8em;
+	line-height: 1.2;
 }
 ul.posts li { padding-left: 7em; }
 
