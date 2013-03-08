@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 	<article id="comment-<?php echo $content->id; ?>" class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?>">
 		<header>
 		<p>

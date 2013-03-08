@@ -1,6 +1,6 @@
 <?php
 
-namespace Habari;
+//namespace Habari;
 
 class Conquistador extends Theme
 {
@@ -30,7 +30,7 @@ class Conquistador extends Theme
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
 		$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
 
-		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic,700italic', 'screen'));
+		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro', 'screen'));
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
@@ -252,7 +252,7 @@ class Conquistador extends Theme
 		$collections = array();
 		foreach ( $years as $y ) {
 			$year = $y->year;
-			$startDate = new DateTime;
+			$startDate = new HabariDateTime;
 			$startDate->set_date($year, 1, 1);
 			$endDate = clone $startDate;
 			$endDate->modify('+1 year -1 day');

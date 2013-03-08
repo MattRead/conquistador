@@ -50,8 +50,9 @@ div.admin {
 	top: 2px;
 	right: 50px;
 	background: #c30;
-	padding: 4px 10px;
-	font: normal 12px/18px sans-serif;
+	padding: 3px 10px;
+	font-weight: 300;
+	font-size: 14px;
 	color: #999;
 	text-transform: uppercase;
 	-moz-border-radius: 0 0 10px 10px;
@@ -66,6 +67,7 @@ footer {
 	margin: 3em 0 0;
 	color: #999;
 	font-size: .8em;
+	font-weight: 300;
 }
 
 footer address { text-align: right; }
@@ -80,6 +82,7 @@ header p { margin: 0 0 1.5em; }
 header time, header span {
 	color: #999;
 	font-size: .8em;
+	font-weight: 300;
 }
 
 figure, figcaption { margin: 1em 0; }
@@ -112,12 +115,15 @@ pre {
 	margin: 2em 0;
 	padding: 1em;
 	border: 1px solid #ddd;
+	font-family: 'Source Code Pro', monospace;
 	font-size: 14px;
 	line-height: 14px;
 	overflow: auto;
 	white-space: pre-wrap;
 	white-space:-moz-pre-wrap; white-space:-hp-pre-wrap; white-space:-o-pre-wrap; white-space:-pre-wrap; word-wrap:break-word;
 }
+
+code { font-family: 'Source Code Pro', monospace; }
 
 object { text-align: center; }
 
@@ -162,6 +168,7 @@ a:hover, * a:hover, .tags a:hover {
 	color: #999;
 }
 
+strong { font-weight: 700; }
 
 abbr {
 	letter-spacing: .05em;
@@ -174,7 +181,7 @@ img {
 	max-width: 91%;
 	height: auto;
 	margin: 1em;
-	border: 5px solid #333;
+	border: 2px solid #333;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -206,11 +213,14 @@ ul.posts time {
 	display: block;
 	position: absolute;
 	width: 7em;
+	padding-top: .38em;
 	padding-right: 1em;
 	margin-left: -8em;
 	text-align: right;
 	color: #999;
 	font-size: .8em;
+	line-height: 1.2;
+	font-weight: 300;
 }
 ul.posts li { padding-left: 7em; }
 
@@ -254,6 +264,22 @@ form.formui label {
 	display: block;
 	margin: 1em 0 0;
 }
+
+form#searchform p { text-align: center; }
+form#searchform input[type=text] {
+	width: 60%;
+	border: 1px solid #bbb;
+	padding: 4px;
+	margin: 1em 0;
+}
+form#searchform input[type=submit] {
+	border: 0;
+	background: #bbb;
+	color: #eee;
+	padding: 4px 1.5em;
+	margin: 1em 0;
+}
+
 form.formui input[type=text],
 form.formui input[type=url],
 form.formui input[type=email],

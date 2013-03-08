@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 <!DOCTYPE html>
 <html lang="en-ca">
 

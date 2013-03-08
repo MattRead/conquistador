@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 <?php $theme->set_title('Page Not Found'); echo $theme->display('header'); ?>
 
 <article>

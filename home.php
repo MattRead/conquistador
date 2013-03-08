@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 <?php $theme->display('header'); ?>
 
 	<h1>

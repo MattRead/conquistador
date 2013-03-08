@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 <?php if (count($related_posts)) : ?>
     <section>
         <h2>Related Posts</h2>

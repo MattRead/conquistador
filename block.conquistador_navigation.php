@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 <nav>
 	<p class="meta">
 		<?php if ( isset($next) && $next ) : ?>
