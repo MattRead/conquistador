@@ -155,7 +155,7 @@ a:link {
 	padding:.3em 0;
 }
 
-.tags a:link {
+.tags a:link, .tags a:visited {
 	color:#777;
 }
 
