@@ -184,11 +184,24 @@ class Conquistador extends Theme
 		$ui->out();
 	}
 
-	public function filter_block_list( $block_list ) {
+	public function filter_block_list( $block_list )
+	{
 		$block_list['conquistador_related'] = _t( 'Related Posts (Conquistador)' );
 		$block_list['conquistador_navigation'] = _t( 'Post Navigation (Conquistador)' );
 		$block_list['conquistador_tags'] = _t( 'Post Tag List (Conquistador)' );
 		return $block_list;
+	}
+
+	public function filter_get_scopes($scopes)
+	{
+		$scope = new stdClass();
+		$scope->criteria = array(
+			array('request', 'display_home'),
+		);
+		$scope->name = 'Homepage';
+		$scope->id = 69;
+		$scopes['conquistador_homepage'] = $scope;
+		return $scopes;
 	}
 
 	public function action_theme_activated($theme_name, $theme)
