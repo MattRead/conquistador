@@ -1,11 +1,12 @@
 @media screen and (max-width: 740px) {
-	div.admin { margin-left: 75% !important; }
+	p.pull-quote { margin-right: 0; }
 }
-@media screen and (max-width: 700px) {
-    .stub { display: none; }
-}
+
 @media screen and (max-width: 600px) {
     ul.posts { list-style: square outside url(../images/clip.png) !important; }
     ul.posts time { display: none !important; }
     ul.posts li { padding-left: 0 !important; }
+}
+@media screen and (max-width: 500px) {
+    p.pull-quote { display: none; }
 }
