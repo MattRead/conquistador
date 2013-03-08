@@ -16,8 +16,7 @@ body {
 	font: 400 19px/1.5 'Source Sans Pro', sans-serif;
 	word-spacing: 0.1em;
 	color: #222;
-	background: #fcfcfc;
-	background-image: -moz-radial-gradient(center 80px, circle closest-corner, #eee, #fcfcfc);
+	background: #fcfcfc url('../images/back.png') repeat;
 	word-wrap: break-word;
 }
 
@@ -247,15 +246,19 @@ hr + p:first-letter { font-weight: 300; font-size: 2.6em; line-height: 1.2; marg
 article.comment {
 	padding: 1em 2em;
 	margin: 2em;
-	font-size: 18px;
-	background: #e9e9e9;
-	border-top: 5px solid #555;
+	font-size: .93em;
+	background-color: rgba(238,238,238,0.6);
+	border-top: 5px solid #bbb;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	word-wrap: break-word;
 }
 
+article.comment.type-pingback {
+	padding: .5em 2em;
+	border-top: none;
+}
 article.comment > header:after { content: none; }
 article.comment > header { text-align: left; }
 
