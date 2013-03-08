@@ -1,5 +1,6 @@
 <?php //namespace Habari; ?>
-	<article id="comment-<?php echo $content->id; ?>" class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?>">
+	<article id="comment-<?php echo $content->id; ?>" class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?> author-<?php echo crc32($content->email); ?>">
+		<?php echo $theme->content($content, 'admin'); ?>
 		<header>
 		<p>
 			<img style="float:right" src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->email)); ?>?d=identicon&s=60&r=g" alt="Gravatar for <?php echo $content->name; ?>">
@@ -16,5 +17,3 @@
 			<?php echo $content->content_out; ?>
 		<?php endif; ?>
 	</article>
-
-

@@ -248,6 +248,7 @@ hr + p:first-letter { font-weight: 300; font-size: 2.6em; line-height: 1.2; marg
 .footnotes li, .footnotes p { margin: .2em 0; }
 
 article.comment {
+	position: relative;
 	padding: 1em 2em;
 	margin: 2em;
 	font-size: .93em;
@@ -258,13 +259,29 @@ article.comment {
 	border-radius: 10px;
 	word-wrap: break-word;
 }
-
+article.comment.author-3410143116 { border-color: #c30; }
+article.comment.author-3410143116 div.admin { background-color: #c30; }
+article.comment.author-3410143116 div.admin a { color: #eee; }
 article.comment.type-pingback {
 	padding: .5em 2em;
 	border-top: none;
 }
 article.comment > header:after { content: none; }
 article.comment > header { text-align: left; }
+
+article.comment div.admin a { color: #333; }
+article.comment div.admin a:hover { color: #eee; }
+article.comment div.admin {
+    top: 0;
+    background: #bbb;
+    padding: 2px 10px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #999;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 
 form { padding: 0 1em; }
 form.formui label {
