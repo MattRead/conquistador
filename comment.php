@@ -4,7 +4,7 @@
 		<p>
 			<img style="float:right" src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->email)); ?>?d=identicon&s=60&r=g" alt="Gravatar for <?php echo $content->name; ?>">
 			<a href="<?php echo $content->url; ?>" rel="external"><?php echo $content->name != 'Anonymous' ? $content->name : $content->url; ?></a>
-				(<a href="#comment-<?php echo $content->id; ?>" title="Permanent link to this comment">#<?php echo $content->id; ?></a>),
+				(<a href="#comment-<?php echo $content->id; ?>" title="Permanent link to this comment">#<?php echo $content->id; ?></a>)<br>
 			<time datetime="<?php echo $content->date->format('c'); ?>"><?php echo $content->date_out; ?></time>
 		</p>
 		</header>
