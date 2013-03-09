@@ -126,7 +126,7 @@ code { font-family: 'Source Code Pro', monospace; }
 
 object { text-align: center; }
 
-ul { list-style-type: square; }
+ul { list-style-type: disc; list-style-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="10" height="10"><text x="2" y="12.5" style="font-size: 16pt; fill: %23444;">&%23x2022;</text></svg>'); }
 ol, ul { list-style-position: outside; }
 ol, ul { margin: 1.5em 1em; }
 blockquote {
