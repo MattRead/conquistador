@@ -6,7 +6,8 @@ $(window).keydown(function(e){
 		if (easterEggKeys[easterEggCurrent].toLowerCase() == key) {
 			easterEggCurrent++;
 			if (easterEggCurrent >= easterEggKeys.length) {
-				$('body').css('background', 'transparent url(' + HABARI_URL + '/system/admin/images/pasaka.png) no-repeat 80% 150px');
+				$('body').append('<embed src="http://mattread.com/examples/midi/sinfon1.mid" autostart="true" hidden="true" type="audio/midi">');
+				for (var i = 0; i < document.styleSheets.length; i++) { document.styleSheets[i].disabled = true; }
 				easterEggCurrent = 0;
 			}
 		}

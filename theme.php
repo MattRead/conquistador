@@ -145,10 +145,10 @@ class Conquistador extends Theme
 	{
 		static $nav = null;
 		if( $nav == null ) {
-				$prev = implode( '', ( array ) $theme->prev_page_link_return( '&larr;' ) );
-				$mid = implode( '', ( array ) $theme->page_selector_return( null, array( 'leftSide' => 2, 'rightSide' => 2 ) ) );
-				$next = implode( '', ( array ) $theme->next_page_link_return( '&rarr;' ) );
-			$nav = "<nav>Pages: $prev $mid $next </nav>";
+			$prev = implode( '', ( array ) $theme->prev_page_link_return( '&larr;' ) );
+			$mid = implode( '', ( array ) $theme->page_selector_return( null, array( 'leftSide' => 2, 'rightSide' => 2, 'hideIfSinglePage' => true ) ) );
+			$next = implode( '', ( array ) $theme->next_page_link_return( '&rarr;' ) );
+			$nav = $mid ? "<nav>Pages: $prev $mid $next </nav>" : '';
 		}
 		return $nav;
 	}

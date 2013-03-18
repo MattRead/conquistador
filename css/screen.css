@@ -114,6 +114,7 @@ pre {
 	margin: 2em 0;
 	padding: 1em;
 	border: 1px solid #ddd;
+	background: #fcfcfc;
 	font-family: 'Source Code Pro', monospace;
 	font-size: 14px;
 	line-height: 14px;
@@ -180,13 +181,12 @@ img {
 	max-width: 91%;
 	height: auto;
 	margin: 1em;
-	border: 2px solid #333;
+	background: #fff;
+	border: 1px solid #777;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	-moz-box-shadow: 3px 3px 3px #999;
-	-webkit-box-shadow: 3px 3px 3px #999;
-	box-shadow: 3px 3px 3px #999;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 img.habari-smiley { margin: 0; border: 0; }
 img.right, img.left, img.center { display: block; }
@@ -310,21 +310,19 @@ form#searchform input[type=text] {
 form#searchform input[type=submit] {
 	border: 0;
 	background: #bbb;
+	background-image: none;
 	color: #eee;
 	padding: 4px 1.5em;
 	margin: 1em 0;
+	border-radius: 0;
 }
 nav.site form#searchform {
 	position: absolute;
 	right: 75%;
-	bottom: -1.9em;
+	bottom: -2em;
 	margin: 0 -50% 0 0;
 	padding: .15em 1em;
 	height: 1.6em;
-    background-color: rgba(238,238,238,0.6);
-    -moz-border-radius: 0 0 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 0 0 10px 10px;
 }
 nav.site form#searchform input[type=text] {
 	width: 180px;
@@ -339,14 +337,35 @@ nav.site form#searchform input[type=submit] {
 	padding: 4px .8em;
 }
 
+input[type=submit],
+input[type=text],
+input[type=url],
+input[type=email],
+textarea {
+	border: 1px solid #777;
+	padding: 6px;
+	margin: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+input[type=submit] {
+	border-radius: 4px;
+	margin: 1em 0;
+	padding: 4px .8em;
+	background: #ccc;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f4f5f5), to(#dfdddd));
+	background-image: -webkit-linear-gradient(top, #f4f5f5, #dfdddd);
+	background-image: -moz-linear-gradient(top, #f4f5f5, #dfdddd);
+	background-image: -ms-linear-gradient(top, #f4f5f5, #dfdddd);
+	background-image: -o-linear-gradient(top, #f4f5f5, #dfdddd);
+	background-image: linear-gradient(to bottom, #f4f5f5, #dfdddd);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f5f5, endColorstr=#dfdddd);
+}
+
 form.formui input[type=text],
 form.formui input[type=url],
 form.formui input[type=email],
 form.formui textarea {
 	width: 95%;
-	border: 1px solid #777;
-	padding: 6px;
-	margin: 0;
 }
 
 .required {
@@ -357,17 +376,17 @@ form.formui textarea {
 }
 
 form.formui ul.error {
-	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
 form.formui ul.error li {
+	list-style: none;
 	width: 85%;
-	padding: .5em;
+	padding: .6em;
 	margin: 0;
-	border: 1px solid #777;
 	border-top: none;
-	background-color: #ee9a4d;
+	background-color: rgba(238,238,238,0.6);
+	color: #b20;
 	line-height: 14px;
 	font-size: 14px;
 }
