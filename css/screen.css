@@ -270,9 +270,9 @@ article.comment {
 	border-radius: 10px;
 	word-wrap: break-word;
 }
-article.comment.author-3410143116 { border-color: #c30; }
-article.comment.author-3410143116 div.admin { background-color: #c30; }
-article.comment.author-3410143116 div.admin a { color: #eee; }
+article.comment.author-comment { border-color: #c30; }
+article.comment.author-comment div.admin { background-color: #c30; }
+article.comment.author-comment div.admin a { color: #eee; }
 article.comment.type-pingback {
 	padding: .5em 2em;
 	border-top: none;

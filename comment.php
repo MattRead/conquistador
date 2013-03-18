@@ -1,5 +1,5 @@
 <?php //namespace Habari; ?>
-	<article id="comment-<?php echo $content->id; ?>" class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?> author-<?php echo crc32($content->email); ?>">
+	<article id="comment-<?php echo $content->id; ?>" class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?> <?php echo ($content->post->author->email == $content->email) ? 'author-comment' : ''; ?>">
 		<?php echo $theme->content($content, 'admin'); ?>
 		<header>
 		<p>
