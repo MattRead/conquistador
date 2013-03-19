@@ -6,6 +6,7 @@ class Conquistador extends Theme
 {
 	const OPTION_NAME = 'Conquistador';
 	const REWRITE_NAME = 'conquistador_archives';
+	const ARCHIVES_CACHE_EXPIRE = 3600;
 
 	private $social_media_icons = array(
 		'twitter' => array('l', 'https://twitter.com/%s', 'Twitter'),
@@ -56,12 +57,6 @@ class Conquistador extends Theme
 
 	private function apply_formatters()
 	{
-		Format::apply( 'summarize', 'post_content_summary', 200, 2 );
-		Format::apply( 'summarize', 'post_content_microsummary', 50, 1 );
-
-		Format::apply( 'tabasamu', 'post_content_summary' );
-		Format::apply( 'tabasamu', 'post_content_microsummary' );
-
 		Format::apply( 'tag_and_list', 'post_tags_out' );
 
 		Format::apply( 'do_highlight', 'post_content_summary' );
@@ -72,8 +67,6 @@ class Conquistador extends Theme
 		Format::apply( 'nice_date', 'post_pubdate_out', 'l, F jS Y' );
 		Format::apply( 'nice_date', 'post_modified_out', 'l, F jS Y' );
 		Format::apply( 'nice_date', 'comment_date_out', 'l, F jS Y' );
-
-		Format::apply( 'autop', 'comment_content_out', 'l, F jS Y' );
 	}
 
 	public function set_title( $value = null )
@@ -88,37 +81,21 @@ class Conquistador extends Theme
 
 	public function add_template_vars()
 	{
-		if ( isset($this->posts) && count($this->posts) ) {
-			$post = $this->post instanceof Post ? $this->post : $this->posts[0];
-			if ( $this->post instanceof Post && count($this->posts) == 1 ) {
-				$this->set_title( $post->title );
-				if ( $post->typename == 'entry' ) {
-					$this->assign( 'next', $post->ascend() );
-					$this->assign( 'previous', $post->descend() );
-				}
-				if ( count($post->tags) ) {
-					$related = Posts::get(array(
-						'vocabulary' =>  array( 'any' => $post->tags),
-						'content_type' => $post->content_type,
-						'status' => Post::status('published'),
-						'not:id' => $post->id,
-						'limit' => 5,
-						'orderby' => 'Rand()'
-					));
-					$this->assign( 'related_posts', $related );
-				}
-				else {
-					$this->assign( 'realted_posts', array() );
-				}
-			}
-		}
-		elseif ( URL::get_matched_rule() == null ) {
+		if ( URL::get_matched_rule() == null ) {
 			$this->set_title('Page Not Found');
 		}
 		parent::add_template_vars();
 	}
 
-    public function act_display_tag( $user_filters= array() )
+	public function act_display_post( $user_filters = array() ) 
+	{
+		if ( isset($this->post) ) {
+			$this->set_title( $this->post->title );
+		}
+		return parent::act_display_post( $user_filters );
+	}
+
+    public function act_display_tag( $user_filters = array() )
 	{
 		$this->set_title( 'Posts Tagged With "' . Controller::get_var( 'tag' ) . '"' );
 		return parent::act_display_tag( $user_filters );
@@ -192,6 +169,33 @@ class Conquistador extends Theme
 		return $block_list;
 	}
 
+	public function action_block_content_conquistador_navigation( $block, $theme )
+	{
+		if ( isset($theme->post) && $theme->post->typename == 'entry' ) {
+			$this->assign( 'next', $theme->post->ascend() );
+			$this->assign( 'previous', $theme->post->descend() );
+		}
+	}
+
+	public function action_block_content_conquistador_related( $block, $theme )
+	{
+		if ( isset($theme->post) && count($theme->post->tags) ) {
+			$post = $theme->post;
+			$related = Posts::get(array(
+				'vocabulary' =>  array( 'any' => $post->tags),
+				'content_type' => $post->content_type,
+				'status' => Post::status('published'),
+				'not:id' => $post->id,
+				'limit' => 5,
+				'orderby' => 'Rand()'
+			));
+			$theme->assign( 'related_posts', $related );
+		}
+		else {
+			$theme->assign( 'realted_posts', array() );
+		}
+	}
+
 	public function filter_get_scopes($scopes)
 	{
 		$scope = new stdClass();
@@ -204,6 +208,9 @@ class Conquistador extends Theme
 		return $scopes;
 	}
 
+	/**
+	 * @TODO add block to appropriate scopes
+	 */
 	public function action_theme_activated($theme_name, $theme)
 	{
 		$blocks = $this->get_blocks( 'post_footer', 0, $this );
@@ -254,46 +261,56 @@ class Conquistador extends Theme
 
 	public function act_display_archives()
 	{
-		$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} WHERE status = ? AND content_type = ? ORDER BY year DESC', array(Post::status('published'), Post::type('entry')), 'QueryRecord' );
-		$this->assign( 'collection_years', $years );
+		if ( Cache::has_group(self::OPTION_NAME) ) {
+			$cache = Cache::get_group(self::OPTION_NAME);
+			$collections = $cache['collections'];
+			$years = $cache['collection_years'];
+			$max_year = $cache['max_year'];
+			$min_year = $cache['min_year'];
+		}
+		else {
+			$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} WHERE status = ? AND content_type = ? ORDER BY year DESC', array(Post::status('published'), Post::type('entry')), 'QueryRecord' );
 
-		$max_year = $years[0]->year;
-		$min_year = $years[count($years)-1]->year;
+			$max_year = $years[0]->year;
+			$min_year = $years[count($years)-1]->year;
+	
+			$collections = array();
+			foreach ( $years as $y ) {
+				$year = $y->year;
+				$startDate = new HabariDateTime;
+				$startDate->set_date($year, 1, 1);
+				$endDate = clone $startDate;
+				$endDate->modify('+1 year -1 day');
+	
+				$posts = Posts::get(array(
+					'after' => $startDate,
+					'before'=> $endDate,
+					'content_type' => Post::type('entry'),
+					'status' => Post::status('published'),
+					'nolimit' => 1
+				));
+				if ( !count($posts) ) continue;
+	
+				$collection = new \stdClass;
+				$collection->posts = $posts;
+				$collection->start_month = $startDate;
+				$collection->end_month = $endDate;
+				$collection->description = $startDate->format('F jS, Y') . ' to ' . $endDate->format('F jS, Y');
+				$collection->name = $year;
+				$collection->posts_count = count($collection->posts);
+	
+				$collections[$year] = $collection;
+			}
+			Cache::set( array(self::OPTION_NAME, 'max_year'), $max_year, self::ARCHIVES_CACHE_EXPIRE );
+			Cache::set( array(self::OPTION_NAME, 'min_year'), $min_year, self::ARCHIVES_CACHE_EXPIRE );
+			Cache::set( array(self::OPTION_NAME, 'collection_years'), $years, self::ARCHIVES_CACHE_EXPIRE );
+			Cache::set( array(self::OPTION_NAME, 'collections'), $collections, self::ARCHIVES_CACHE_EXPIRE );
+		}
+
+		$this->assign( 'collections', $collections );
+		$this->assign( 'collection_years', $years );
 		$this->assign( 'max_year', $max_year );
 		$this->assign( 'min_year', $min_year );
-
-		$collections = array();
-		foreach ( $years as $y ) {
-			$year = $y->year;
-			$startDate = new HabariDateTime;
-			$startDate->set_date($year, 1, 1);
-			$endDate = clone $startDate;
-			$endDate->modify('+1 year -1 day');
-
-			$posts = Posts::get(array(
-				'after' => $startDate,
-				'before'=> $endDate,
-				'content_type' => Post::type('entry'),
-				'status' => Post::status('published'),
-				'nolimit' => 1
-			));
-			if ( !count($posts) ) continue;
-
-			$images = glob(dirname(__FILE__) . '/images/archives/*.png');
-			$image = basename($images[array_rand($images, 1)]);
-
-			$collection = new \stdClass;
-			$collection->posts = $posts;
-			$collection->start_month = $startDate;
-			$collection->end_month = $endDate;
-			$collection->description = $startDate->format('F jS, Y') . ' to ' . $endDate->format('F jS, Y');
-			$collection->name = $year;
-			$collection->image = $image;
-			$collection->posts_count = count($collection->posts);
-
-			$collections[$year] = $collection;
-		}
-		$this->assign( 'collections', $collections );
 
 		$this->set_title('The Archives (' . $min_year . ' to ' . $max_year . ')');
 		$this->add_template_vars();

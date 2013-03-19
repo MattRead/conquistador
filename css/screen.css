@@ -22,7 +22,7 @@ body {
 
 nav.site {
 	padding: 10px 30px;
-	margin: 0 0 3em;
+	margin: 2px 0 3em;
 	font-size: 18px;
 	color: #999;
 	background:#222 url('../images/pattern.png') repeat;
@@ -30,9 +30,9 @@ nav.site {
 	-moz-border-radius: 15px;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-	-moz-box-shadow: inset 4px 4px 4px #222;
-	-webkit-box-shadow: inset 4px 4px 4px #222;
-	box-shadow: inset 4px 4px 4px #222;
+	-moz-box-shadow: inset 2px 4px 4px #222;
+	-webkit-box-shadow: inset 2px 4px 4px #222;
+	box-shadow: inset 2px 4px 4px #222;
 	text-shadow: 3px 3px 3px #222;
 }
 
@@ -57,9 +57,9 @@ div.admin {
 	-moz-border-radius: 0 0 10px 10px;
 	-webkit-border-radius: 0 0 10px 10px;
 	border-radius: 0 0 10px 10px;
-	-moz-box-shadow: 4px 4px 4px #000;
-	-webkit-box-shadow: 4px 4px 4px #000;
-	box-shadow: 4px 4px 4px #000;
+	-moz-box-shadow: 2px 4px 4px #000;
+	-webkit-box-shadow: 2px 4px 4px #000;
+	box-shadow: 2px 4px 4px #000;
 }
 
 footer {
