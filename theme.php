@@ -113,11 +113,6 @@ class Conquistador extends Theme
 		return parent::act_search($user_filters);
 	}
 
-	public function act_display_blogroll() {
-		$this->set_title('Blogroll');
-		$this->display('blogroll.multiple');
-	}
-
 	public function theme_paged_nav( $theme )
 	{
 		static $nav = null;
