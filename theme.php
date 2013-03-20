@@ -162,6 +162,7 @@ class Conquistador extends Theme
 		$block_list['conquistador_tags'] = _t( 'Post Tag List (Conquistador)' );
 		$block_list['conquistador_signature'] = _t( 'Signature Line With Media Icons (Conquistador)' );
 		$block_list['conquistador_copyright'] = _t( 'Copyright Declaration (Conquistador)' );
+		$block_list['conquistador_menu'] = _t( 'Basic Main Menu (Conquistador)' );
 		return $block_list;
 	}
 
@@ -247,6 +248,16 @@ class Conquistador extends Theme
 	 */
 	public function action_theme_activated($theme_name, $theme)
 	{
+		$blocks = $this->get_blocks( 'site_navigation', 0, $this );
+		if( count( $blocks ) == 0 ) {
+			$block = new Block( array(
+				'title' => _t( 'Basic Main Menu' ),
+				'type' => 'conquistador_menu',
+			) );
+
+			$block->add_to_area( 'site_navigation' );
+			Session::notice( _t( 'Added Basic Main Menu block to site_navigation area.' ) );
+		}
 		$blocks = $this->get_blocks( 'post_footer', 0, $this );
 		if( count( $blocks ) == 0 ) {
 			$block = new Block( array(
@@ -274,6 +285,16 @@ class Conquistador extends Theme
 
 			$block->add_to_area( 'post_comments_header' );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
+		}
+		$blocks = $this->get_blocks( 'footer', 0, $this );
+		if( count( $blocks ) == 0 ) {
+			$block = new Block( array(
+				'title' => _t( 'Copyright Declaration' ),
+				'type' => 'conquistador_copyright',
+			) );
+
+			$block->add_to_area( 'footer' );
+			Session::notice( _t( 'Added Copyright Declaration block to footer area.' ) );
 		}
 
 		if ( !RewriteRules::by_name(self::REWRITE_NAME) ) {
