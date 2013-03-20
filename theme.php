@@ -31,7 +31,7 @@ class Conquistador extends Theme
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
 		$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
 
-		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro', 'screen'));
+		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro|Tangerine', 'screen'));
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
@@ -41,17 +41,6 @@ class Conquistador extends Theme
 
 	private function load_options()
 	{
-		$social_media_icons = array();
-		foreach ( $this->social_media_icons as $name => $media ) {
-			list($key, $url, $label) = $media;
-			if ( $option = Options::get(self::OPTION_NAME . "__{$name}_name") ) {
-				$social_media_icons[$name] = array($key, sprintf($url, $option), $label );
-			}
-		}
-		$this->assign('social_media_icons', $social_media_icons);
-		$this->assign('author_name', Options::get(self::OPTION_NAME . '__author_name'));
-		$this->assign('author_email', Options::get(self::OPTION_NAME . '__author_email', 'webmaster'));
-		$this->assign('copy_year', Options::get(self::OPTION_NAME . '__copy_year', '2012'));
 		$this->assign('custom_headers', Options::get(self::OPTION_NAME . '__custom_headers'));
 	}
 
@@ -103,7 +92,32 @@ class Conquistador extends Theme
 
 	public function act_display_date( $user_filters = array() )
 	{
+		$date = $format = '';
 		$this->set_title( 'Posts By Date' );
+
+		if ( $year = Controller::get_var('year') ) {
+			$date = $year;
+			$format = 'Y';
+		}
+		
+		if ( $month = Controller::get_var('month') ) {
+			$date .= "-$month";
+			$format = 'M ' . $format;
+		}
+		else {
+			$date .= '-01';
+		}
+		
+		if ( $day = Controller::get_var('day') ) {
+			$date .= "-$day";
+			$format = 'd ' . $format;
+		}
+		else {
+			$date .= '-01';
+		}
+		
+		$date = new HabariDateTime($date);
+		$this->assign('date', $date->format($format));
 		parent::act_display_date($user_filters);
 	}
 
@@ -128,21 +142,6 @@ class Conquistador extends Theme
 	public function action_theme_ui( $theme )
 	{
 		$ui = new FormUI( __CLASS__ );
-		// This is a fudge as I only need to add a little bit of styling to make things look nice.
-		$ui->append( 'static', 'style', '<style type="text/css">#conquistador .formcontrol { line-height: 2.5em; }</style>');
-		$social = $ui->append( 'fieldset', 'social', 'Social Media Links');
-		foreach ($this->social_media_icons as $media => $data) {
-			$social->append('text', "{$media}_name", __CLASS__."__{$media}_name", "$media username:", 'optionscontrol_text');
-			$social->{$media.'_name'}->helptext = _t("Set your $media username for social media icon link.");
-		}
-
-		$copy = $ui->append( 'fieldset', 'copy', 'Author Copyright/Signature');
-		$copy->append('text', "author_name", __CLASS__."__author_name", "Author Name:", 'optionscontrol_text');
-		$copy->author_name->helptext = _t("Author name to appear in signature on site footer.");
-		$copy->append('text', "author_email", __CLASS__."__author_email", "Author Email:", 'optionscontrol_text');
-		$copy->author_email->helptext = _t("Author email to appear in signature on site footer.");
-		$copy->append('text', "copy_year", __CLASS__."__copy_year", "Copyright Year:", 'optionscontrol_text');
-		$copy->copy_year->helptext = _t("Copyright year to appear in signature on site footer.");
 
 		$head = $ui->append( 'fieldset', 'heads', 'Custom Headers');
 		$head->append('textarea', "custom_headers", __CLASS__."__custom_headers", "Custom HTML Headers:", 'optionscontrol_textarea');
@@ -161,7 +160,47 @@ class Conquistador extends Theme
 		$block_list['conquistador_related'] = _t( 'Related Posts (Conquistador)' );
 		$block_list['conquistador_navigation'] = _t( 'Post Navigation (Conquistador)' );
 		$block_list['conquistador_tags'] = _t( 'Post Tag List (Conquistador)' );
+		$block_list['conquistador_signature'] = _t( 'Signature Line With Media Icons (Conquistador)' );
+		$block_list['conquistador_copyright'] = _t( 'Copyright Declaration (Conquistador)' );
 		return $block_list;
+	}
+
+	public function action_block_form_conquistador_signature( $ui, $block )
+	{
+		// This is a fudge as I only need to add a little bit of styling to make things look nice.
+		$ui->append( 'static', 'style', '<style type="text/css">#conquistador .formcontrol { line-height: 2.5em; }</style>');
+		$social = $ui->append( 'fieldset', 'social', 'Social Media Links');
+		foreach ($this->social_media_icons as $media => $data) {
+			$social->append('text', "{$media}_name", $block, "$media username:", 'optionscontrol_text');
+			$social->{$media.'_name'}->helptext = _t("Set your $media username for social media icon link.");
+		}
+
+		$copy = $ui->append( 'fieldset', 'copy', 'Author Signature');
+		$copy->append('text', "author_name",$block, "Author Name:", 'optionscontrol_text');
+		$copy->author_name->helptext = _t("Author name to appear in signature.");
+		$copy->append('text', "author_email", $block, "Author Email:", 'optionscontrol_text');
+		$copy->author_email->helptext = _t("Author email to appear in signature.");
+	}
+
+	public function action_block_content_conquistador_signature( $block, $theme )
+	{
+		$social_media_icons = array();
+		foreach ( $this->social_media_icons as $name => $media ) {
+			list($key, $url, $label) = $media;
+			if ( $option = $block->{"{$name}_name"} ) {
+				$social_media_icons[$name] = array($key, sprintf($url, $option), $label );
+			}
+		}
+		$block->social_media_icons = $social_media_icons;
+	}
+
+	public function action_block_form_conquistador_copyright( $ui, $block )
+	{
+		$copy = $ui->append( 'fieldset', 'copy', 'Copyright Holder');
+		$copy->append('text', "copy_holder",$block, "Copyright Holder:", 'optionscontrol_text');
+		$copy->copy_holder->helptext = _t("Copyright holder to appear in signature.");
+		$copy->append('text', "copy_year", $block, "Copyright Year:", 'optionscontrol_text');
+		$copy->copy_year->helptext = _t("Copyright year to appear in signature.");
 	}
 
 	public function action_block_content_conquistador_navigation( $block, $theme )

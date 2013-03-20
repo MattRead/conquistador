@@ -19,7 +19,7 @@
 	<p class="meta">Before leaving a comment, please ensure you have read and understand my <a href="/comments-policy">comments policy</a> and my <a href="/privacy">privacy policy</a>. Any comment that does not abide by the comment policy will be deleted immediately.</p>
 
 	<?php
-		//if ( Session::has_messages() ) { Session::messages_out(); }
+		if ( Session::has_messages() ) { Session::messages_out(); }
 		$content->comment_form()->out();
 	?>
 </section>

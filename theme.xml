@@ -32,6 +32,9 @@
 		<area name="post_footer">
 			<description><![CDATA[The post footer area]]></description>
 		</area>
+		<area name="footer">
+			<description><![CDATA[The footer area]]></description>
+		</area>
 	</areas>
 
 	<provides>

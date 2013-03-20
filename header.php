@@ -15,9 +15,10 @@
 	<?php echo $theme->header(); ?>
 	<?php echo $custom_headers; ?>
 </head>
-<body>
+<body class="<?php echo $theme->body_class(); ?>">
 
 <nav class="site" id="top" style="position:relative">
 	<?php echo $theme->area('site_navigation'); ?>
 </nav>
 
+<div class="wrap">

@@ -1,10 +1,14 @@
 <?php $theme->display('header'); ?>
 
     <h1>
-		 Search Results for "<?php echo $criteria; ?>"<?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
+		 Search - <small>"<?php echo $criteria; ?>"</small><?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
     </h1>
 
-	<p><form method="get" id="searchform" action="http://mattread.com/search"><p><input type="text" id="s" name="criteria" value="<?php echo $criteria; ?>"><input type="submit" id="searchsubmit" value="Search"></p></form></p>
+	<form method="get" id="searchform" action="http://mattread.com/search">
+		<p>
+			<input type="text" id="s" name="criteria" value="<?php echo $criteria; ?>"><input type="submit" id="searchsubmit" value="Search">
+		</p>
+	</form>
 
 	<?php if( count($posts) ) : ?>
 	<ul class="posts">
