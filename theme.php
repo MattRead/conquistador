@@ -36,6 +36,7 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/blocks.css', 'screen'), 'conquistador-blocks', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
 		}
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
@@ -80,7 +81,7 @@ class Conquistador extends Theme
 		parent::add_template_vars();
 	}
 
-	public function act_display_post( $user_filters = array() ) 
+	public function act_display_post( $user_filters = array() )
 	{
 		if ( isset($this->post) ) {
 			$this->set_title( $this->post->title );
@@ -103,7 +104,7 @@ class Conquistador extends Theme
 			$date = $year;
 			$format = 'Y';
 		}
-		
+
 		if ( $month = Controller::get_var('month') ) {
 			$date .= "-$month";
 			$format = 'M ' . $format;
@@ -111,7 +112,7 @@ class Conquistador extends Theme
 		else {
 			$date .= '-01';
 		}
-		
+
 		if ( $day = Controller::get_var('day') ) {
 			$date .= "-$day";
 			$format = 'd ' . $format;
@@ -119,7 +120,7 @@ class Conquistador extends Theme
 		else {
 			$date .= '-01';
 		}
-		
+
 		$date = new HabariDateTime($date);
 		$this->assign('date', $date->format($format));
 		parent::act_display_date($user_filters);
@@ -285,8 +286,8 @@ class Conquistador extends Theme
 			) );
 
 			$block->add_to_area( 'site_navigation' );
-			$block->add_to_area( 'site_navigation', 68 );
-			$block->add_to_area( 'site_navigation', 69 );
+			$block->add_to_area( 'site_navigation', null, 68 );
+			$block->add_to_area( 'site_navigation', null, 69 );
 			Session::notice( _t( 'Added Basic Main Menu block to site_navigation area.' ) );
 		}
 		$blocks = $this->get_blocks( 'head', 0, $this );
@@ -296,7 +297,7 @@ class Conquistador extends Theme
 				'type' => 'conquistador_post_list',
 			) );
 
-			$block->add_to_area( 'head', 69 );
+			$block->add_to_area( 'head', null, 69 );
 			Session::notice( _t( 'Added Posts List block to head area.' ) );
 		}
 		$blocks = $this->get_blocks( 'foot', 0, $this );
@@ -306,7 +307,7 @@ class Conquistador extends Theme
 				'type' => 'conquistador_related',
 			) );
 
-			$block->add_to_area( 'foot', 68 );
+			$block->add_to_area( 'foot', null, 68 );
 			Session::notice( _t( 'Added Realted Posts block to foot area.' ) );
 		}
 		$blocks = $this->get_blocks( 'split', 0, $this );
@@ -316,7 +317,7 @@ class Conquistador extends Theme
 				'type' => 'conquistador_navigation',
 			) );
 
-			$block->add_to_area( 'split', 68 );
+			$block->add_to_area( 'split', null, 68 );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
 
 			$block = new Block( array(
@@ -324,7 +325,7 @@ class Conquistador extends Theme
 				'type' => 'conquistador_tags',
 			) );
 
-			$block->add_to_area( 'split', 68 );
+			$block->add_to_area( 'split', null, 68 );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
 		}
 		$blocks = $this->get_blocks( 'site_footer', 0, $this );
@@ -335,8 +336,8 @@ class Conquistador extends Theme
 			) );
 
 			$block->add_to_area( 'site_footer' );
-			$block->add_to_area( 'site_footer', 68 );
-			$block->add_to_area( 'sote_footer', 69 );
+			$block->add_to_area( 'site_footer', null, 68 );
+			$block->add_to_area( 'sote_footer', null, 69 );
 			Session::notice( _t( 'Added Copyright Declaration block to footer area.' ) );
 		}
 
@@ -371,7 +372,7 @@ class Conquistador extends Theme
 
 			$max_year = $years[0]->year;
 			$min_year = $years[count($years)-1]->year;
-	
+
 			$collections = array();
 			foreach ( $years as $y ) {
 				$year = $y->year;
@@ -379,7 +380,7 @@ class Conquistador extends Theme
 				$startDate->set_date($year, 1, 1);
 				$endDate = clone $startDate;
 				$endDate->modify('+1 year -1 day');
-	
+
 				$posts = Posts::get(array(
 					'after' => $startDate,
 					'before'=> $endDate,
@@ -388,7 +389,7 @@ class Conquistador extends Theme
 					'nolimit' => 1
 				));
 				if ( !count($posts) ) continue;
-	
+
 				$collection = new \stdClass;
 				$collection->posts = $posts;
 				$collection->start_month = $startDate;
@@ -396,7 +397,7 @@ class Conquistador extends Theme
 				$collection->description = $startDate->format('F jS, Y') . ' to ' . $endDate->format('F jS, Y');
 				$collection->name = $year;
 				$collection->posts_count = count($collection->posts);
-	
+
 				$collections[$year] = $collection;
 			}
 			Cache::set( array(self::OPTION_NAME, 'max_year'), $max_year, self::ARCHIVES_CACHE_EXPIRE );
