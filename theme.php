@@ -30,14 +30,16 @@ class Conquistador extends Theme
 		$this->load_options();
 
 		Stack::dependent('template_header_javascript', 'template_footer_javascript');
-		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
-		$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
+		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
+			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
 
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
+		}
+		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
 		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro|Tangerine', 'screen'));
-		$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
-		$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
-		$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
-		$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/fonts/socialico/stylesheet.css', 'screen'), 'socialcio');
 	}
 
@@ -359,10 +361,10 @@ class Conquistador extends Theme
 	{
 		if ( Cache::has_group(self::OPTION_NAME) ) {
 			$cache = Cache::get_group(self::OPTION_NAME);
-			$collections = $cache['collections'];
-			$years = $cache['collection_years'];
-			$max_year = $cache['max_year'];
-			$min_year = $cache['min_year'];
+			$collections = isset($cache['collections']) ? $cache['collections'] : array();
+			$years = isset($cache['collection_years']) ? $cache['collection_years'] : array();
+			$max_year = isset($cache['max_year']) ? $cache['max_year'] : '2080';
+			$min_year = isset($cache['min_year']) ? $cache['min_year'] : '1980';
 		}
 		else {
 			$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} WHERE status = ? AND content_type = ? ORDER BY year DESC', array(Post::status('published'), Post::type('entry')), 'QueryRecord' );

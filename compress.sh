@@ -2,7 +2,7 @@
 
 echo "compressing CSS"
 cd css/
-cat *.css fonts/*/stylesheet.css > screen.tmp.css
+cat *.css > screen.tmp.css
 yui-compressor --type css screen.tmp.css > ../assets/screen-min.css
 rm screen.tmp.css
 cd ..

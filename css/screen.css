@@ -87,7 +87,8 @@ ul#meta_links li:last-child:after, nav.site ol li:last-child:after { content: ""
 #tag_archives { list-style: none; padding: 0; margin: 1em 0; text-align: center; font-size: .8em; font-weight: 300; }
 #tag_archives li { display: inline; margin: 0 .6em;}
 
-div.admin a, nav.site a { color: #eee; }
+nav.site a { color: #eee; }
+div.admin a { color: #bbb; }
 div.admin a:hover, nav.site a:hover { color: #888; }
 div.admin a { padding: 0; }
 
@@ -99,18 +100,18 @@ div.admin {
 	padding: 3px 10px;
 	font-weight: 300;
 	font-size: 14px;
-	color: #eee;
+	color: #bbb;
 	text-transform: uppercase;
 	-moz-border-radius: 2px 2px 10px 10px;
 	-webkit-border-radius: 2px 2px 10px 10px;
 	border-radius: 2px 2px 10px 10px;
-	border-top: 1px solid #666;
+	border-top: 1px solid #942121;
 	box-shadow: 1px 3px 3px rgba(0,0,0,0.3);
-background-image: linear-gradient(bottom, #222 60%, #444 95%);
-background-image: -o-linear-gradient(bottom, #222 29%, #444 90%);
-background-image: -moz-linear-gradient(bottom, #222 60%, #555 95%);
-background-image: -webkit-linear-gradient(bottom, #222 29%, #444 90%);
-background-image: -ms-linear-gradient(bottom, #222 60%, #444 90%);
+background-image: linear-gradient(bottom, #411 60%, #801c1c 95%);
+background-image: -o-linear-gradient(bottom, #411 60%, #801c1c 95%);
+background-image: -moz-linear-gradient(bottom, #411 60%, #801c1c 95%);
+background-image: -webkit-linear-gradient(bottom, #411 60%, #801c1c 95%);
+background-image: -ms-linear-gradient(bottom, #411 60%, #801c1c 95%);
 }
 
 footer {
@@ -406,6 +407,9 @@ nav.site form#searchform input[type=submit],
 nav.site form#searchform input[type=text]  {
 	margin: 0;
 	font-size: .8em;
+}
+nav.site form#searchform input[type=submit],
+nav.site form#searchform input[type=text]  {
     box-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 nav.site form#searchform input[type=submit] {

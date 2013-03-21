@@ -1,3 +1,7 @@
+@media screen and (max-width: 800px) {
+	nav.site form#searchform { position: static !important; }
+}
+
 @media screen and (max-width: 740px) {
 	p.pull-quote { margin-right: 0; }
 }
