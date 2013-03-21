@@ -278,6 +278,16 @@ class Conquistador extends Theme
 			$block->add_to_area( 'site_navigation', 69 );
 			Session::notice( _t( 'Added Basic Main Menu block to site_navigation area.' ) );
 		}
+		$blocks = $this->get_blocks( 'head', 0, $this );
+		if( count( $blocks ) == 0 ) {
+			$block = new Block( array(
+				'title' => _t( 'Blog Posts' ),
+				'type' => 'conquistador_post_list',
+			) );
+
+			$block->add_to_area( 'head', 69 );
+			Session::notice( _t( 'Added Posts List block to head area.' ) );
+		}
 		$blocks = $this->get_blocks( 'foot', 0, $this );
 		if( count( $blocks ) == 0 ) {
 			$block = new Block( array(
