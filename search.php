@@ -1,5 +1,5 @@
 <?php $theme->display('header'); ?>
-
+<?php echo $theme->area('head'); ?>
     <h1>
 		 Search - <small>"<?php echo $criteria; ?>"</small><?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
     </h1>
@@ -21,6 +21,7 @@
 		<li>Try more general keywords.</li>
 	</ul>
 	<?php endif; ?>
-
+<?php echo $theme->area('split'); ?>
+<?php echo $theme->area('foot'); ?>
 <?php $theme->display('footer'); ?>
 

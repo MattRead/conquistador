@@ -23,19 +23,16 @@
 		<area name="site_navigation">
 			<description><![CDATA[The navigation area]]></description>
 		</area>
-		<area name="post_header">
+		<area name="head">
 			<description><![CDATA[The post header area]]></description>
 		</area>
-		<area name="post_comments_header">
+		<area name="split">
 			<description><![CDATA[The post comments header area]]></description>
 		</area>
-		<area name="post_footer">
+		<area name="foot">
 			<description><![CDATA[The post footer area]]></description>
 		</area>
-		<area name="homepage_split">
-			<description><![CDATA[homepage highlight area]]></description>
-		</area>
-		<area name="footer">
+		<area name="site_footer">
 			<description><![CDATA[The footer area]]></description>
 		</area>
 	</areas>

@@ -1,7 +1,7 @@
 <?php //namespace Habari; ?>
 <?php $theme->display('header'); ?>
-<?php echo $theme->area('post_header'); ?>
-<?php echo $theme->area('homepage_split', 'home'); ?>
-<?php echo $theme->area('post_footer'); ?>
+<?php echo $theme->area('head'); ?>
+<?php echo $theme->area('split', 'home'); ?>
+<?php echo $theme->area('foot'); ?>
 <?php $theme->display('footer'); ?>
 

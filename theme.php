@@ -242,7 +242,22 @@ class Conquistador extends Theme
 		);
 		$scope->name = 'Homepage';
 		$scope->id = 69;
+		$scope->priority = 0;
 		$scopes['conquistador_homepage'] = $scope;
+
+		$scope = new stdClass();
+		$scope->criteria = array(
+			array('request', 'display_entry'),
+			array('request', 'display_page'),
+			'or',
+			array('request', 'display_post'),
+			'or'
+		);
+		$scope->name = 'Single Post';
+		$scope->id = 68;
+		$scope->priority = 0;
+		$scopes['conquistador_single'] = $scope;
+
 		return $scopes;
 	}
 
@@ -259,26 +274,28 @@ class Conquistador extends Theme
 			) );
 
 			$block->add_to_area( 'site_navigation' );
+			$block->add_to_area( 'site_navigation', 68 );
+			$block->add_to_area( 'site_navigation', 69 );
 			Session::notice( _t( 'Added Basic Main Menu block to site_navigation area.' ) );
 		}
-		$blocks = $this->get_blocks( 'post_footer', 0, $this );
+		$blocks = $this->get_blocks( 'foot', 0, $this );
 		if( count( $blocks ) == 0 ) {
 			$block = new Block( array(
 				'title' => _t( 'Realted Posts' ),
 				'type' => 'conquistador_related',
 			) );
 
-			$block->add_to_area( 'post_footer' );
-			Session::notice( _t( 'Added Realted Posts block to post_footer area.' ) );
+			$block->add_to_area( 'foot', 68 );
+			Session::notice( _t( 'Added Realted Posts block to foot area.' ) );
 		}
-		$blocks = $this->get_blocks( 'post_comments_header', 0, $this );
+		$blocks = $this->get_blocks( 'split', 0, $this );
 		if( count( $blocks ) == 0 ) {
 			$block = new Block( array(
 				'title' => _t( 'Previous/Next Post Navigation' ),
 				'type' => 'conquistador_navigation',
 			) );
 
-			$block->add_to_area( 'post_comments_header' );
+			$block->add_to_area( 'split', 68 );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
 
 			$block = new Block( array(
@@ -286,17 +303,19 @@ class Conquistador extends Theme
 				'type' => 'conquistador_tags',
 			) );
 
-			$block->add_to_area( 'post_comments_header' );
+			$block->add_to_area( 'split', 68 );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
 		}
-		$blocks = $this->get_blocks( 'footer', 0, $this );
+		$blocks = $this->get_blocks( 'site_footer', 0, $this );
 		if( count( $blocks ) == 0 ) {
 			$block = new Block( array(
 				'title' => _t( 'Copyright Declaration' ),
 				'type' => 'conquistador_copyright',
 			) );
 
-			$block->add_to_area( 'footer' );
+			$block->add_to_area( 'site_footer' );
+			$block->add_to_area( 'site_footer', 68 );
+			$block->add_to_area( 'sote_footer', 69 );
 			Session::notice( _t( 'Added Copyright Declaration block to footer area.' ) );
 		}
 
