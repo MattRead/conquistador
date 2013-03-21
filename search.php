@@ -11,13 +11,7 @@
 	</form>
 
 	<?php if( count($posts) ) : ?>
-	<ul class="posts">
-		<?php 
-		foreach ($posts as $post) {
-			echo $theme->content($post, 'list');
-		}
-		?>
-	</ul>
+	<?php echo $theme->content($posts, 'list'); ?>
 	<?php else : ?>
 	<p>Your search - <b><?php echo $criteria; ?></b> - did not match any documents.
 	<p>Suggestions:</p>
@@ -27,8 +21,6 @@
 		<li>Try more general keywords.</li>
 	</ul>
 	<?php endif; ?>
-
-<?php echo $theme->paged_nav(); ?>
 
 <?php $theme->display('footer'); ?>
 

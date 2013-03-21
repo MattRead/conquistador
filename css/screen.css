@@ -18,23 +18,50 @@ body {
 	background: #fcfcfc url('../images/back.png') repeat;
 }
 
-body div.wrap {
+body div.wrap, .bar aside {
 	position: relative;
 	max-width: 600px;
 	margin: 0 auto;
-	padding: 1em 1em 0;
+	padding: 1em 1em;
 }
-
-h1.site {
-	color: #ccc;
+.bar aside { padding: 0; }
+.bar {
+	position: relative;
+	padding: 1px 0;
+	margin: 1em 0;
+	background:#222 url('../images/pattern.png') fixed repeat;
+	-moz-box-shadow: inset 1px 4px 4px #111;
+	-webkit-box-shadow: inset 1px 4px 4px #111;
+	box-shadow: inset 1px 4px 4px #111;
+	text-shadow: 1px 3px 3px #222;
+	color: #eee;
+	font-weight: 300;
+	font-size: 1.5em;
+}
+#flickrfeed, #twitter_litte {
+	list-style: none;
+	margin: 0;
+	padding:0;
+	line-height: 1;
+}
+#twitter_litte li { margin: 1em 0; }
+#twitter_litte time a { font-size: 18px; color: #bbb; }
+.bar #flickrfeed, .bar #twitter_litte {
+	margin: 1em 0 2em;
+	padding: 1px;
+}
+#flickrfeed li { display: inline; }
+#flickrfeed li img { display: inline; padding: 0; margin:0; }
+.bar #flickrfeed:before, .bar #twitter_litte:before {
+	content: "l";
+	font: normal 2.5em "SocialicoRegular", serif;
+	color: #777;
+	opacity: 0.5;
 	position: absolute;
-	font-size: 1em;
-	font-family: 'Tangerine', cursive;
-	top: -.5em;
-	width: 100%;
-	left: 0;
-	text-align: center;
+	left: -1.2em;
 }
+.bar #twitter_litte:before { margin-top: .5em; }
+.bar #flickrfeed:before { content: "n"; }
 
 nav.site {
 	padding: 1em 15%;
@@ -54,7 +81,7 @@ nav.site {
 
 ul#meta_links li, nav.site ol, nav.site li { display: inline; padding: 0; margin: 0; }
 ul#meta_links { margin: 1em 0; padding: 0; text-align: center; }
-ul#meta_links li:after, nav.site ol li:after { content: " \00B7 "; padding: 0 .2em; }
+ul#meta_links li:after, nav.site ol li:after { content: " \00B7 "; padding: 0 .3em; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; }
 ul#meta_links li:last-child:after, nav.site ol li:last-child:after { content: ""; }
 
 div.admin a, nav.site a { color: #eee; }
@@ -138,7 +165,6 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Source Sans Pro', sans-serif;
 	color: #333;
 }
-
 h1 { font-size: 2.2em; line-height: 1.2; }
 h2, h3 { font-size: 1.6em; }
 h4,h5 { font-size: 1.3em; }

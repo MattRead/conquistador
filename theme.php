@@ -14,7 +14,9 @@ class Conquistador extends Theme
 		'facebook' => array('f', 'http://facebook.com/%s', 'Facebook'),
 		'flickr' => array('n', 'http://www.flickr.com/photos/%s', 'Flickr'),
 		'vimeo' => array('v', 'https://vimeo.com/%s', 'Vimeo'),
-		'googleplus' => array('1', 'https://plus.google.com/%s/posts', 'Google+')
+		'googleplus' => array('1', 'https://plus.google.com/%s/posts', 'Google+'),
+		'skype' => array('h', 'skype:%s', 'Skype'),
+		'github' => array('(', 'https://github.com/%s', 'Github'),
 		);
 
 	/**
@@ -163,6 +165,7 @@ class Conquistador extends Theme
 		$block_list['conquistador_signature'] = _t( 'Signature Line With Media Icons (Conquistador)' );
 		$block_list['conquistador_copyright'] = _t( 'Copyright Declaration (Conquistador)' );
 		$block_list['conquistador_menu'] = _t( 'Basic Main Menu (Conquistador)' );
+		$block_list['conquistador_post_list'] = _t( 'Post Listing for Homepage (Conquistador)' );
 		return $block_list;
 	}
 
