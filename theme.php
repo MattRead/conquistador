@@ -258,6 +258,15 @@ class Conquistador extends Theme
 		$scope->priority = 0;
 		$scopes['conquistador_single'] = $scope;
 
+		$scope = new stdClass();
+		$scope->criteria = array(
+			array('request', self::REWRITE_NAME),
+		);
+		$scope->name = 'Archives';
+		$scope->id = 67;
+		$scope->priority = 0;
+		$scopes['conquistador_archives'] = $scope;
+
 		return $scopes;
 	}
 
