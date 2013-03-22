@@ -114,7 +114,7 @@ header h1 { margin-bottom: 0; }
 header p { margin: 0 0 1.5em; }
 
 header time, header span {
-	color: #999;
+	color: #777;
 	font-size: .8em;
 	font-weight: 300;
 }
@@ -174,7 +174,7 @@ dd { margin: 0 2em 1em; }
 dd:before {
 	float: left;
 	margin-left: -2em;
-	color: #999;
+	color: #777;
 	font-size: 18px;
 	content: "\00BB";
 }
@@ -253,7 +253,7 @@ ul.posts time {
 	padding-top: .36em;
 	margin-left: -8em;
 	text-align: right;
-	color: #999;
+	color: #777;
 	font-size: .8em;
 	line-height: 1.2;
 	font-weight: 300;
