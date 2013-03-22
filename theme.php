@@ -24,10 +24,16 @@ class Conquistador extends Theme
 	*/
 	public function action_init_theme( $theme )
 	{
-		$this->assign( 'tagline', Options::get('tagline') );
-		$this->apply_formatters();
+		Format::apply( 'tag_and_list', 'post_tags_out' );
+		Format::apply( 'nice_date', 'post_pubdate_out_short', 'd M Y' );
+		Format::apply( 'nice_date', 'post_modified_out_short', 'd M Y' );
+		Format::apply( 'nice_date', 'post_pubdate_out', 'l, F jS Y' );
+		Format::apply( 'nice_date', 'post_modified_out', 'l, F jS Y' );
+		Format::apply( 'nice_date', 'comment_date_out', 'l, F jS Y' );
+
 		$this->set_title();
-		$this->load_options();
+		$this->assign( 'tagline', Options::get('tagline') );
+		$this->assign('custom_headers', Options::get(self::OPTION_NAME . '__custom_headers'));
 
 		Stack::dependent('template_header_javascript', 'template_footer_javascript');
 		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
@@ -40,27 +46,8 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
 		}
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
-		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro|Tangerine', 'screen'));
+		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro', 'screen'));
 		$this->add_style( 'header', array(Site::get_url('theme') . '/css/fonts/socialico/stylesheet.css', 'screen'), 'socialcio');
-	}
-
-	private function load_options()
-	{
-		$this->assign('custom_headers', Options::get(self::OPTION_NAME . '__custom_headers'));
-	}
-
-	private function apply_formatters()
-	{
-		Format::apply( 'tag_and_list', 'post_tags_out' );
-
-		Format::apply( 'do_highlight', 'post_content_summary' );
-		Format::apply( 'do_highlight', 'post_content_microsummary' );
-
-		Format::apply( 'nice_date', 'post_pubdate_out_short', 'd M Y' );
-		Format::apply( 'nice_date', 'post_modified_out_short', 'd M Y' );
-		Format::apply( 'nice_date', 'post_pubdate_out', 'l, F jS Y' );
-		Format::apply( 'nice_date', 'post_modified_out', 'l, F jS Y' );
-		Format::apply( 'nice_date', 'comment_date_out', 'l, F jS Y' );
 	}
 
 	public function set_title( $value = null )
@@ -89,9 +76,11 @@ class Conquistador extends Theme
 		return parent::act_display_post( $user_filters );
 	}
 
-    public function act_display_tag( $user_filters = array() )
+	public function act_display_tag( $user_filters = array() )
 	{
 		$this->set_title( 'Posts Tagged With "' . Controller::get_var( 'tag' ) . '"' );
+		$tags = Tags::get_by_frequency(null, Post::type('entry'));
+		$this->assign( 'tags', Format::tag_and_list($tags) );
 		return parent::act_display_tag( $user_filters );
 	}
 
@@ -150,7 +139,7 @@ class Conquistador extends Theme
 
 		$head = $ui->append( 'fieldset', 'heads', 'Custom Headers');
 		$head->append('textarea', "custom_headers", __CLASS__."__custom_headers", "Custom HTML Headers:", 'optionscontrol_textarea');
-        $head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
+		$head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
 		$head->custom_headers->raw = true;
 
 
@@ -213,8 +202,8 @@ class Conquistador extends Theme
 	public function action_block_content_conquistador_navigation( $block, $theme )
 	{
 		if ( isset($theme->post) && $theme->post->typename == 'entry' ) {
-			$this->assign( 'next', $theme->post->ascend() );
-			$this->assign( 'previous', $theme->post->descend() );
+			$block->next = $theme->post->ascend();
+			$block->previous = $theme->post->descend();
 		}
 	}
 
@@ -230,10 +219,10 @@ class Conquistador extends Theme
 				'limit' => 5,
 				'orderby' => 'Rand()'
 			));
-			$theme->assign( 'related_posts', $related );
+			$block->posts = $related;
 		}
 		else {
-			$theme->assign( 'realted_posts', array() );
+			$block->posts = array();
 		}
 	}
 
@@ -274,8 +263,8 @@ class Conquistador extends Theme
 	}
 
 	/**
-	 * @TODO add block to appropriate scopes
-	 */
+	* @TODO add block to appropriate scopes
+	*/
 	public function action_theme_activated($theme_name, $theme)
 	{
 		$blocks = $this->get_blocks( 'site_navigation', 0, $this );
@@ -284,7 +273,6 @@ class Conquistador extends Theme
 				'title' => _t( 'Basic Main Menu' ),
 				'type' => 'conquistador_menu',
 			) );
-
 			$block->add_to_area( 'site_navigation' );
 			$block->add_to_area( 'site_navigation', null, 68 );
 			$block->add_to_area( 'site_navigation', null, 69 );
@@ -296,7 +284,6 @@ class Conquistador extends Theme
 				'title' => _t( 'Blog Posts' ),
 				'type' => 'conquistador_post_list',
 			) );
-
 			$block->add_to_area( 'head', null, 69 );
 			Session::notice( _t( 'Added Posts List block to head area.' ) );
 		}
@@ -306,7 +293,6 @@ class Conquistador extends Theme
 				'title' => _t( 'Realted Posts' ),
 				'type' => 'conquistador_related',
 			) );
-
 			$block->add_to_area( 'foot', null, 68 );
 			Session::notice( _t( 'Added Realted Posts block to foot area.' ) );
 		}
@@ -316,7 +302,6 @@ class Conquistador extends Theme
 				'title' => _t( 'Previous/Next Post Navigation' ),
 				'type' => 'conquistador_navigation',
 			) );
-
 			$block->add_to_area( 'split', null, 68 );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
 
@@ -324,7 +309,6 @@ class Conquistador extends Theme
 				'title' => _t( 'Post Tags list' ),
 				'type' => 'conquistador_tags',
 			) );
-
 			$block->add_to_area( 'split', null, 68 );
 			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
 		}
@@ -334,7 +318,6 @@ class Conquistador extends Theme
 				'title' => _t( 'Copyright Declaration' ),
 				'type' => 'conquistador_copyright',
 			) );
-
 			$block->add_to_area( 'site_footer' );
 			$block->add_to_area( 'site_footer', null, 68 );
 			$block->add_to_area( 'sote_footer', null, 69 );

@@ -6,5 +6,3 @@
 	}
 	?>
 </ul>
-
-<?php echo $theme->paged_nav(); ?>

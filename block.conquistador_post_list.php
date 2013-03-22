@@ -3,4 +3,6 @@
 	<?php echo $content->title ?>
 </h1>
 <?php endif; ?>
+
 <?php echo $theme->content($posts, 'list'); ?>
+<?php echo $theme->paged_nav(); ?>
