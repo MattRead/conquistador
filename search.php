@@ -1,12 +1,12 @@
 <?php $theme->display('header'); ?>
 <?php echo $theme->area('head'); ?>
 <h1>
-	Search - <small>"<?php echo $criteria; ?>"</small><?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
+	Search - <small>"<?php echo htmlentities($criteria, ENT_COMPAT, 'UTF-8', false); ?>"</small><?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
 </h1>
 
 <form method="get" id="searchform" action="http://mattread.com/search">
 	<p>
-		<input type="text" id="s" name="criteria" value="<?php echo $criteria; ?>"><input type="submit" id="searchsubmit" value="Search">
+		<input type="text" id="s" name="criteria" value="<?php echo htmlentities($criteria, ENT_COMPAT, 'UTF-8', false); ?>"><input type="submit" id="searchsubmit" value="Search">
 	</p>
 </form>
 
@@ -14,7 +14,7 @@
 	<?php echo $theme->content($posts, 'list'); ?>
 	<?php echo $theme->paged_nav(); ?>
 <?php else : ?>
-	<p>Your search - <b><?php echo $criteria; ?></b> - did not match any documents.
+	<p>Your search - <b><?php echo htmlentities($criteria, ENT_COMPAT, 'UTF-8', false); ?></b> - did not match any documents.
 	<p>Suggestions:</p>
 	<ul>
 		<li>Make sure all words are spelled correctly.</li>
