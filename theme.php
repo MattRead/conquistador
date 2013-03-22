@@ -33,13 +33,12 @@ class Conquistador extends Theme
 
 		$this->set_title();
 		$this->assign( 'tagline', Options::get('tagline') );
-		$this->assign('custom_headers', Options::get(self::OPTION_NAME . '__custom_headers'));
 
 		Stack::dependent('template_header_javascript', 'template_footer_javascript');
 		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
 
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'socialico');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'conquistador_fonts');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/blocks.css', 'screen'), 'conquistador-blocks', 'conquistador');
@@ -51,7 +50,8 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador');
 		}
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
-		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro', 'screen'));
+		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro', 'screen'), 'conquistador_fonts');
+		Stack::add('template_header_javascript', array('http://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
 	}
 
 	public function set_title( $value = null )
@@ -70,6 +70,14 @@ class Conquistador extends Theme
 			$this->set_title('Page Not Found');
 		}
 		parent::add_template_vars();
+	}
+
+	/**
+	 * Output the custom headers
+	 */
+	public function action_template_header( Theme $theme )
+	{
+	    echo Options::get(self::OPTION_NAME . '__custom_headers') . "\n";
 	}
 
 	public function act_display_post( $user_filters = array() )
