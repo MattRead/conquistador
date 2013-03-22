@@ -11,7 +11,10 @@
 	<version>1.0</version>
 	<template_engine>rawphpengine</template_engine>
 
-	<description><![CDATA[Conquistador is a simple elegant theme for Habari, that is highly customizable using Blocks, Areas, and Scopes. It is also HTML5 and image lean, and has support for a wide range of plugins.]]></description>
+	<description>
+		<![CDATA[Conquistador is a simple, elegant, responsive theme for Habari, that is highly customizable using Blocks, Areas, and Scopes.
+		It is also HTML5 and image lean, and has support for a wide range of plugins.]]>
+	</description>
 
 	<help>
 		<value>
