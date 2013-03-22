@@ -46,6 +46,10 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/socialico.css', 'screen'), 'socialico', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
 		}
+		else {
+			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador');
+		}
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
 		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic|Source+Code+Pro', 'screen'));
 	}
