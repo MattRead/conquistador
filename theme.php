@@ -125,8 +125,11 @@ class Conquistador extends Theme
 			$date .= '-01';
 		}
 
-		$date = new HabariDateTime($date);
-		$this->assign('date', $date->format($format));
+		try {
+			$date = new HabariDateTime($date);
+			$this->assign('date', $date->format($format));
+		}
+		catch ( Exception $e ) {}
 		parent::act_display_date($user_filters);
 	}
 

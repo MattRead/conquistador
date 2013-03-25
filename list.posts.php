@@ -13,5 +13,6 @@
 <p>Suggestions:</p>
 <ul>
 	<li>Try looking at the <a href="<?php Site::out_url('habari'); ?>">Home Page</a>.</li>
+	<li>Try looking at the <a href="<?php URL::out('conquistador_archives'); ?>">Archives</a>.</li>
 </ul>
 <?php endif; ?>
