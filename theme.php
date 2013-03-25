@@ -164,6 +164,20 @@ class Conquistador extends Theme
 		$ui->out();
 	}
 
+	public function action_jambo_form( FormUI $form, Plugin $plugin )
+	{
+		$form->jambo_name->caption = $form->jambo_name->caption . ' <span class="required">*Required</span>';
+		$form->jambo_email->caption = $form->jambo_email->caption . ' <span class="required">*Required</span>';
+		$form->jambo_message->caption = $form->jambo_message->caption . ' <span class="required">*Required</span>';
+	}
+
+	public function action_form_comment( FormUI $form, Post $post, $context )
+	{
+		if ( $context == 'public' ) {
+			$form->cf_content->caption = $form->cf_content->caption . ' <span class="required">*Required</span>';
+		}
+	}
+
 	public function filter_block_list( $block_list )
 	{
 		$block_list['conquistador_related'] = _t( 'Related Posts (Conquistador)' );

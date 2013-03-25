@@ -278,7 +278,7 @@ hr + p:first-letter { font-weight: 300; font-size: 2.6em; line-height: 1.2; marg
 }
 .footnotes li, .footnotes p { margin: .2em 0; }
 
-article.comment {
+article.comment, .download {
 	position: relative;
 	padding: 1em 2em;
 	margin: 2em;
@@ -347,19 +347,31 @@ form.formui label {
 
 ul.error {
 	margin: 0;
-	padding: 0;
-}
-ul.error li {
-	list-style: none;
 	width: 95%;
 	padding: 6px;
-	margin: 0;
-	border-top: none;
-	background-color: rgba(0,0,0,0.08);
-	color: #b20;
+	background-color:rgba(170,1,20,0.8); /*#aa0114*/
+	/*background-color: rgba(0,0,0,0.08);
+	color: #b20;*/
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+	color: #eee;
 	line-height: 1;
 	font-size: .9em;
 }
+ul.error li {
+	list-style: none;
+	padding: 6px;
+	margin: 0;
+	border-top: none;
+}
+
+.download {
+	font-size: .9em;
+	font-weight: 300;
+	color: #777;
+	list-style: none;
+}
+.download a { padding-right: 1em; font-weight: 400; }
+.download time { float: right; }
 
 /* language settings */
 :lang(en) { quotes: "\201C" "\201D" "\2018" "\2019"; }

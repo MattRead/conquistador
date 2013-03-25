@@ -137,3 +137,13 @@ ul.posts .rating {
 .rating span.star-5 {background-position:0 -74px}
 
 .gsc table, .gsc th, .gsc td { border: none; }
+
+.flattr { text-align: right; margin-bottom: -2em; }
+.flattr img {
+	padding: 0;
+	margin: 0;
+	border: none;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+}

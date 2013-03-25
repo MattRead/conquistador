@@ -1,4 +1,5 @@
 <?php //namespace Habari; ?>
+<?php if ( count($content) > 0 ) : ?>
 <ul class="posts" id="post-list">
 	<?php
 	foreach ($content as $post) {
@@ -6,3 +7,11 @@
 	}
 	?>
 </ul>
+
+<?php else : ?>
+<p>Your request - <b><?php echo htmlentities(Controller::get_stub()); ?></b> - did not match any documents.
+<p>Suggestions:</p>
+<ul>
+	<li>Try looking at the <a href="<?php Site::out_url('habari'); ?>">Home Page</a>.</li>
+</ul>
+<?php endif; ?>
