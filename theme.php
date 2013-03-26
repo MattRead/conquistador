@@ -43,6 +43,7 @@ class Conquistador extends Theme
 
 		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
+			$this->add_script( 'footer', Site::get_url('theme') . '/js/lightbox.js', 'lightbox', 'jquery' );
 
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'conquistador_fonts');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
@@ -50,6 +51,7 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/blocks.css', 'screen'), 'conquistador-blocks', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/socialico.css', 'screen'), 'socialico', 'conquistador');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/lightbox.css', 'screen'), 'lightbox', 'conquistador');
 		}
 		else {
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site-min.js', 'conquistador', 'jquery' );

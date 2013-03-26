@@ -8,7 +8,7 @@
 	<meta name="generator" content="Habari <?php echo Version::get_habariversion() ?>">
 	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0">
 
-	<script>var HABARI_URL = "<?php Site::out_url('habari') ?>";</script>
+	<script>var HABARI_URL = "<?php Site::out_url('habari') ?>"; var CONQUISTADOR_URL = "<?php Site::out_url('theme') ?>";</script>
 	<?php echo $theme->header(); ?>
 </head>
 <body class="<?php echo $theme->body_class(); ?>">
