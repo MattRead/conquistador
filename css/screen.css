@@ -212,7 +212,7 @@ abbr:hover { border-color: #c30; }
 mark { background-color: #FFF380; }
 
 img {
-	max-width: 91%;
+	max-width: 100%;
 	height: auto;
 	margin: 1em;
 	background: rgba(255, 255, 255, 0.5);
