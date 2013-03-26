@@ -45,10 +45,6 @@ nav.site {
 	font-size: 18px;
 	color: #999;
 	background:#222 url('../images/pattern.png') fixed repeat;
-	/*border-top: 2px solid #c30;
-	-moz-border-radius: 15px;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;*/
 	-moz-box-shadow: inset 1px 4px 4px #111;
 	-webkit-box-shadow: inset 1px 4px 4px #111;
 	box-shadow: inset 1px 4px 4px #111;
@@ -103,7 +99,7 @@ footer address {
 	text-align: right;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
 }
-footer .social a:hover { color: #c30; }
+footer .social a:hover { color: #c13100; }
 
 header {
 	text-align: center;
@@ -184,7 +180,7 @@ q:after { content: close-quote; }
 a { text-decoration: none }
 
 a:link {
-	color:#c30;
+	color:#c13100;
 	padding:.3em 0;
 }
 
@@ -193,7 +189,7 @@ a:link {
 }
 
 a:visited {
-	color:#c30;
+	color:#c13100;
 }
 
 a:hover, * a:hover, .tags a:hover {
@@ -207,7 +203,7 @@ abbr {
 	font-size: 1em;
 	border-bottom: 1px dotted #777;
 }
-abbr:hover { border-color: #c30; }
+abbr:hover { border-color: #c13100; }
 
 mark { background-color: #FFF380; }
 

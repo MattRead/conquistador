@@ -63,5 +63,7 @@ $(document).ready(function() {
         $('html, body').animate({scrollTop:0}, 'slow');
         return false;
     });
-	$('a.fancybox').fancybox();
+	if ( CONQUISTADOR_USE_FANCYBOX ) {
+		$('a.fancybox').fancybox();
+	}
 });

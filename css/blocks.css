@@ -1,15 +1,11 @@
-#flickrfeed, #twitter_litte {
+.bar ul {
 	list-style: none;
-	margin: 0;
-	padding:0;
-	line-height: 1;
-}
-#twitter_litte li { margin: 1em 0; }
-#twitter_litte time a { font-size: 18px; color: #bbb; }
-.bar #flickrfeed, .bar #twitter_litte {
 	margin: 1em 0 2em;
 	padding: 1px;
+	line-height: 1;
 }
+.bar ul li { margin: 1em 0; }
+#twitter_litte time a { font-size: 18px; color: #bbb; }
 #flickrfeed li { display: inline; }
 #flickrfeed li img { display: inline; padding: 0; margin:0; }
 .bar #flickrfeed:before, .bar #twitter_litte:before {
