@@ -377,12 +377,12 @@ class Conquistador extends Theme
 
 	public function act_display_archives()
 	{
-		if ( Cache::has_group(self::OPTION_NAME) ) {
-			$cache = Cache::get_group(self::OPTION_NAME);
-			$collections = isset($cache['collections']) ? $cache['collections'] : array();
-			$years = isset($cache['collection_years']) ? $cache['collection_years'] : array();
-			$max_year = isset($cache['max_year']) ? $cache['max_year'] : '2080';
-			$min_year = isset($cache['min_year']) ? $cache['min_year'] : '1980';
+		if ( Cache::has(self::OPTION_NAME . '__archives') ) {
+			$cache = Cache::get(self::OPTION_NAME . '__archives');
+			$collections = $cache['collections'];
+			$years = $cache['collection_years'];
+			$max_year = $cache['max_year'];
+			$min_year = $cache['min_year'];
 		}
 		else {
 			$years = DB::get_results( 'SELECT DISTINCT YEAR(FROM_UNIXTIME(pubdate)) AS year from {posts} WHERE status = ? AND content_type = ? ORDER BY year DESC', array(Post::status('published'), Post::type('entry')), 'QueryRecord' );
@@ -417,10 +417,12 @@ class Conquistador extends Theme
 
 				$collections[$year] = $collection;
 			}
-			Cache::set( array(self::OPTION_NAME, 'max_year'), $max_year, self::ARCHIVES_CACHE_EXPIRE );
-			Cache::set( array(self::OPTION_NAME, 'min_year'), $min_year, self::ARCHIVES_CACHE_EXPIRE );
-			Cache::set( array(self::OPTION_NAME, 'collection_years'), $years, self::ARCHIVES_CACHE_EXPIRE );
-			Cache::set( array(self::OPTION_NAME, 'collections'), $collections, self::ARCHIVES_CACHE_EXPIRE );
+			$cache = array();
+			$cache['max_year'] = $max_year;
+			$cache['min_year'] = $min_year;
+			$cache['collection_years'] = $years;
+			$cache['collections'] = $collections;
+			Cache::set( self::OPTION_NAME . '__archives', $cache, self::ARCHIVES_CACHE_EXPIRE );
 		}
 
 		$this->assign( 'collections', $collections );
