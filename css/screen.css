@@ -137,7 +137,7 @@ h1 { font-size: 2.2em; line-height: 1.2; }
 h2, h3 { font-size: 1.6em; }
 h4,h5 { font-size: 1.3em; }
 
-p + p { text-indent: 1.5em; }
+p + p { text-indent: 1em; }
 p.meta + p.meta { text-indent: 0; }
 
 pre {
@@ -153,7 +153,12 @@ pre {
 }
 code, pre { font-family: 'Source Code Pro', monospace; }
 
-object { text-align: center; }
+video {
+	display: block;
+	margin: 1em auto;
+	max-width: 100%;
+	height: auto;
+}
 
 ul { list-style-type: disc; list-style-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIj48dGV4dCB4PSIyIiB5PSIxMi41IiBzdHlsZT0iZm9udC1zaXplOiAxNnB0OyBmaWxsOiAjNDQ0OyI+JiN4MjAyMjs8L3RleHQ+PC9zdmc+'); }
 ol, ul { list-style-position: outside; }
@@ -210,7 +215,7 @@ mark { background-color: #FFF380; }
 img {
 	max-width: 100%;
 	height: auto;
-	margin: 1em;
+	margin: 1em 0;
 	background: rgba(255, 255, 255, 0.5);
 	border: 1px solid #777;
 	-moz-border-radius: 10px;
@@ -218,8 +223,9 @@ img {
 	border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
+p > img { text-indent: 0; }
 img.habari-smiley { margin: 0; border: 0; }
-img.right, img.left, img.center { display: block; }
+img.right, img.left, img.center { margin: 1em; display: block; }
 img.right { float: right; }
 img.left { float: left; }
 img.center { margin: 1em auto; }
