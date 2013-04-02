@@ -137,8 +137,10 @@ header time, header span {
 
 figure { margin: 1em 0; }
 figcaption {
-	margin: -1em 2em 1em;
+	margin: -.75em 0 1.25em;
 	font-style: italic;
+	text-align: center;
+	/* @see .meta */
 }
 
 address {
@@ -168,19 +170,26 @@ p + p, p + blockquote.pull-quote + p { text-indent: 1em; }
 p.meta + p.meta { text-indent: 0; }
 
 pre {
-	margin: 2em 0;
+	margin: 1em 0;
 	padding: 1em;
 	border: 1px solid #ddd;
 	background: rgba(255, 255, 255, 0.5);
 	font-size: 14px;
-	line-height: 18px;
+	line-height: 1.2;
 	overflow: auto;
 	white-space: pre-wrap;
-	white-space:-moz-pre-wrap; white-space:-hp-pre-wrap; white-space:-o-pre-wrap; white-space:-pre-wrap; word-wrap:break-word;
+	word-wrap: break-word;
+	word-break: hyphenate;
+	/* hyphenate linebreaks, use arrow with hook. */
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	-webkit-hyphenate-character: "\21A9";
+	hyphenate-character: "\21A9";
 }
 code, pre { font-family: 'Source Code Pro', monospace; }
 
-video, audio, object, embed {
+canvas, video, audio, object, embed {
 	display: block;
 	margin: 1em auto;
 	max-width: 100%;
@@ -303,7 +312,7 @@ img.center { margin: 1em auto; }
 ul.posts {
 	list-style-type: none;
 	list-style-image: none;
-	margin: 1.3em 0;
+	margin: 1em 0;
 	padding: 0;
 }
 ul.posts time {
@@ -353,6 +362,7 @@ article.comment, .download {
 	border-radius: 10px;
 	word-wrap: break-word;
 }
+article.comment img.gravatar { float: right; }
 article.comment.author-comment { border-color: #DEB4A6; }
 article.comment.type-pingback {
 	padding: .5em 2em;
@@ -439,6 +449,4 @@ ul.error li {
 :lang(en) { quotes: "\201C" "\201D" "\2018" "\2019"; }
 :lang(fr) { quotes: "\00AB" "\00BB" "\2039" "\203A"; }
 :lang(de) { quotes: "\201C" "\201D" "\2018" "\2019"; }
-q:before { content: open-quote; }
-q:after { content: close-quote; }
 

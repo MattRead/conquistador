@@ -23,7 +23,7 @@ $(document).ready(function() {
 	});
 
 	if ( CONQUISTADOR_USE_FANCYBOX ) {
-		$('a.fancybox').fancybox();
+		$('a.fancybox').fancybox({hideOnContentClick:true});
 	}
 
 	$(function() {
