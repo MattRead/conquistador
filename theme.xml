@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <pluggable type="theme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://schemas.habariproject.org/pluggable/0.8">
 	<name>Conquistador</name>
-	<class>Conquistador</class>
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache Software License 2.0</license>
 	<guid>2887bf9e-eecd-44fb-aa13-444b8f2d7bef</guid>
 
