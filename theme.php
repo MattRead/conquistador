@@ -338,14 +338,14 @@ class Conquistador extends Theme
 				'type' => 'conquistador_navigation',
 			) );
 			$block->add_to_area( 'split', null, 68 );
-			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
+			Session::notice( _t( 'Added Post Navigation block to split area.' ) );
 
 			$block = new Block( array(
 				'title' => _t( 'Post Tags list' ),
 				'type' => 'conquistador_tags',
 			) );
 			$block->add_to_area( 'split', null, 68 );
-			Session::notice( _t( 'Added Post Navigation block to post_comments_header area.' ) );
+			Session::notice( _t( 'Added Post Navigation block to split area.' ) );
 		}
 		$blocks = $this->get_blocks( 'site_footer', 0, $this );
 		if( count( $blocks ) == 0 ) {
@@ -355,7 +355,7 @@ class Conquistador extends Theme
 			) );
 			$block->add_to_area( 'site_footer' );
 			$block->add_to_area( 'site_footer', null, 68 );
-			$block->add_to_area( 'sote_footer', null, 69 );
+			$block->add_to_area( 'site_footer', null, 69 );
 			Session::notice( _t( 'Added Copyright Declaration block to footer area.' ) );
 		}
 
