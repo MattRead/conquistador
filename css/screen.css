@@ -20,7 +20,7 @@ time, mark, audio, video {
 }
 
 article,aside,details,figcaption,figure,
-footer,header,hgroup,menu,nav,section {
+footer,header,hgroup,menu,nav,section,summary,details {
 	display:block;
 }
 
@@ -228,7 +228,14 @@ blockquote.pull-quote, p.pull-quote {
 blockquote.pull-quote > p:first-child { margin-top: 0; }
 
 details { margin: 1em 2em; }
-summary { margin-left: -2em; }
+details > summary:before { content: '\25B8'; margin: 0 .3em; }
+details[open] > summary:before, details.open > summary:before { content: '\25BE'; }
+/* webkit only */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	details > summary:before { content: ''; margin: 0; }
+	details[open] > summary:before, details.open > summary:before { content: ''; }
+}
+summary { margin-left: -2em; cursor: pointer; }
 dl { margin: 1em 0; }
 dt { font-style: italic; }
 dd { margin: 0 1em 1em 3em; }

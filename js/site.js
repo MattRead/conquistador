@@ -22,6 +22,8 @@ $(document).ready(function() {
 		return false;
 	});
 
+	$('details').details();
+
 	if ( CONQUISTADOR_USE_FANCYBOX ) {
 		$('a.fancybox').fancybox({hideOnContentClick:true});
 	}
