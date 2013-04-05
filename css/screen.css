@@ -28,6 +28,9 @@ time {
 	display: inline;
 }
 
+*::selection { background: rgba(0, 0, 255, .2); }
+*::-moz-selection { background: rgba(0, 0, 255, .2); }
+
 body {
 	margin: 0;
 	padding: 0;
@@ -442,8 +445,7 @@ ul.error {
 	margin: 0;
 	width: 95%;
 	padding: 6px;
-	background-color:rgba(170,1,20,0.8); /*#aa0114*/
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+	background-color:rgba(170,1,20,0.5); /*#aa0114*/
 	color: #eee;
 	line-height: 1;
 	font-size: .9em;

@@ -1,4 +1,4 @@
-tr.alt { background: rgba(0, 0, 0, 0.08); }
+tr:nth-child(odd), tr.alt { background: rgba(0, 0, 0, 0.08); }
 table {
 	overflow: auto;
 	empty-cells: show;
