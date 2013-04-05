@@ -227,6 +227,8 @@ blockquote.pull-quote, p.pull-quote {
 }
 blockquote.pull-quote > p:first-child { margin-top: 0; }
 
+details { margin: 1em 2em; }
+summary { margin-left: -2em; }
 dl { margin: 1em 0; }
 dt { font-style: italic; }
 dd { margin: 0 1em 1em 3em; }
