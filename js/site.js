@@ -15,6 +15,21 @@ $(window).keydown(function(e){
 	}
 });
 
+$(function() {
+	$(window).scroll(function() {
+		if($(this).scrollTop() > 400) {
+			$('#totop').fadeIn();	
+		} else {
+			$('#totop').fadeOut();
+		}
+	});
+
+	$('#totop').click(function() {
+		$('html, body').animate({scrollTop:0}, 'slow');
+		return false;
+	});
+	$('#totop').html("&uarr; Back to top");
+});
 
 $(document).ready(function() {
 	$('a[href=#top]').click(function(){

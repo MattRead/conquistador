@@ -467,6 +467,25 @@ ul.error li {
 .download time { float: right; }
 .success, .jambo-confirmation { background-color: rgba(128, 128, 0, .5); padding: .5em 1em; }
 
+#totop {
+	position: fixed;
+	background: #222;
+	color: #eee;
+	text-align: center;
+	padding: .4em 1em;
+	margin: 0;
+	position: fixed;
+	z-index: 999;
+	bottom: 0;
+	right: 40%;
+	bottom: 0;
+	cursor: pointer;
+	display: none;
+	-moz-border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+}
+
 /* language settings */
 :lang(en) { quotes: "\201C" "\201D" "\2018" "\2019"; }
 :lang(fr) { quotes: "\00AB" "\00BB" "\2039" "\203A"; }
