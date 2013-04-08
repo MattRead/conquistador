@@ -164,11 +164,48 @@ class Conquistador extends Theme
 		$head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
 		$head->custom_headers->raw = true;
 
+		$ui->append('select', 'pattern',  __CLASS__.'__pattern', 'pattern', $this->get_patterns());
 
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save' ) );
 		$ui->set_option( 'success_message', _t( 'Options saved' ) );
 		$ui->out();
+	}
+
+	private function get_patterns()
+	{
+		if ( Cache::has( self::OPTION_NAME . '_patterns' ) ) {
+			return Cache::get( self::OPTION_NAME . '_patterns' );
+		}
+		$options = array();
+		$data = RemoteRequest::get_contents('https://api.github.com/repos/subtlepatterns/SubtlePatterns/contents/');
+		$patterns = json_decode($data);
+		foreach ( $patterns as $pattern ) {
+			if ( strpos($pattern->name, '.png') !== false ) {
+				$options[$pattern->_links->self] = $pattern->name;
+			}
+		}
+		Cache::set( self::OPTION_NAME . '_patterns', $options, 3600 );
+		return $options;
+	}
+	
+	public function theme_get_pattern()
+	{
+		if ( $pattern = Options::get( __CLASS__.'__pattern', false ) ) {
+			$path = Site::get_dir( 'user', true ) . 'files/' . basename($pattern);
+			if ( !file_exists($path) ) {
+				$data = json_decode( RemoteRequest::get_contents($pattern) );
+				$image = $data->content;
+				if ( $data->encoding == 'base64' ) {
+					$image = base64_decode($image);
+				}
+				file_put_contents( $path, $image );
+			}
+			return Site::get_url( 'user', true ) . 'files/' . basename($pattern);
+		}
+		else {
+			return false;
+		}
 	}
 
 	public function action_jambo_form( FormUI $form, Plugin $plugin )

@@ -14,6 +14,12 @@
 		var CONQUISTADOR_USE_FANCYBOX = <?php echo Options::get('conquistador__use_fancybox', 'true'); ?>;
 	</script>
 	<?php echo $theme->header(); ?>
+
+<?php
+if ( $pat = $theme->get_pattern() ) {
+	echo "<style>body {background: #fcfcfc url('$pat') repeat;}</style>";
+}
+?>
 </head>
 <body class="<?php echo $theme->body_class(); ?>">
 
