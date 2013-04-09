@@ -147,3 +147,4 @@ ul.posts .rating {
 	background: none;
 	box-shadow: none;
 }
+.at-comment-reply p { margin: 0; text-align: right; }
