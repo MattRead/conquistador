@@ -9,15 +9,14 @@
 #flickrfeed li { display: inline; }
 #flickrfeed li img { display: inline; padding: 0; margin:0; }
 .bar #flickrfeed:before, .bar #twitter_litte:before {
-	content: "l";
-	font: normal 2.5em "SocialicoRegular", serif;
+	font-weight: normal;
+	font-size: 1.8em;
 	color: #777;
-	opacity: 0.5;
+	opacity: 0.45;
 	position: absolute;
-	left: -1.2em;
+	left: -1.75em;
 }
-.bar #twitter_litte:before { margin-top: .5em; }
-.bar #flickrfeed:before { content: "n"; }
+.bar #twitter_litte:before { margin-top: 1em; }
 
 ul#meta_links li, nav.site ol, nav.site li { display: inline; padding: 0; margin: 0; }
 ul#meta_links { margin: 1em 0; padding: 0; text-align: center; }

@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-pencil, .icon-facebook, .icon-twitter, .icon-picassa, .icon-flickr, .icon-flickr-2, .icon-vimeo, .icon-feed, .icon-mail, .icon-google-plus, .icon-dribbble, .icon-github, .icon-wordpress, .icon-skype, .icon-pinterest, .icon-tux, .icon-apple, .icon-reddit, .icon-lastfm, .icon-arrow-up, .icon-star, .icon-star-2, .icon-star-3 {
+.bar #twitter_litte:before, .bar #flickrfeed:before, .icon-pencil, .icon-facebook, .icon-twitter, .icon-picassa, .icon-flickr, .icon-flickr-2, .icon-vimeo, .icon-feed, .icon-mail, .icon-google-plus, .icon-dribbble, .icon-github, .icon-wordpress, .icon-skype, .icon-pinterest, .icon-tux, .icon-apple, .icon-reddit, .icon-lastfm, .icon-arrow-up, .icon-star, .icon-star-2, .icon-star-3 {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -43,13 +43,13 @@ you can use the generic selector below, but it's slower:
 .icon-facebook:before {
 	content: "\e001";
 }
-.icon-twitter:before {
+.icon-twitter:before, .bar #twitter_litte:before {
 	content: "\e002";
 }
 .icon-picassa:before {
 	content: "\e003";
 }
-.icon-flickr:before {
+.icon-flickr:before, .bar #flickrfeed:before {
 	content: "\e004";
 }
 .icon-flickr-2:before {
