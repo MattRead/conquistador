@@ -17,8 +17,8 @@ $(window).keydown(function(e){
 
 $(function() {
 	$(window).scroll(function() {
-		if($(this).scrollTop() > 400) {
-			$('#totop').fadeIn();	
+		if($(this).scrollTop() > 300) {
+			$('#totop').fadeIn();
 		} else {
 			$('#totop').fadeOut();
 		}
