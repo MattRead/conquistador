@@ -1,6 +1,6 @@
 <?php
 
-//namespace Habari;
+// namespace Habari;
 
 class Conquistador extends Theme
 {
@@ -59,6 +59,12 @@ class Conquistador extends Theme
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site-min.js', 'conquistador', 'jquery' );
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador');
 		}
+		if ( $pat = $theme->get_pattern() ) {
+			$this->add_style( 'header', array( "body { background: #fcfcfc url('$pat') repeat; }", 'screen' ), 'conquistador_pattern', 'conquistador' );
+		}
+		if ( $pat2 = $theme->get_pattern( 'pattern_dark' ) ) {
+			$this->add_style( 'header', array( "nav.site, .bar { background: #222 url('$pat2') repeat; }", 'screen' ), 'conquistador_pattern_dark', 'conquistador' );
+		}
 	}
 
 	public function set_title( $value = null )
@@ -82,9 +88,9 @@ class Conquistador extends Theme
 	/**
 	 * Output the custom headers
 	 */
-	public function action_template_header( Theme $theme )
+	public function action_template_header_16( Theme $theme )
 	{
-	    echo Options::get(self::OPTION_NAME . '__custom_headers') . "\n";
+		echo Options::get(self::OPTION_NAME . '__custom_headers') . "\n";
 	}
 
 	public function act_display_post( $user_filters = array() )
@@ -164,7 +170,9 @@ class Conquistador extends Theme
 		$head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
 		$head->custom_headers->raw = true;
 
-		$ui->append('select', 'pattern',  __CLASS__.'__pattern', 'pattern', $this->get_patterns());
+		$pats = $ui->append( 'fieldset', 'pats', 'Subtle Patterns &trade;');
+		$pats->append('select', 'pattern',  __CLASS__.'__pattern', 'Main Body Pattern', $this->get_patterns());
+		$pats->append('select', 'pattern_dark',  __CLASS__.'__pattern_dark', 'Secondary Pattern', $this->get_patterns());
 
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save' ) );
@@ -177,22 +185,27 @@ class Conquistador extends Theme
 		if ( Cache::has( self::OPTION_NAME . '_patterns' ) ) {
 			return Cache::get( self::OPTION_NAME . '_patterns' );
 		}
-		$options = array();
+		$options = array('null' => 'Default');
 		$data = RemoteRequest::get_contents('https://api.github.com/repos/subtlepatterns/SubtlePatterns/contents/');
 		$patterns = json_decode($data);
-		foreach ( $patterns as $pattern ) {
-			if ( strpos($pattern->name, '.png') !== false ) {
-				$options[$pattern->_links->self] = $pattern->name;
+		if ( $patterns !== null ) {
+			foreach ( $patterns as $pattern ) {
+				if ( strpos($pattern->name, '.png') !== false ) {
+					$options[$pattern->_links->self] = $pattern->name;
+				}
 			}
+			Cache::set( self::OPTION_NAME . '_patterns', $options, 3600 );
 		}
-		Cache::set( self::OPTION_NAME . '_patterns', $options, 3600 );
 		return $options;
 	}
-	
-	public function theme_get_pattern()
+
+	public function theme_get_pattern( Theme $theme, $pat = 'pattern' )
 	{
-		if ( $pattern = Options::get( __CLASS__.'__pattern', false ) ) {
-			$path = Site::get_dir( 'user', true ) . 'files/' . basename($pattern);
+		if ( ( $pattern = Options::get( __CLASS__ . '__' . $pat, 'null' ) ) != 'null' ) {
+			$path = Site::get_dir( 'user', true ) . 'files/patterns/' . basename($pattern);
+			if ( !is_dir( dirname($path) ) ) {
+				mkdir( dirname($path) );
+			}
 			if ( !file_exists($path) ) {
 				$data = json_decode( RemoteRequest::get_contents($pattern) );
 				$image = $data->content;
@@ -201,7 +214,7 @@ class Conquistador extends Theme
 				}
 				file_put_contents( $path, $image );
 			}
-			return Site::get_url( 'user', true ) . 'files/' . basename($pattern);
+			return Site::get_url( 'user', true ) . 'files/patterns/' . basename($pattern);
 		}
 		else {
 			return false;
@@ -301,7 +314,7 @@ class Conquistador extends Theme
 
 	public function filter_get_scopes($scopes)
 	{
-		$scope = new stdClass();
+		$scope = new \stdClass();
 		$scope->criteria = array(
 			array('request', 'display_home'),
 		);
@@ -310,7 +323,7 @@ class Conquistador extends Theme
 		$scope->priority = 0;
 		$scopes['conquistador_homepage'] = $scope;
 
-		$scope = new stdClass();
+		$scope = new \stdClass();
 		$scope->criteria = array(
 			array('request', 'display_entry'),
 			array('request', 'display_page'),
@@ -323,7 +336,7 @@ class Conquistador extends Theme
 		$scope->priority = 0;
 		$scopes['conquistador_single'] = $scope;
 
-		$scope = new stdClass();
+		$scope = new \stdClass();
 		$scope->criteria = array(
 			array('request', self::REWRITE_NAME),
 		);
