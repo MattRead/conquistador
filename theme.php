@@ -9,16 +9,15 @@ class Conquistador extends Theme
 	const ARCHIVES_CACHE_EXPIRE = 3600;
 
 	private $social_media_icons = array(
-		'twitter' => array('l', 'https://twitter.com/%s', 'Twitter'),
-		'lastfm' => array('6', 'http://www.last.fm/user/%s', 'Last.fm'),
-		'facebook' => array('f', 'http://facebook.com/%s', 'Facebook'),
-		'flickr' => array('n', 'http://www.flickr.com/photos/%s', 'Flickr'),
-		'vimeo' => array('v', 'https://vimeo.com/%s', 'Vimeo'),
-		'googleplus' => array('1', 'https://plus.google.com/%s/posts', 'Google+'),
-		'skype' => array('h', 'skype:%s', 'Skype'),
-		'github' => array('(', 'https://github.com/%s', 'Github'),
+		'twitter' => array('twitter', 'https://twitter.com/%s', 'Twitter'),
+		'lastfm' => array('lastfm', 'http://www.last.fm/user/%s', 'Last.fm'),
+		'facebook' => array('facebook', 'http://facebook.com/%s', 'Facebook'),
+		'flickr' => array('flickr', 'http://www.flickr.com/photos/%s', 'Flickr'),
+		'vimeo' => array('vimeo', 'https://vimeo.com/%s', 'Vimeo'),
+		'googleplus' => array('google-plus', 'https://plus.google.com/%s/posts', 'Google+'),
+		'skype' => array('skype', 'skype:%s', 'Skype'),
+		'github' => array('github', 'https://github.com/%s', 'Github'),
 		);
-
 	/**
 	* function constructor
 	*/
