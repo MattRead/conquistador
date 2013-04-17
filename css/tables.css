@@ -3,12 +3,12 @@ table {
 	overflow: auto;
 	empty-cells: show;
 	border-collapse: collapse;
-	border-bottom:3px solid #999;
-	margin: 2em 0 2em;
+	border-bottom: 3px solid #999;
+	margin: -2px 0 30px;
 	width: 100%;
 }
 tr {
-	margin:0;
+	margin: 0;
 	padding:0;
 }
 caption {
@@ -21,8 +21,9 @@ caption {
 	background: rgba(0, 0, 0, 0.08);
 }
 th, td {
+	line-height: 30px;
 	vertical-align: top;
-	padding: 0.65em 1em;
+	padding: 15px 1em 14px;
 	border: 1px dotted #222;
 	border-width: 0 0 1px 1px;
 }

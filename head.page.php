@@ -4,5 +4,5 @@
 		<time datetime="<?php echo $content->modified->format('c'); ?>">
 			<?php echo $content->modified_out; ?>
 		</time>
-	</p>
+	</p><p>&#x2766;</p>
 </header>

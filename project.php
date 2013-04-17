@@ -1,4 +1,4 @@
-<?php namespace Habari; ?>
+<?php //namespace Habari; ?>
 <?php echo $theme->content($content, 'admin'); ?>
 
 <header id="post-<?php echo $content->id; ?>" class="post type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?>">
@@ -18,7 +18,7 @@
 	<?php echo $content->project->license['name']; ?></a>.
 
 	<?php if( $content->project->screenshot_url ): ?>
-	<img src="<?php echo $content->project->screenshot_url; ?>" alt="Screenshot of the Scientist theme" class="right">
+	<div class="card right"><img src="<?php echo $content->project->screenshot_url; ?>" alt="Screenshot of the Scientist theme"></div>
 	<?php endif; ?>
 
 	</p>
@@ -28,7 +28,7 @@
 
 
 <?php if ( $content->project->help ) : ?>
-	<h1>Help</h1>
+	<h2>More Information</h2>
 	<?php echo $content->project->help; ?>
 <?php endif; ?>
 
@@ -69,7 +69,7 @@ array_unshift( $tags, $alphatag );
 		<td><?php echo $tag->tag; ?></td>
 		<td class="date"><?php echo $tag->date->format( 'Y-m-d'); ?></td>
 		<td><?php echo $tag->message; ?></td>
-		<td class="download">
+		<td>
 			<a href="<?php echo $tag->zipball_url; ?>" title="Download a zip of the <?php echo $content->project->type; ?>">ZIP</a>
 		</td>
 	</tr>

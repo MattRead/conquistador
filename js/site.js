@@ -15,6 +15,10 @@ $(window).keydown(function(e){
 	}
 });
 
+$(window).bind('load', function(){
+	$("img").baselineAlign({container:'.card'});
+});
+
 $(function() {
 	$(window).scroll(function() {
 		if($(this).scrollTop() > 300) {

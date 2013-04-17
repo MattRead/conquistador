@@ -41,18 +41,19 @@ class Conquistador extends Theme
 		Stack::add('template_header_javascript', array('http://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
 
 		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
-			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', 'jquery' );
+			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', array('jquery', 'details', 'fancybox', 'baseline') );
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/jquery.fancybox-1.3.4.js', 'fancybox', 'jquery' );
+			$this->add_script( 'footer', Site::get_url('theme') . '/js/jquery.baselinealign-1.0.js', 'baseline', 'jquery' );
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/jquery.details.min.js', 'details', 'jquery' );
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/easteregg.js', 'conquistador_easteregg', 'conquistador' );
 
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador', 'conquistador_fonts');
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador');
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador');
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/blocks.css', 'screen'), 'conquistador-blocks', 'conquistador');
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/icomoon.css', 'screen'), 'icomoon', 'conquistador');
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador');
-			$this->add_style( 'header', array(Site::get_url('theme') . '/css/jquery.fancybox-1.3.4.css', 'screen'), 'fancybox', 'conquistador');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador-css', 'conquistador_fonts');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/tables.css', 'screen'), 'conquistador-tables', 'conquistador-css');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/syntax.css', 'screen'), 'conquistador-syntax', 'conquistador-css');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/blocks.css', 'screen'), 'conquistador-blocks', 'conquistador-css');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/icomoon.css', 'screen'), 'icomoon', 'conquistador-css');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador-css');
+			$this->add_style( 'header', array(Site::get_url('theme') . '/css/jquery.fancybox-1.3.4.css', 'screen'), 'fancybox-css', 'conquistador-css');
 		}
 		else {
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site-min.js', 'conquistador', 'jquery' );
@@ -81,6 +82,9 @@ class Conquistador extends Theme
 		if ( URL::get_matched_rule() == null ) {
 			$this->set_title('Page Not Found');
 		}
+		if ( Controller::get_matched_rule()->action == 'display_post' && isset($this->post) ) {
+			 $this->set_title( htmlentities($this->post->title) );
+		}
 		parent::add_template_vars();
 	}
 
@@ -90,14 +94,6 @@ class Conquistador extends Theme
 	public function action_template_header_16( Theme $theme )
 	{
 		echo Options::get(self::OPTION_NAME . '__custom_headers') . "\n";
-	}
-
-	public function act_display_post( $user_filters = array() )
-	{
-		if ( isset($this->post) ) {
-			$this->set_title( $this->post->title );
-		}
-		return parent::act_display_post( $user_filters );
 	}
 
 	public function act_display_tag( $user_filters = array() )

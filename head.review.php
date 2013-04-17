@@ -4,7 +4,7 @@
 		<time datetime="<?php echo $content->pubdate->format('c'); ?>">
 			<?php echo $content->pubdate_out; ?>
 		</time>
-	</p>
+	</p><p>&#x2766;</p>
 </header>
 
 <div class="rating"><span class="star-<?php echo $content->rating; ?>"></span></div>

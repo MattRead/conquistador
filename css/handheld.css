@@ -13,5 +13,4 @@
 }
 @media screen and (max-width: 500px) {
     p.pull-quote { display: none !important; }
-	nav.site { padding: 1em !important; }
 }
