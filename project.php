@@ -7,7 +7,7 @@
 		<time datetime="<?php echo $content->modified->format('c'); ?>">
 			<?php echo $content->modified_out; ?>
 		</time>
-	</p>
+	</p><p>&#x2766;</p>
 </header>
 
 <?php if( $content->project->platform == 'habari' ): ?>
@@ -18,7 +18,7 @@
 	<?php echo $content->project->license['name']; ?></a>.
 
 	<?php if( $content->project->screenshot_url ): ?>
-	<div class="card right"><img src="<?php echo $content->project->screenshot_url; ?>" alt="Screenshot of the Scientist theme"></div>
+	<img class="card right" src="<?php echo $content->project->screenshot_url; ?>" alt="Screenshot of the Scientist theme">
 	<?php endif; ?>
 
 	</p>

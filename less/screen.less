@@ -31,12 +31,37 @@ time {
 *::selection { background: rgba(0, 0, 255, .2); }
 *::-moz-selection { background: rgba(0, 0, 255, .2); }
 
+.rounded-corners (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.box-shadow (@out: outset; @x: 0; @y: 2px; @blur: 3px; @color: rgba(0,0,0,0.3)) {
+	box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	-webkit-box-shadow: @arguments;
+}
+
+@black: #222;
+@grey: #777;
+@white: #fcfcfc;
+
+@orange: #c13100;
+
+
+@font-sans: 'Source Sans Pro', sans-serif;
+@font-monospace: 'Source Code Pro', monospace;
+@font-weight-normal: 400;
+@font-weight-light: 300;
+@font-weight-dark: 700;
+
 body {
-	margin: 0;
-	padding: 0;
-	font: 400 20px/1.5 'Source Sans Pro', sans-serif;
+	font: @font-weight-normal 20px/1.5 @font-sans;
 	word-spacing: 0.1em;
-	color: #222;
+	color: @black;
 	word-wrap: break-word;
 	background: #fcfcfc url('../images/back.png') repeat;
 }
@@ -57,9 +82,7 @@ body div.wrap, .bar aside {
 	padding: 0 1em;
 	margin: 1.0714em 0;
 	background:#222 url('../images/pattern.png') fixed repeat;
-	-moz-box-shadow: inset 1px 4px 4px #111;
-	-webkit-box-shadow: inset 1px 4px 4px #111;
-	box-shadow: inset 1px 4px 4px #111;
+	.box-shadow(inset 1px 4px 4px #111);
 	text-shadow: 1px 3px 3px #222;
 	color: #eee;
 	font-weight: 300;

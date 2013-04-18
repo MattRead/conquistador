@@ -26,9 +26,9 @@ class Conquistador extends Theme
 		Format::apply( 'tag_and_list', 'post_tags_out' );
 		Format::apply( 'nice_date', 'post_pubdate_out_short', 'd M Y' );
 		Format::apply( 'nice_date', 'post_modified_out_short', 'd M Y' );
-		Format::apply( 'nice_date', 'post_pubdate_out', 'l, F jS Y' );
-		Format::apply( 'nice_date', 'post_modified_out', 'l, F jS Y' );
-		Format::apply( 'nice_date', 'comment_date_out', 'l, F jS Y' );
+		Format::apply( 'nice_date', 'post_pubdate_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'post_modified_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'comment_date_out', 'F jS, Y' );
 
 		$this->set_title();
 		$this->assign( 'tagline', Options::get('tagline') );

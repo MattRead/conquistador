@@ -45,6 +45,13 @@ $(document).ready(function() {
 
 	if ( CONQUISTADOR_USE_FANCYBOX ) {
 		$('a.fancybox').fancybox({hideOnContentClick:true});
+		$('.fancybox-iframe').fancybox({
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none',
+			'type'          : 'iframe',
+			'width'         : '75%',
+			'height'        : '70%'
+		});
 	}
 
 	$(function() {
