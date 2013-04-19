@@ -15,7 +15,10 @@
 	</script>
 	<?php echo $theme->header(); ?>
 </head>
-<body class="<?php echo $theme->body_class(); ?>">
+<body class="<?php echo $theme->body_class(); ?>" itemscope itemtype="http://schema.org/Blog">
+<meta itemprop="name" content="<?php echo Options::get('title'); ?>">
+<meta itemprop="url" content="<?php Site::out_url('site'); ?>">
+<meta itemprop="description" content="<?php echo Options::get('tagline'); ?>">
 
 <nav class="site" id="top" style="position:relative">
 	<?php echo $theme->area('site_navigation'); ?>

@@ -135,7 +135,7 @@ footer .social a:hover { color: #c13100; }
 header {
 	text-align: center;
 }
-header time, header span {
+header time {
 	color: #777;
 	font-size: .8em;
 	line-height: 1.875;
@@ -435,7 +435,7 @@ textarea {
 	resize: none;
 	height: 34px;
 }
-git rm -r input[disabled], textarea[disabled], select[disabled] { background: rgba(200, 200, 200, 0.7); }
+input[disabled], textarea[disabled], select[disabled] { background: rgba(200, 200, 200, 0.7); }
 
 textarea {
 	padding: 1.875em 2em 6px; line-height: 1.875; margin: 0; height: 270px;
@@ -485,28 +485,25 @@ fieldset legend { padding: 0 1em; margin-bottom: 0; /* see @.meta */ }
 }
 
 form.formui label {
-	display: block;
+	display: inline-block;
 	margin: 0;
 }
 
 ul.error {
-	margin: 0;
-	width: 95%;
-	padding: 6px;
-	background-color:rgba(170,1,20,0.5); /*#aa0114*/
-	color: #eee;
-	line-height: 1;
+	margin: 0 0 1.6667;
+	padding: 0;
+	color: #b20;
+	line-height: 1.6667;
 	font-size: .9em;
+	font-weight: 700;
 }
 ul.error li {
-	list-style: none;
-	padding: 6px;
+	list-style: square;
+	padding: 0;
 	margin: 0;
-	border-top: none;
 }
 
 .download {
-	font-size: .9em;
 	font-weight: 300;
 	color: #777;
 	list-style: none;

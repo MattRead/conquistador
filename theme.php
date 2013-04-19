@@ -24,11 +24,14 @@ class Conquistador extends Theme
 	public function action_init_theme( $theme )
 	{
 		Format::apply( 'tag_and_list', 'post_tags_out' );
-		Format::apply( 'nice_date', 'post_pubdate_out_short', 'd M Y' );
-		Format::apply( 'nice_date', 'post_modified_out_short', 'd M Y' );
+		Format::apply( 'nice_date', 'post_pubdate_short', 'd M Y' );
+		Format::apply( 'nice_date', 'post_modified_short', 'd M Y' );
 		Format::apply( 'nice_date', 'post_pubdate_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'post_pubdate_iso', 'c' );
 		Format::apply( 'nice_date', 'post_modified_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'post_modified_iso', 'c' );
 		Format::apply( 'nice_date', 'comment_date_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'comment_date_iso', 'c' );
 
 		$this->set_title();
 		$this->assign( 'tagline', Options::get('tagline') );
@@ -324,7 +327,7 @@ class Conquistador extends Theme
 			array('request', 'display_page'),
 			'or',
 			array('request', 'display_post'),
-			'or'
+			'or',
 		);
 		$scope->name = 'Single Post';
 		$scope->id = 68;

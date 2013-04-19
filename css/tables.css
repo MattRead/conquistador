@@ -1,4 +1,3 @@
-tr:nth-child(odd), tr.alt { background: rgba(0, 0, 0, 0.08); }
 table {
 	overflow: auto;
 	empty-cells: show;
@@ -42,6 +41,7 @@ th {
 th.first,
 td.first,
 tbody th { border-left:none; }
+tr:nth-child(odd), tr.alt { background: rgba(0, 0, 0, 0.08); }
 
 td[nowrap] { white-space:nowrap; }
 
@@ -54,7 +54,10 @@ table.borders td,
 table.borders th { border:1px solid #ccc; }
 
 table.plain,
-table.plain th { border:1px solid #ccc; }
+table.plain th { border: none; background: none; }
+
+table.plain tr:nth-child(odd), table.plain tr.alt { background: none; }
 
 table.plain tr,
-table.plain td { border:none; }
+table.plain td,
+table.plain th { border: none; padding: 0 .5em; }

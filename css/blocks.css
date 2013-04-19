@@ -111,14 +111,15 @@ img.tweet-image {
 	float: left;
 	width: 80px;
 	line-height: 30px;
-	margin: -38px 0 0;
+	margin: -68px 0 0;
 }
 ul.posts .rating {
 	float: none;
+	display: inline-block;
 	margin: 0;
 }
 .asin {
-	float: right;
+	float: left;
 	line-height: 30px;
 	margin: -45px 0 0;
 }
