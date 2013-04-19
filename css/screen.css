@@ -435,7 +435,7 @@ textarea {
 	resize: none;
 	height: 34px;
 }
-input[disabled], textarea[disabled], select[disabled] { background: rgba(200, 200, 200, 0.7); }
+git rm -r input[disabled], textarea[disabled], select[disabled] { background: rgba(200, 200, 200, 0.7); }
 
 textarea {
 	padding: 1.875em 2em 6px; line-height: 1.875; margin: 0; height: 270px;
