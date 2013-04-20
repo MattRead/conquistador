@@ -86,7 +86,7 @@ class Conquistador extends Theme
 			$this->set_title('Page Not Found');
 		}
 		if ( Controller::get_matched_rule()->action == 'display_post' && isset($this->post) ) {
-			 $this->set_title( htmlentities($this->post->title) );
+			 $this->set_title( htmlspecialchars($this->post->title) );
 		}
 		parent::add_template_vars();
 	}

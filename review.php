@@ -13,15 +13,15 @@
 		<time itemprop="datePublished" datetime="<?php echo $content->pubdate_iso; ?>">
 			<?php echo $content->pubdate_out; ?>
 		</time>
-	</p><p>&#x2766;</p>
+	</p>
+	<p itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="rating">
+		<meta itemprop="worstRating" content = "1">
+		<meta itemprop="bestRating" content="5">
+		<meta itemprop="ratingValue" content="<?php echo $content->rating; ?>">
+		<?php echo str_repeat( '&#9733;', $content->rating ); echo str_repeat( '&#9734;', 5 - $content->rating ); ?>
+	</p>
 </header>
 
-<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="rating">
-<meta itemprop="worstRating" content = "1">
-<meta itemprop="bestRating" content="5">
-<meta itemprop="ratingValue" content="<?php echo $content->rating; ?>">
-<span class="star-<?php echo $content->rating; ?>"></span>
-</div>
 <?php if ( $content->asin ) : ?>
 <div class="asin meta">
     <a href="http://www.amazon.ca/dp/<?php echo $content->asin; ?>">

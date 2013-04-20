@@ -99,38 +99,6 @@ img.tweet-image {
 	margin: 0 1em 1em 0;
 }
 
-.rating span {
-	display: block;
-	width: 80px;
-	height: 14px;
-	margin: 0;
-	padding: 0;
-	background: url(../images/5stars.png) no-repeat 0 0;
-}
-.rating {
-	float: left;
-	width: 80px;
-	line-height: 30px;
-	margin: -68px 0 0;
-}
-ul.posts .rating {
-	float: none;
-	display: inline-block;
-	margin: 0;
-}
-.asin {
-	float: left;
-	line-height: 30px;
-	margin: -45px 0 0;
-}
-.asin a { color: #777; }
-.rating span.star-0 {background-position:0 0}
-.rating span.star-1 {background-position:0 -14px}
-.rating span.star-2 {background-position:0 -29px}
-.rating span.star-3 {background-position:0 -44px}
-.rating span.star-4 {background-position:0 -59px}
-.rating span.star-5 {background-position:0 -74px}
-
 .gsc table, .gsc th, .gsc td { border: none; }
 
 .flattr { float: right; }
