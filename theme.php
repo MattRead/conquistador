@@ -88,6 +88,14 @@ class Conquistador extends Theme
 		if ( Controller::get_matched_rule()->action == 'display_post' && isset($this->post) ) {
 			 $this->set_title( htmlspecialchars($this->post->title) );
 		}
+		if ( User::identify()->loggedin ) {
+			$unapproved_comment_count = User::identify()->can( 'manage_all_comments' ) ? Comments::count_total( Comment::STATUS_UNAPPROVED, false ) : Comments::count_by_author( User::identify()->id, Comment::STATUS_UNAPPROVED );
+			$spam_comment_count = User::identify()->can( 'manage_all_comments' ) ? Comments::count_total( Comment::STATUS_SPAM, false ) : Comments::count_by_author( User::identify()->id, Comment::STATUS_SPAM );
+			$user_draft_count = Posts::get( array( 'count' => 1, 'content_type' => Post::type( 'any' ), 'status' => Post::status( 'draft' ), 'user_id' => User::identify()->id ) );
+			$this->assign( 'unapproved_comment_count', $unapproved_comment_count );
+			$this->assign( 'spam_comment_count', $spam_comment_count );
+			$this->assign( 'user_draft_count', $user_draft_count );
+		}
 		parent::add_template_vars();
 	}
 
@@ -97,6 +105,25 @@ class Conquistador extends Theme
 	public function action_template_header_16( Theme $theme )
 	{
 		echo Options::get(self::OPTION_NAME . '__custom_headers') . "\n";
+
+		if ( isset($theme->posts) && $theme->posts instanceof Posts ) {
+			$settings = array();
+			// If there's no next page, skip and return null
+			$settings['page'] = (int) ( $theme->page + 1 );
+			$items_per_page = isset( $theme->posts->get_param_cache['limit'] ) ?
+				$theme->posts->get_param_cache['limit'] :
+				Options::get( 'pagination' );
+			$total = Utils::archive_pages( $theme->posts->count_all(), $items_per_page );
+			if ( $settings['page'] <= $total ) {
+				echo '<link rel="next" href="' . URL::get( null, $settings, false ) . '">' . "\n";
+			}
+			
+			$settings['page'] = (int) ( $theme->page - 1 );
+			if ( $settings['page'] >= 1 ) {
+				echo '<link rel="next" href="' . URL::get( null, $settings, false ) . '">' . "\n";
+			}
+			echo '<link rel="home" href="' . Site::get_url( 'site' ) . '">' . "\n";
+		}
 	}
 
 	public function act_display_tag( $user_filters = array() )
@@ -151,10 +178,10 @@ class Conquistador extends Theme
 	{
 		static $nav = null;
 		if( $nav == null ) {
-			$prev = implode( '', ( array ) $theme->prev_page_link_return( '&larr;' ) );
-			$mid = implode( '', ( array ) $theme->page_selector_return( null, array( 'leftSide' => 2, 'rightSide' => 2, 'hideIfSinglePage' => true ) ) );
-			$next = implode( '', ( array ) $theme->next_page_link_return( '&rarr;' ) );
-			$nav = $mid ? "<nav>Pages: $prev $mid $next </nav>" : '';
+			$prev = $theme->prev_page_link( '&larr;' );
+			$mid = $theme->page_selector( null, array( 'leftSide' => 2, 'rightSide' => 2, 'hideIfSinglePage' => true ) );
+			$next = $theme->next_page_link( '&rarr;' );
+			$nav = "<nav>Pages: $prev $mid $next </nav>";
 		}
 		return $nav;
 	}
@@ -164,9 +191,13 @@ class Conquistador extends Theme
 		$ui = new FormUI( __CLASS__ );
 
 		$head = $ui->append( 'fieldset', 'heads', 'Custom Headers');
-		$head->append('textarea', "custom_headers", __CLASS__."__custom_headers", "Custom HTML Headers:", 'optionscontrol_textarea');
+		$head->append('textarea', "custom_headers", __CLASS__."__custom_headers", "Custom HTML Headers:");
 		$head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
 		$head->custom_headers->raw = true;
+
+		$head = $ui->append( 'fieldset', 'coms', 'Comments Disclaimers');
+		$head->append('textarea', "comments_disclaimer", __CLASS__."__comments_disclaimer", "Comments Listing Disclaimer:");
+		$head->append('textarea', "comments_form_disclaimer", __CLASS__."__comments_form_disclaimer", "Comments Form Disclaimer:");
 
 		$pats = $ui->append( 'fieldset', 'pats', 'Subtle Patterns &trade;');
 		$pats->append('select', 'pattern',  __CLASS__.'__pattern', 'Main Body Pattern', $this->get_patterns());
@@ -243,6 +274,18 @@ class Conquistador extends Theme
 		$block_list['conquistador_menu'] = _t( 'Basic Main Menu (Conquistador)' );
 		$block_list['conquistador_post_list'] = _t( 'Post Listing for Homepage (Conquistador)' );
 		return $block_list;
+	}
+
+	public function filter_post_excerpt ($content, $post)
+	{
+		return Format::more( $content, $post, array('max_paragraphs' => Options::get(__CLASS__.'__max_paragraphs', 1)) );
+	}
+
+	public function action_block_form_conquistador_post_list( $ui, $block )
+	{
+		$options = $ui->append( 'fieldset', 'options', 'Otions');
+		$options->append('select', 'display_context',  $block, 'Display Context', array('list' => 'List', 'excerpt' => 'Excerpts'));
+		$options->append('text', 'paras', __CLASS__.'__max_paragraphs', 'Max Paragraphs for Excerpt');
 	}
 
 	public function action_block_form_conquistador_signature( $ui, $block )

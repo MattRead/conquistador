@@ -3,6 +3,6 @@
 	<?php echo $content->title ?>
 </h1>
 <?php endif; ?>
-
-<?php echo $theme->content($posts, 'list'); ?>
+<?php $context = $content->display_context ? $content->display_context : 'list'; ?>
+<?php echo $theme->content($posts, $context); ?>
 <?php echo $theme->paged_nav(); ?>

@@ -32,7 +32,7 @@ $(function() {
 		$('html, body').animate({scrollTop:0}, 'slow');
 		return false;
 	});
-	$('#totop').html("&uarr; Back to top");
+	$('#totop').html("<small><i class=\"icon-arrow-up\"></i></small> Back to top");
 });
 
 $(document).ready(function() {

@@ -25,3 +25,5 @@
 </nav>
 
 <div class="wrap">
+
+<?php echo $theme->display('adminbar'); ?>
