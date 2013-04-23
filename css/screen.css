@@ -34,7 +34,7 @@ time {
 body {
 	margin: 0;
 	padding: 0;
-	font: 400 20px/1.5 'Source Sans Pro', sans-serif;
+	font: 300 20px/1.5 'Source Sans Pro', sans-serif;
 	word-spacing: 0.1em;
 	color: #222;
 	word-wrap: break-word;
@@ -67,6 +67,7 @@ body div.wrap, .bar aside {
 	line-height: 1.0714;
 	font-size: 1.4em;
 }
+.bar a:link, .bar a:visited { color: #3BB9FF; }
 
 nav.site {
 	padding: .8335em 15%;
@@ -141,7 +142,7 @@ footer address {
 	text-align: right;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
 }
-footer .social a:hover { color: #c13100; }
+footer .social a:hover { color: #2554C7; }
 
 header {
 	text-align: center;
@@ -278,13 +279,13 @@ q:after { content: close-quote; }
 
 a { text-decoration: none }
 a:link {
-	color:#c13100;
+	color: #2554C7;
 	padding:.3em 0;
 }
-a:visited { color:#c13100; }
+a:visited { color: #2554C7; /*#c13100;*/ }
 a:hover, * a:hover { color: #999; }
 
-strong, b { font-weight: 700; }
+strong, b { font-weight: 600; }
 em, i, dfn, cite { font-style: italic; }
 u { text-decoration: underline; }
 
@@ -296,16 +297,16 @@ abbr {
 	font-size: 1em;
 	border-bottom: 1px dotted #777;
 }
-abbr:hover { border-color: #c13100; }
+abbr:hover { border-color: #2554C7; }
 
 mark {
 	background-color: #FFF380;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 300;
 	text-decoration:none;
 }
 ins { text-decoration: underline; }
-del, s { text-decoration: line-through; }
+.status-deleted, del, s { text-decoration: line-through; }
 
 sup, sub, small { font-size: .8em; }
 sup { vertical-align: top; }
@@ -399,7 +400,7 @@ hr { border: 0; margin-bottom: 1.5em; height: 0; }
 hr.floral:after { content: "\273B\00A0\00A0\273B\00A0\00A0\273B"; text-align: center; display: block; color: #777; }
 hr.floral { margin-bottom: 3em; }
 hr + p:first-letter { font-weight: 300; font-size: 3em; line-height: 1; margin-right: 2px; display: block; float: left; }
-hr.floral + p:first-letter { font-weight: 400; font-size: 1em; line-height: 1.5; margin-right: 0; display: inline; float: none; }
+hr.floral + p:first-letter { font-weight: 300; font-size: 1em; line-height: 1.5; margin-right: 0; display: inline; float: none; }
 
 .footnotes hr {
 	height: 1px;
@@ -459,7 +460,7 @@ textarea {
 	padding: 6px 6px;
 	margin: 0 0 -4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-	font: 400 17px/30px 'Source Sans Pro', sans-serif;
+	font: 300 .9em/1.6667 'Source Sans Pro', sans-serif;
 	background: rgba(255, 255, 255, 0.7);
 	resize: vertical;
 	height: 34px;
@@ -468,7 +469,7 @@ input[type=checkbox], input[type=radio] { vertical-align: baseline; }
 input[disabled], textarea[disabled], select[disabled] { background: rgba(200, 200, 200, 0.7); }
 
 textarea {
-	padding: 1.875em 2em 6px; line-height: 1.875; margin: 0; height: 270px;
+	padding: 1.6667em 2em 6px; line-height: 1.6667; margin: 0; height: 270px;
 }
 
 button, input[type=submit], input[type=reset] {
@@ -520,14 +521,14 @@ form.formui label {
 	margin: 0;
 }
 
-ul.messages {
+ul.messages, ul.error {
 	margin: 0 0 1.6667;
 	padding: 0;
 	line-height: 1.6667;
 	font-size: .9em;
-	font-weight: 700;
+	font-weight: 600;
 }
-ul.messages li {
+ul.messages li, ul.error li {
 	list-style: square;
 	padding: 0;
 	margin: 0;
@@ -537,9 +538,10 @@ ul.messages li {
 
 .rating {
 	text-align: center; 
-	color: #AF7817;
+	color: #a66800; /*#AF7817;*/
 	text-shadow: 1px 1px 2px rgba(0,0,0,.2);
 }
+.rating i { margin: 0 .06em; }
 .asin { text-align: right; margin-bottom: 0; margin-top: -30px; }
 .asin a { color: #777; }
 
