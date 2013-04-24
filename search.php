@@ -1,10 +1,11 @@
 <?php $theme->display('header'); ?>
 <?php echo $theme->area('head'); ?>
 <h1>
-	Search - <small>"<?php echo htmlentities($criteria, ENT_COMPAT, 'UTF-8', false); ?>"</small><?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
+	Search &ndash; <small>&#8220;<?php echo htmlentities($criteria, ENT_COMPAT, 'UTF-8', false); ?>&#8221;</small>
+	<?php if ($page > 1) : ?><small>&ndash;&nbsp;Page&nbsp;<?php echo htmlspecialchars($page); ?></small><?php endif; ?>
 </h1>
 
-<form method="get" id="searchform" action="http://mattread.com/search">
+<form method="get" id="searchform" action="<?php URL::out('display_search'); ?>">
 	<p>
 		<input type="text" id="s" name="criteria" value="<?php echo htmlentities($criteria, ENT_COMPAT, 'UTF-8', false); ?>"><input type="submit" id="searchsubmit" value="Search">
 	</p>

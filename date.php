@@ -2,7 +2,8 @@
 <?php echo $theme->area('head'); ?>
 
 <h1>
-	Posts From <?php echo $date; ?><?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
+	Posts From <?php echo $date; ?>
+	<?php if ($page > 1) : ?><small>&ndash;&nbsp;Page&nbsp;<?php echo htmlspecialchars($page); ?></small><?php endif; ?>
 </h1>
 
 <?php echo $theme->content($posts, 'list'); ?>

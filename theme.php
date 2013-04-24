@@ -146,7 +146,7 @@ class Conquistador extends Theme
 
 		if ( $month = Controller::get_var('month') ) {
 			$date .= "-$month";
-			$format = 'M ' . $format;
+			$format = 'M-' . $format;
 		}
 		else {
 			$date .= '-01';
@@ -154,7 +154,7 @@ class Conquistador extends Theme
 
 		if ( $day = Controller::get_var('day') ) {
 			$date .= "-$day";
-			$format = 'd ' . $format;
+			$format = 'd-' . $format;
 		}
 		else {
 			$date .= '-01';

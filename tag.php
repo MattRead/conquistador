@@ -2,7 +2,8 @@
 <?php echo $theme->area('head'); ?>
 
 <h1>
-	Tagged "<?php echo htmlspecialchars( $tag ); ?>"<?php if ($page > 1) : ?>, Page <?php echo htmlspecialchars($page); ?><?php endif; ?>
+	Tagged &#8220;<?php echo htmlspecialchars( Tags::get_by_slug($tag)->term_display ); ?>&#8221;
+	<?php if ($page > 1) : ?><small>&ndash;&nbsp;Page&nbsp;<?php echo htmlspecialchars($page); ?></small><?php endif; ?>
 </h1>
 
 <?php echo $theme->content($posts, 'list'); ?>
