@@ -1,5 +1,6 @@
     <address>
-        <?php echo $content->author_name; ?> &lt;<?php echo $content->author_email; ?>&gt;
+        <?php echo $content->author_name; ?>
+	    <?php if ( $content->author_email ) : ?>&lt;<?php echo $content->author_email; ?>&gt;<?php endif; ?>
     </address>
     <div class="social">
         <a href="<?php URL::out( 'atom_feed', array('index' => '1') ); ?>" title="RSS Feed" class="rss"><i class="icon-feed"></i><b>RSS Feed</b></a>

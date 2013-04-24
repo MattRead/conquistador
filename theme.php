@@ -117,7 +117,7 @@ class Conquistador extends Theme
 			if ( $settings['page'] <= $total ) {
 				echo '<link rel="next" href="' . URL::get( null, $settings, false ) . '">' . "\n";
 			}
-			
+
 			$settings['page'] = (int) ( $theme->page - 1 );
 			if ( $settings['page'] >= 1 ) {
 				echo '<link rel="prev" href="' . URL::get( null, $settings, false ) . '">' . "\n";
@@ -161,7 +161,7 @@ class Conquistador extends Theme
 		}
 
 		try {
-			$date = new HabariDateTime($date);
+			$date = HabariDateTime::date_create($date);
 			$this->assign('date', $date->format($format));
 		}
 		catch ( Exception $e ) {}
