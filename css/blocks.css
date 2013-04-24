@@ -12,10 +12,10 @@
 }
 .bar #twitter_litte:before { margin-top: .5em; }
 
-ul#meta_links li, nav.site ol, nav.site li { display: inline; padding: 0; margin: 0; }
+ul#meta_links li { display: inline; padding: 0; margin: 0; }
 ul#meta_links { margin: 1em 0; padding: 0; text-align: center; }
-ul#meta_links li:after, nav.site ol li:after { content: " \00B7 "; padding: 0 .3em; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; }
-ul#meta_links li:last-child:after, nav.site ol li:last-child:after { content: ""; }
+ul#meta_links li:after { content: " \00B7 "; padding: 0 .3em; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; }
+ul#meta_links li:last-child:after { content: ""; }
 
 #tag_archives { list-style: none; padding: 0; margin: 0 0 1.875em; line-height: 1.875; font-size: .8em; font-weight: 300; }
 #tag_archives li { display: inline; margin: 0;}

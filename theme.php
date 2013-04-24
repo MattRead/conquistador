@@ -194,16 +194,22 @@ class Conquistador extends Theme
 
 		$head = $ui->append( 'fieldset', 'heads', 'Custom Headers');
 		$head->append('textarea', "custom_headers", __CLASS__."__custom_headers", "Custom HTML Headers:");
-		$head->custom_headers->helptext = _t("custom HTML headers to appear in <head>");
+		$head->custom_headers->helptext = _t("custom HTML headers to appear in &lt;head&gt;. Use HTML, not text.");
 		$head->custom_headers->raw = true;
 
 		$head = $ui->append( 'fieldset', 'coms', 'Comments Disclaimers');
 		$head->append('textarea', "comments_disclaimer", __CLASS__."__comments_disclaimer", "Comments Listing Disclaimer:");
+		$head->comments_disclaimer->helptext = _t("Disclaimer or paragraph to appear above comments listing.");
+		$head->comments_disclaimer->raw = true;
 		$head->append('textarea', "comments_form_disclaimer", __CLASS__."__comments_form_disclaimer", "Comments Form Disclaimer:");
+		$head->comments_form_disclaimer->helptext = _t("Disclaimer or paragraph to appear above comments form.");
+		$head->comments_form_disclaimer->raw = true;
 
 		$pats = $ui->append( 'fieldset', 'pats', 'Subtle Patterns &trade;');
 		$pats->append('select', 'pattern',  __CLASS__.'__pattern', 'Main Body Pattern', $this->get_patterns());
+		$pats->pattern->helptext = _t("The background pattern for the main body.");
 		$pats->append('select', 'pattern_dark',  __CLASS__.'__pattern_dark', 'Secondary Pattern', $this->get_patterns());
+		$pats->pattern_dark->helptext = _t("The background pattern for the top navigation bar, and split area.");
 
 		// Save
 		$ui->append( 'submit', 'save', _t( 'Save' ) );

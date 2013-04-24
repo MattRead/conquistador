@@ -70,19 +70,19 @@ body div.wrap, .bar aside {
 .bar a:link, .bar a:visited { color: #3BB9FF; }
 
 nav.site {
-	padding: .8335em 15%;
-	margin: 0;
+	padding: .8335em 15% ;
 	font-size: .9em;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.6667;
 	color: #999;
 	background:#222 url('../images/pattern.png') fixed repeat;
 	-moz-box-shadow: inset 1px 4px 4px #111;
 	-webkit-box-shadow: inset 1px 4px 4px #111;
 	box-shadow: inset 1px 4px 4px #111;
-	text-shadow: 1px 3px 3px #222;
+	text-shadow: 1px 3px 3px rgba(0, 0, 0, 1);
 }
-
+nav.site ol { padding: 0; margin: 0; }
+nav.site li { position: relative; display: inline; padding: 0; margin: 0 .6em; }
 nav.site a { color: #eee; }
 ul.admin a { color: #bbb; }
 ul.admin a:hover, nav.site a:hover { color: #888; }
@@ -191,7 +191,7 @@ p { margin: 0 0 1.5em; line-height: inherit; }
 p + p, p + blockquote.pull-quote + p { text-indent: 1em; }
 p.meta + p.meta { text-indent: 0; }
 
-samp, var, code, pre, output { font-size: 16px; font-family: 'Source Code Pro', monospace; }
+samp, var, code, pre, output, kbd { font-size: 16px; font-family: 'Source Code Pro', monospace; }
 pre {
 	margin: 1.875em 0;
 	padding: .9375em;
@@ -436,7 +436,7 @@ article.comment img.gravatar {
 	-moz-box-shadow: 1px 3px 3px rgba(0,0,0,0.3);
 	box-shadow: 1px 3px 3px rgba(0,0,0,.3);
 }
-article.comment.author-comment { border: 3px solid rgba(255,0,0,0.1); border-width: 0 3px; }
+article.comment.author-comment { border: 3px solid rgba(0,0,255,0.1); border-width: 0 3px; }
 article.comment > header { text-align: left; margin-bottom: 1.6667em; }
 article.comment div.admin { background-color: #666; }
 
@@ -534,7 +534,7 @@ ul.messages li, ul.error li {
 	margin: 0;
 }
 .error { color: #b20; }
-.success, .jambo-confirmation { color: #0b2; }
+.success, .jambo-confirmation { color: #348017; }
 
 .rating {
 	text-align: center; 
