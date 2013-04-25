@@ -74,6 +74,7 @@ class Conquistador extends Theme
 	{
 		if ($value) {
 			$this->assign( 'title', $value .' - '. Options::get('title') );
+			$this->assign( 'pagetitle', $value );
 		}
 		else {
 			$this->assign( 'title', Options::get('title') );

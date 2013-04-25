@@ -39,7 +39,6 @@ body {
 	color: #222;
 	word-wrap: break-word;
 	background: #fcfcfc url('../images/back.png') repeat;
-	-webkit-text-stroke: 0.01px
 }
 
 body div.wrap, .bar aside {
