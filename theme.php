@@ -40,7 +40,7 @@ class Conquistador extends Theme
 		Stack::remove('template_header_javascript', 'jquery');
 		Stack::remove('template_footer_javascript', 'jquery');
 		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
-		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro', 'screen'), 'conquistador_fonts');
+		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro:400,600', 'screen'), 'conquistador_fonts');
 		Stack::add('template_header_javascript', array('http://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
 
 		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
@@ -187,6 +187,18 @@ class Conquistador extends Theme
 			}
 		}
 		return $nav;
+	}
+
+	public function theme_multiple_pagename( $theme )
+	{
+		if ( $theme->posts->get_param_cache['content_type'] && !is_array($theme->posts->get_param_cache['content_type']) ) {
+			$pagename = Plugins::filter( 'post_type_display', Post::type_name($theme->posts->get_param_cache['content_type']), 'plural' );
+			$theme->set_title($pagename);
+		}
+		else {
+			$pagename = Options::get('title');
+		}
+		return $pagename;
 	}
 
 	public function action_theme_ui( $theme )

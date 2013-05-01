@@ -1,9 +1,10 @@
 <?php //namespace Habari; ?>
+<?php $pagename = $theme->multiple_pagename(); ?>
 <?php $theme->display('header'); ?>
 <?php echo $theme->area('head'); ?>
 
 <h1>
-	<?php echo isset($pagetitle) ? $pagetitle :  Options::get('title'); ?>
+	<?php echo $pagename; ?>
 	<?php if ($page > 1) : ?><small>&ndash;&nbsp;Page&nbsp;<?php echo htmlspecialchars($page); ?></small><?php endif; ?>
 </h1>
 

@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.bar #twitter_litte:before, .bar #flickrfeed:before, .icon-pencil, .icon-bubble, .icon-twitter, .icon-feed, .icon-vimeo, .icon-flickr, .icon-picassa, .icon-dribbble, .icon-tux, .icon-apple, .icon-pinterest, .icon-stumbleupon, .icon-lastfm, .icon-chrome, .icon-github, .icon-skype, .icon-reddit, .icon-wordpress, .icon-google-plus, .icon-facebook, .icon-file, .icon-mail, .icon-xing, .icon-star, .icon-star-2, .icon-star-3, .icon-remove, .icon-cog, .icon-spam, .icon-arrow-up, .icon-console, .icon-link {
+.icon-pencil, .icon-bubble, .icon-twitter, .icon-feed, .icon-vimeo, .icon-flickr, .icon-picassa, .icon-dribbble, .icon-tux, .icon-apple, .icon-pinterest, .icon-stumbleupon, .icon-lastfm, .icon-chrome, .icon-github, .icon-skype, .icon-reddit, .icon-wordpress, .icon-google-plus, .icon-facebook, .icon-file, .icon-mail, .icon-xing, .icon-star, .icon-star-2, .icon-star-3, .icon-remove, .icon-cog, .icon-spam, .icon-arrow-up, .icon-console, .icon-link, .icon-podcast, .icon-camera, .icon-camera-2, .icon-music, .icon-book, .icon-box-add, .icon-cart, .icon-busy, .icon-user, .icon-paypal, .icon-attachment, .icon-food {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -43,7 +43,7 @@ you can use the generic selector below, but it's slower:
 .icon-bubble:before {
 	content: "\e001";
 }
-.bar #twitter_litte:before, .icon-twitter:before {
+.icon-twitter:before {
 	content: "\e002";
 }
 .icon-feed:before {
@@ -52,7 +52,7 @@ you can use the generic selector below, but it's slower:
 .icon-vimeo:before {
 	content: "\e004";
 }
-.bar #flickrfeed:before, .icon-flickr:before {
+.icon-flickr:before {
 	content: "\e005";
 }
 .icon-picassa:before {
@@ -132,4 +132,40 @@ you can use the generic selector below, but it's slower:
 }
 .icon-link:before {
 	content: "\e01f";
+}
+.icon-podcast:before {
+	content: "\e021";
+}
+.icon-camera:before {
+	content: "\e022";
+}
+.icon-camera-2:before {
+	content: "\e023";
+}
+.icon-music:before {
+	content: "\e020";
+}
+.icon-book:before {
+	content: "\e024";
+}
+.icon-box-add:before {
+	content: "\e025";
+}
+.icon-cart:before {
+	content: "\e027";
+}
+.icon-busy:before {
+	content: "\e026";
+}
+.icon-user:before {
+	content: "\e028";
+}
+.icon-paypal:before {
+	content: "\e029";
+}
+.icon-attachment:before {
+	content: "\e02a";
+}
+.icon-food:before {
+	content: "\e02b";
 }

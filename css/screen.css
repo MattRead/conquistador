@@ -43,7 +43,7 @@ body {
 
 body div.wrap, .bar aside {
 	position: relative;
-	max-width: 600px;
+	max-width: 580px;
 	margin: 0 auto;
 	padding: 1.5em 1em;
 }
@@ -125,7 +125,7 @@ ul.admin {
 	position: absolute;
 	top: 0;
 	z-index: 99;
-	right: 50px;
+	right: 2em;
 	margin: 0;
 	padding: 0;
 }
@@ -226,11 +226,11 @@ p.meta + p.meta { text-indent: 0; }
 
 samp, var, code, pre, output, kbd { font-size: 16px; font-family: 'Source Code Pro', monospace; }
 pre {
-	margin: 1.875em 0;
-	padding: .9375em;
+	margin: 2.1429em 0;
+	padding: 1.0714em;
 	background: rgba(255, 255, 255, 0.5);
-	font-size: 16px;
-	line-height: 1.875;
+	font-size: 14px;
+	line-height: 2.1429;
 	overflow: auto;
 	white-space: pre-wrap;
 	word-wrap: break-word;
@@ -319,7 +319,7 @@ a:visited { color: #2554C7; /*#c13100;*/ }
 a:hover, * a:hover { color: #999; }
 
 strong, b { font-weight: 600; }
-em, i, dfn, cite { font-style: italic; }
+em, i, dfn, cite, q { font-style: italic; }
 u { text-decoration: underline; }
 
 abbr[title], dfn[title] {

@@ -1,3 +1,7 @@
+String.prototype.htmlSpecialChars = function() {
+	return this.replace(/\</g,'<').replace(/\>/g,'>');
+}
+
 var adminKeys = new Array('g','o','i','n');
 var adminCurrent = 0;
 

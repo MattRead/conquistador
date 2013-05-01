@@ -11,6 +11,7 @@
 <?php foreach ( $collections as $collection ) : ?>
 	<section>
 		<h2>The <?php echo $collection->name; ?> Collection</h2>
+		<p class="meta"><?php echo $collection->description; ?></p>
 		<?php echo $theme->content( $collection->posts, 'list' ); ?>
 	</section>
 <?php endforeach; ?>

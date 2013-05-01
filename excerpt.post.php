@@ -8,6 +8,7 @@
 	<p class="meta">
 		By <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo $content->author->displayname; ?></span></span>,
 		<?php echo $theme->content($content, 'pubdate'); ?>
+		<?php echo $theme->content( $content, 'icon' ); ?>
 	</p>
 </header>
 <div itemprop="articleBody">

@@ -3,7 +3,7 @@
 <meta itemprop="interactionCount" content="UserComments:<?php echo $content->comments->moderated->count; ?>">
 <?php echo $theme->content( $content, 'pubdate' ); ?>
 <span itemprop="itemreviewed"><a href="<?php echo $content->permalink; ?>" itemprop="url" title="Review: <?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a></span>
-<i class="icon-star-3"></i><br>
+<?php echo $theme->content( $content, 'icon' ); ?><br>
 <span class="meta">Rating: <?php echo $content->rating; ?>&nbsp;/&nbsp;5 stars, by <?php echo $content->author->displayname; ?></span>
 <span class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 	<meta itemprop="worstRating" content = "1">
