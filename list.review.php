@@ -4,7 +4,7 @@
 <?php echo $theme->content( $content, 'pubdate' ); ?>
 <span itemprop="itemreviewed"><a href="<?php echo $content->permalink; ?>" itemprop="url" title="Review: <?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a></span>
 <?php echo $theme->content( $content, 'icon' ); ?><br>
-<span class="meta">Rating: <?php echo $content->rating; ?>&nbsp;/&nbsp;5 stars, by <?php echo $content->author->displayname; ?></span>
+<span class="meta">Rating: <?php echo $content->rating; ?>&nbsp;stars, by <?php echo $content->author->displayname; ?></span>
 <span class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 	<meta itemprop="worstRating" content = "1">
 	<meta itemprop="bestRating" content="5">

@@ -3,7 +3,7 @@ table {
 	empty-cells: show;
 	border-collapse: collapse;
 	border-bottom: 3px solid #999;
-	margin: -2px 0 30px;
+	margin: -2px 0 33px;
 	width: 100%;
 }
 tr {
@@ -13,16 +13,16 @@ tr {
 caption {
 	caption-side: top;
 	margin: 0;
-	padding: 0.5em;
+	padding: .9375em;
 	font-size: .8em;
 	font-weight: 300;
 	border: none;
 	background: rgba(0, 0, 0, 0.08);
 }
 th, td {
-	line-height: 30px;
+	line-height: 33px;
 	vertical-align: top;
-	padding: 15px 1em 14px;
+	padding: 16px 1em 16px;
 	border: 1px dotted #222;
 	border-width: 0 0 1px 1px;
 }

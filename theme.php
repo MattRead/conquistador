@@ -26,11 +26,11 @@ class Conquistador extends Theme
 		Format::apply( 'tag_and_list', 'post_tags_out' );
 		Format::apply( 'nice_date', 'post_pubdate_short', 'd M Y' );
 		Format::apply( 'nice_date', 'post_modified_short', 'd M Y' );
-		Format::apply( 'nice_date', 'post_pubdate_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'post_pubdate_out', 'F j<\s\u\p>S</\s\u\p>, Y' );
 		Format::apply( 'nice_date', 'post_pubdate_iso', 'c' );
-		Format::apply( 'nice_date', 'post_modified_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'post_modified_out', 'F j<\s\u\p>S</\s\u\p>, Y' );
 		Format::apply( 'nice_date', 'post_modified_iso', 'c' );
-		Format::apply( 'nice_date', 'comment_date_out', 'F jS, Y' );
+		Format::apply( 'nice_date', 'comment_date_out', 'F j<\s\u\p>S</\s\u\p>, Y' );
 		Format::apply( 'nice_date', 'comment_date_iso', 'c' );
 
 		$this->set_title();
@@ -515,8 +515,7 @@ class Conquistador extends Theme
 				$posts = Posts::get(array(
 					'after' => $startDate,
 					'before'=> $endDate,
-					'content_type' => Post::type('entry'),
-					'status' => Post::status('published'),
+					'preset' => 'home',
 					'nolimit' => 1
 				));
 				if ( !count($posts) ) continue;

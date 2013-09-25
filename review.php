@@ -7,7 +7,10 @@
 	<meta itemprop="interactionCount" content="UserComments:<?php echo $content->comments->moderated->count; ?>">
 	<p>
 		<span class="meta">By
-			<span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><?php echo $content->author->displayname; ?></span></span>,
+			<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+				<span itemprop="name"><?php echo $content->author->displayname; ?></span>,
+				<img itemprop="image" src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->author->email)); ?>?d=mm&s=60&r=g" class="gravatar author">
+			</span>
 		</span>
 		<meta itemprop="dateModified" content="<?php echo $content->modified_iso; ?>">
 		<time itemprop="datePublished" datetime="<?php echo $content->pubdate_iso; ?>">

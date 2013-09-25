@@ -1,4 +1,4 @@
-<?php if ( count( $content->tweets ) ): ?>
+<?php if ( is_array($content->tweets) && count( $content->tweets ) ): ?>
 <ul id="twitter_litte">
 	<?php foreach ( $content->tweets as $tweet ): ?>
 	<li class="twitter-message">

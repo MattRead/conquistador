@@ -6,7 +6,7 @@ $(window).keydown(function(e){
 	if (easterEggKeys[easterEggCurrent].toLowerCase() == key) {
 		easterEggCurrent++;
 		if (easterEggCurrent >= easterEggKeys.length) {
-			$('body').append('<div style="position:fixed;bottom:0;right:0;z-index:999;"><img onclick="setTimeout(\'lightning()\',100)" style="border:0;padding:0;box-shadow:none;" src="'+HABARI_URL+'/system/admin/images/pasaka.png"></div>');
+			$('body').append('<div style="position:fixed;bottom:0;right:0;z-index:999;text-align:right;"><img onclick="setTimeout(\'lightning()\',100)" src="'+HABARI_URL+'/system/admin/images/pasaka.png"><marquee style="font-size:2em; color:red;"><b>OMG! PONIES!!</b></marquee></div>');
 easterEggCurrent = 0;
 		}
 	}
