@@ -9,7 +9,7 @@
 		<span class="meta">By
 			<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 				<span itemprop="name"><?php echo $content->author->displayname; ?></span>,
-				<img itemprop="image" src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->author->email)); ?>?d=mm&s=60&r=g" class="gravatar author">
+				<!-- <img itemprop="image" src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->author->email)); ?>?d=mm&s=60&r=g" class="gravatar author"> -->
 			</span>
 		</span>
 		<meta itemprop="dateModified" content="<?php echo $content->modified_iso; ?>">
@@ -21,7 +21,7 @@
 		<meta itemprop="worstRating" content = "1">
 		<meta itemprop="bestRating" content="5">
 		<meta itemprop="ratingValue" content="<?php echo $content->rating; ?>">
-		<?php echo str_repeat( '<i class="icon-star-3"></i>', $content->rating ); echo str_repeat( '<i class="icon-star"></i>', 5 - $content->rating ); ?>
+		<?php echo str_repeat( '<i class="icon-star-3"></i>', $content->rating ); echo str_repeat( '<i class="icon-star-3 blank"></i>', 5 - $content->rating ); ?>
 	</p>
 </header>
 

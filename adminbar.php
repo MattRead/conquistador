@@ -22,5 +22,9 @@
 	</li>
     <?php endif; ?>
 
+	<li>
+		<a href="<?php echo URL::get( 'display_dashboard' ); ?>"><i class="icon-console" title="Dashboard"></i><b>Dashboard</b></a>
+	</li>
+
 </ul>
 <?php endif; ?>

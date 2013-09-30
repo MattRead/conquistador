@@ -10,7 +10,7 @@
 <?php echo $theme->area('split'); ?>
 
 <p class="meta" style="margin-top:4em;">
-	You can also find additional Posts by browsing through all the tags used on this site:<br>
+	Find additional Posts by browsing through all the tags used on this site:<br>
 	<?php echo $tags; ?>
 </p>
 
