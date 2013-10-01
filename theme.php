@@ -124,6 +124,14 @@ class Conquistador extends Theme
 				echo '<link rel="prev" href="' . URL::get( null, $settings, false ) . '">' . "\n";
 			}
 		}
+		elseif ( $theme->posts instanceof Post ) {
+			if ( $previous = $theme->posts->descend() ) {
+				echo '<link rel="prev" href="' . $previous->permalink . '">';
+			}
+			if ( $next = $theme->posts->ascend() ) {
+				echo '<link rel="next" href="' . $next->permalink . '">';
+			}
+		}
 		echo '<link rel="home" href="' . Site::get_url( 'site' ) . '">' . "\n";
 	}
 
