@@ -48,12 +48,15 @@ body div.wrap, .bar aside {
 	padding: 1.5em 1em;
 }
 
-body.display_404{
-background: url(../images/404.jpg) no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+body.display_404 {
+	background: url(../images/404.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+body.display_404 .wrap * {
+	text-shadow: -1px -1px rgba(255, 255, 255, 1) !important;
 }
 
 .bar aside { padding: 1.0714em; }
@@ -586,6 +589,8 @@ fieldset {
 	border: 1px solid #bbb;
 	padding: 0 1em;
 	margin: 29px 0;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+
 }
 fieldset legend { padding: 0 1em; margin-bottom: 0; /* see @.meta */ }
 
