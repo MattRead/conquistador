@@ -557,6 +557,62 @@ class Conquistador extends Theme
 		$this->display('entry.archives');
 	}
 
+
+	public function filter_menu_type_data($menu_type_data)
+	{
+		$menu_type_data['conquistador_archives'] = array(
+			'label' => _t( 'Conquistador Archives' ),
+			'form' => function($form, $term) {
+				$archives = new FormControlText( 'link_name', 'null:null', 'Link Name', 'optionscontrol_text' );
+				$archives->add_validator( 'validate_required' );
+				if ( $term ) {
+					$archives->value = $term->term_display;
+					$form->append( 'hidden', 'term' )->value = $term->id;
+				}
+
+				$form->append( $archives );
+			},
+			'save' => function($menu, $form) {
+				$url = URL::get('conquistador_archives');
+				if ( ! isset( $form->term->value ) ) {
+					$term = new Term(array(
+						'term_display' => $form->link_name->value,
+						'term' => Utils::slugify($form->link_name->value),
+					));
+					$term->info->type = "link";
+					$term->info->url = $url;
+					$term->info->menu = $menu->id;
+					$menu->add_term($term);
+					$term->associate('menu_link', 0);
+
+					Session::notice('Archives link added.');
+				} else 	{
+					$term = Term::get( intval( $form->term->value ) );
+					$updated = false;
+					if ( $form->link_name->value !== $term->term_display ) {
+						$term->term_display = $form->link_name->value;
+						$term->term = Utils::slugify( $form->link_name->value );
+						$updated = true;
+					}
+
+					$term->info->url = $url;
+
+					if ( $updated ) {
+						$term->update();
+						Session::notice('Archives link updated.');
+					}
+				}
+			},
+			'render' => function($term, $object_id, $config) {
+				$result = array(
+					'link' => $term->info->url,
+				);
+				return $result;
+			}
+		);
+	return $menu_type_data;
+	}
+
 }
 
 ?>
