@@ -111,16 +111,29 @@ nav.site ol ol {
 	display: none;
 	position: absolute;
 	height: auto;
-	top: 1.6667em;
-	left: 0;
+	top: 35px;
+	left: -10px;
 	z-index: 999;
 	-moz-box-shadow: 1px 3px 4px #222;
 	-webkit-box-shadow: 1px 3px 4px #222;
 	box-shadow: 1px 3px 4px #222;
-	-moz-border-radius: 0 5px 5px 5px;
-	-webkit-border-radius: 0 5px 5px 5px;
-	border-radius: 0 5px 5px 5px;
-	background: rgba(50,50,50,.96);
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #888;
+	background: rgba(255,255,255,.86);
+}
+nav.site ol ol:before {
+	display: block;
+	position: absolute;
+	margin-right: 100px;
+	left: 20px;
+	top: -18px;
+	border: 10px solid rgba(255,255,255,0);
+	border-bottom: 8px solid rgba(255,255,255,.86);
+	width: 0;
+	height: 0;
+	content: " ";
 }
 nav.site ol li ol li {
 	float: none;
@@ -131,6 +144,7 @@ nav.site ol li ol li {
 }
 nav.site ol li:hover ol { display: block; }
 nav.site a { color: #eee; }
+nav.site ol ol a { color: #333; text-shadow: none; }
 
 ul.admin a { color: #bbb; }
 ul.admin a:hover, nav.site a:hover { color: #888; }
