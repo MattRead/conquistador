@@ -38,7 +38,7 @@ body {
 	word-spacing: 0.1em;
 	color: #222;
 	word-wrap: break-word;
-	background: #fcfcfc url('../images/back.png') repeat;
+	background: #fcfcfc url('../images/back.png') fixed repeat;
 }
 
 body div.wrap, .bar aside {

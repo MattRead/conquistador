@@ -63,10 +63,10 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador');
 		}
 		if ( $pat = $theme->get_pattern() ) {
-			$this->add_style( 'header', array( "body { background: #fcfcfc url('$pat') repeat; }", 'screen' ), 'conquistador_pattern', 'conquistador' );
+			$this->add_style( 'header', array( "body { background: #fcfcfc url('$pat') fixed repeat; }", 'screen' ), 'conquistador_pattern', 'conquistador' );
 		}
 		if ( $pat2 = $theme->get_pattern( 'pattern_dark' ) ) {
-			$this->add_style( 'header', array( "nav.site, .bar { background: #222 url('$pat2') repeat; }", 'screen' ), 'conquistador_pattern_dark', 'conquistador' );
+			$this->add_style( 'header', array( "nav.site, .bar { background: #222 url('$pat2') fixed repeat; }", 'screen' ), 'conquistador_pattern_dark', 'conquistador' );
 		}
 	}
 
@@ -260,7 +260,7 @@ class Conquistador extends Theme
 	public function theme_get_pattern( Theme $theme, $pat = 'pattern' )
 	{
 		if ( ( $pattern = Options::get( __CLASS__ . '__' . $pat, 'null' ) ) != 'null' ) {
-			$path = Site::get_dir( 'user', true ) . 'files/patterns/' . basename($pattern);
+			$path = Site::get_dir( 'user', true ) . 'files/patterns/' . basename(parse_url($pattern, PHP_URL_PATH));
 			if ( !is_dir( dirname($path) ) ) {
 				mkdir( dirname($path) );
 			}
@@ -272,7 +272,7 @@ class Conquistador extends Theme
 				}
 				file_put_contents( $path, $image );
 			}
-			return Site::get_url( 'user', true ) . 'files/patterns/' . basename($pattern);
+			return Site::get_url( 'user', true ) . 'files/patterns/' . basename(parse_url($pattern, PHP_URL_PATH));
 		}
 		else {
 			return false;
