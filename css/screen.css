@@ -126,9 +126,9 @@ nav.site ol li ol {
 	top: 40px;
 	left: -10px;
 	z-index: 998;
-	-moz-box-shadow: 1px 3px 4px rgba(20,20,20,.86);
-	-webkit-box-shadow: 1px 3px 4px rgba(20,20,20,.86);
-	box-shadow: 1px 3px 4px rgba(20,20,20,.86);
+	-moz-box-shadow: 1px 3px 4px rgba(20,20,20,.7);
+	-webkit-box-shadow: 1px 3px 4px rgba(20,20,20,.7);
+	box-shadow: 1px 3px 4px rgba(20,20,20,.7);
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
@@ -255,6 +255,8 @@ header time {
 	line-height: 1.875;
 	font-weight: 300;
 }
+header p .meta a { color: #777; padding-bottom: 1px !important;  border-bottom: 1px dotted #777; }
+header p .meta a:hover { color: #999; }
 header > p + p { font-size: 1.25em; margin-bottom: 1.2em; line-height: 1.2; opacity: .8; text-shadow: 0 0 2px rgba(0,0,0,.5); }
 figure { margin: 1.5em 0 0; }
 figure pre { margin-bottom: 0 !important; }
