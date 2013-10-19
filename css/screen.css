@@ -41,6 +41,10 @@ body {
 	background: #fcfcfc url('../images/back.png') fixed repeat;
 }
 
+div.tentacles {
+	background: transparent url('../images/tentacles.png') no-repeat center top;
+}
+
 body div.wrap, .bar aside {
 	position: relative;
 	max-width: 600px;
@@ -90,11 +94,12 @@ nav.site {
 	font-weight: 300;
 	line-height: 1.6667;
 	color: #999;
+	font-weight: 400;
 	background:#222 url('../images/pattern.png') fixed repeat;
 	-moz-box-shadow: inset 1px 4px 4px #111;
 	-webkit-box-shadow: inset 1px 4px 4px #111;
-	box-shadow: inset 1px 4px 4px #111;
-	text-shadow: 1px 3px 3px rgba(0, 0, 0, 1);
+	box-shadow: inset 2px 4px 4px #111;
+	text-shadow: 4px 4px 4px rgba(0, 0, 0, 1);
 }
 nav.site ol {
 	padding: 0;
