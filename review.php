@@ -8,7 +8,9 @@
 	<p>
 		<span class="meta">By
 			<span itemprop="author" itemscope itemtype="http://schema.org/Person">
-				<span itemprop="name"><?php echo $content->author->displayname; ?></span>,
+                                <span itemprop="name">
+                                <?php echo $content->author->displayname; ?>,
+                                </span>
 				<!-- <img itemprop="image" src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->author->email)); ?>?d=mm&s=60&r=g" class="gravatar author"> -->
 			</span>
 		</span>

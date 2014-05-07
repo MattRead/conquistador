@@ -7,18 +7,18 @@
 
     <?php if ( isset($user_draft_count) && $user_draft_count ) : ?>
     <li>
-        <a href="<?php URL::out('display_posts', 'page=posts&status=1'); ?>" title="<?php echo $user_draft_count; ?> Drafts"><i class="icon-file"></i><b><?php echo $user_draft_count; ?> Drafts</b></a>
+        <a href="<?php URL::out('display_posts', 'page=posts&status=1'); ?>" title="<?php echo $user_draft_count; ?> Drafts"><i class="icon-file"></i><span><?php echo $user_draft_count; ?></span><b>Drafts</b></a>
     </li>
     <?php endif; ?>
 
     <?php if ( isset($unapproved_comment_count) && $unapproved_comment_count ) : ?>
     <li>
-        <a href="<?php URL::out('display_comments', 'page=comments&status=unapproved'); ?>" title="<?php echo $unapproved_comment_count; ?> comments waiting moderation"><i class="icon-bubble"></i><b>Moderation</b></a>
+        <a href="<?php URL::out('display_comments', 'page=comments&status=unapproved'); ?>" title="<?php echo $unapproved_comment_count; ?> comments waiting moderation"><i class="icon-bubble"></i><span><?php echo $unapproved_comment_count; ?></span><b>Moderation</b></a>
 	</li>
 	<?php endif; ?>
     <?php if ( isset($spam_comment_count) && $spam_comment_count ) : ?>
 	<li>
-		<a href="<?php URL::out('display_comments', 'page=comments&status=spam'); ?>" title="<?php echo $spam_comment_count; ?> spam comments"><i class="icon-spam"></i><b>Spam</b></a>
+		<a href="<?php URL::out('display_comments', 'page=comments&status=spam'); ?>" title="<?php echo $spam_comment_count; ?> spam comments"><i class="icon-spam"></i><span><?php echo $spam_comment_count; ?></span><b>Spam</b></a>
 	</li>
     <?php endif; ?>
 

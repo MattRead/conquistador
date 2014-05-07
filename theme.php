@@ -35,13 +35,13 @@ class Conquistador extends Theme
 
 		$this->set_title();
 		$this->assign( 'tagline', Options::get('tagline') );
-
+		$http = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 		Stack::dependent('template_header_javascript', 'template_footer_javascript');
 		Stack::remove('template_header_javascript', 'jquery');
 		Stack::remove('template_footer_javascript', 'jquery');
-		$this->add_script( 'footer', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
-		$this->add_style( 'header', array('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro:400,600', 'screen'), 'conquistador_fonts');
-		Stack::add('template_header_javascript', array('http://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
+		$this->add_script( 'footer', $http . '://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery' );
+		$this->add_style( 'header', array($http . '://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro:400,600', 'screen'), 'conquistador_fonts');
+		Stack::add('template_header_javascript', array($http . '://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
 
 		if ( defined("DEBUG_THEME") && DEBUG_THEME == true ) {
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site.js', 'conquistador', array('jquery', 'details', 'fancybox', 'baseline') );
@@ -57,6 +57,9 @@ class Conquistador extends Theme
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/icomoon.css', 'screen'), 'icomoon', 'conquistador-css');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador-css');
 			$this->add_style( 'header', array(Site::get_url('theme') . '/css/jquery.fancybox-1.3.4.css', 'screen'), 'fancybox-css', 'conquistador-css');
+			if ( isset($_GET['rhythm']) ) {
+				$this->add_style( 'header', array('http://basehold.it/33', 'screen'), 'conquistador-rhythm', 'conquistador-css');
+			}
 		}
 		else {
 			$this->add_script( 'footer', Site::get_url('theme') . '/js/site-min.js', 'conquistador', 'jquery' );
@@ -298,6 +301,7 @@ class Conquistador extends Theme
 		$block_list['conquistador_related'] = _t( 'Related Posts (Conquistador)' );
 		$block_list['conquistador_navigation'] = _t( 'Post Navigation (Conquistador)' );
 		$block_list['conquistador_tags'] = _t( 'Post Tag List (Conquistador)' );
+		$block_list['conquistador_author'] = _t( 'Post Author Line (Conquistador)' );
 		$block_list['conquistador_signature'] = _t( 'Signature Line With Media Icons (Conquistador)' );
 		$block_list['conquistador_copyright'] = _t( 'Copyright Declaration (Conquistador)' );
 		$block_list['conquistador_menu'] = _t( 'Basic Main Menu (Conquistador)' );
