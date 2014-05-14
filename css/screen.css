@@ -58,13 +58,19 @@ body.display_404 {
 	-o-background-size: cover;
 	background-size: cover;
 }
-
+body.display_404 div.wrap{ max-width: 90%; }
 body.display_404 p, body.display_404 h1 {
 	text-shadow: 2px 2px #000, 0 0 10px #000 !important;
 	font-weight: 600 !important;
-	color: #d7ceb2 !important;
+	font-size: 4em;
+	font-variant: normal !important;
+	color: #fff !important;
 }
 body.display_404 footer { display: none; }
+body.display_404 p {
+	line-height: .8em;
+	font-size: 2em;
+}
 
 .bar aside { padding: 1.0714em; }
 .bar ul, .bar p, .bar ol { margin: 0 0 2.1428em; }
@@ -572,7 +578,7 @@ img.gravatar.author {
 	top: -16px;
 	margin-left: -30px;
 }
-article.comment.author-comment { border: 3px solid rgba(0,0,255,0.1); border-width: 0 3px; }
+article.comment.author-comment { border: 3px solid rgba(193,49,0,0.2); border-width: 0 3px; }
 article.comment > header { text-align: left; margin-bottom: 1.6667em; }
 
 form { margin: 0 1.5em; }
