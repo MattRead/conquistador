@@ -5,7 +5,8 @@
 
 <h1>
 	<?php echo $pagename; ?>
-	<?php if ($page > 1) : ?><small>&ndash;&nbsp;Page&nbsp;<?php echo htmlspecialchars($page); ?></small><?php endif; ?>
+	<?php if ($page > 1) : ?>
+		<small>&ndash;&nbsp;Page&nbsp;<?php echo htmlspecialchars($page); ?></small><?php endif; ?>
 </h1>
 
 <?php echo $theme->content($posts, 'list'); ?>
