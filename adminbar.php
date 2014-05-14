@@ -1,5 +1,5 @@
 <?php if ( $user = User::identify()->loggedin ) : ?>
-<ul class="admin">
+<ul class="admin site">
 
     <?php if ( Controller::get_action() == 'display_post' && isset($theme->post) && ACL::access_check( $theme->post->get_access($user), 'edit' ) ) : ?>
         <li><a href="<?php echo $post->editlink; ?>" title="Edit this post"><i class="icon-pencil"></i><b>Edit</b></a></li>

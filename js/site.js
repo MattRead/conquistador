@@ -81,16 +81,16 @@ $(document).ready(function() {
 	});
 
 
-	var stickyAdminTop = $('ul.admin').offset().top;
-	var stickyAdminLeft = $('ul.admin').offset().left;
+	var stickyAdminTop = $('ul.admin.site').offset().top;
+	var stickyAdminLeft = $('ul.admin.site').offset().left;
 
 	$(window).scroll(function(){
 		if ($(window).scrollTop() > stickyAdminTop) { 
-			$('ul.admin').css('position', 'fixed').css('top', '-2px').css('right', 'auto').css('left', stickyAdminLeft);
+			$('ul.admin.site').css('position', 'fixed').css('top', '-2px').css('right', 'auto').css('left', stickyAdminLeft);
 		} else {
-			$('ul.admin').css('position', 'absolute').css('right', '0').css('left', 'auto');
+			$('ul.admin.site').css('position', 'absolute').css('right', '0').css('left', 'auto');
 		}
 	});
-	$(window).resize(function(){ stickyAdminLeft = $('ul.admin').offset().left; });
+	$(window).resize(function(){ stickyAdminLeft = $('ul.admin.site').offset().left; });
 });
 
