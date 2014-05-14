@@ -25,7 +25,7 @@ $(window).bind('load', function(){
 
 $(function() {
 	$(window).scroll(function() {
-		if($(this).scrollTop() > 300) {
+		if($(this).scrollTop() > 400) {
 			$('#totop').fadeIn();
 		} else {
 			$('#totop').fadeOut();
@@ -79,5 +79,18 @@ $(document).ready(function() {
 			});
 		}).resize();
 	});
+
+
+	var stickyAdminTop = $('ul.admin').offset().top;
+	var stickyAdminLeft = $('ul.admin').offset().left;
+
+	$(window).scroll(function(){
+		if ($(window).scrollTop() > stickyAdminTop) { 
+			$('ul.admin').css('position', 'fixed').css('top', '-2px').css('right', 'auto').css('left', stickyAdminLeft);
+		} else {
+			$('ul.admin').css('position', 'absolute').css('right', '0').css('left', 'auto');
+		}
+	});
+	$(window).resize(function(){ stickyAdminLeft = $('ul.admin').offset().left; });
 });
 
