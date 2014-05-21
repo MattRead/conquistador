@@ -56,6 +56,7 @@ body div.wrap, .bar aside {
 	padding: 1.5em 1em;
 }
 
+<<<<<<< Updated upstream
 body.display_404 {
 	background: url(../images/404.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
@@ -99,7 +100,17 @@ body.display_404 p {
 
 .bar *:last-child {
 	margin-bottom: 0;
+=======
+body.display_404{
+background: url(../images/404.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+text-shadow: 1px 3px 3px rgba(0, 0, 0, 1) !important;
+>>>>>>> Stashed changes
 }
+body.display_404 .wrap * { text-shadow: 1px 3px 3px rgba(0, 0, 0, 1) !important; }
 
 .bar {
 	position: relative;
@@ -143,6 +154,7 @@ nav.site ol {
 nav.site li {
 	position: relative;
 	list-style: none;
+<<<<<<< Updated upstream
 	float: left;
 	margin: 0 .6em;
 	z-index: 999;
@@ -152,6 +164,15 @@ nav.site ol li ol {
 	display: block;
 	visibility: hidden;
 	opacity: 0;
+=======
+	float:left;
+	padding: 0;
+	margin: 0 0.6em;
+}
+nav.site li.active { font-weight: 400; }
+nav.site ol ol {
+	display: none;
+>>>>>>> Stashed changes
 	position: absolute;
 	height: auto;
 	padding: 10px 0;
