@@ -60,13 +60,8 @@ $(document).ready(function () {
 
 	$(function () {
 		var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
-<<<<<<< HEAD
-		$fluidEl = $("div.wrap");
-		$allVideos.each(function() {
-=======
-			$fluidEl = $("div");
+			$fluidEl = $("div.wrap");
 		$allVideos.each(function () {
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 			$(this)
 				// jQuery .data does not work on object/embed elements
 				.attr('data-aspectRatio', this.height / this.width)
