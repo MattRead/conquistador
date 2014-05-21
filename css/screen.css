@@ -56,7 +56,6 @@ body div.wrap, .bar aside {
 	padding: 1.5em 1em;
 }
 
-<<<<<<< Updated upstream
 body.display_404 {
 	background: url(../images/404.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
@@ -100,17 +99,7 @@ body.display_404 p {
 
 .bar *:last-child {
 	margin-bottom: 0;
-=======
-body.display_404{
-background: url(../images/404.jpg) no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-text-shadow: 1px 3px 3px rgba(0, 0, 0, 1) !important;
->>>>>>> Stashed changes
 }
-body.display_404 .wrap * { text-shadow: 1px 3px 3px rgba(0, 0, 0, 1) !important; }
 
 .bar {
 	position: relative;
@@ -154,7 +143,6 @@ nav.site ol {
 nav.site li {
 	position: relative;
 	list-style: none;
-<<<<<<< Updated upstream
 	float: left;
 	margin: 0 .6em;
 	z-index: 999;
@@ -164,15 +152,6 @@ nav.site ol li ol {
 	display: block;
 	visibility: hidden;
 	opacity: 0;
-=======
-	float:left;
-	padding: 0;
-	margin: 0 0.6em;
-}
-nav.site li.active { font-weight: 400; }
-nav.site ol ol {
-	display: none;
->>>>>>> Stashed changes
 	position: absolute;
 	height: auto;
 	padding: 10px 0;
@@ -527,7 +506,6 @@ canvas, video, audio, object, embed {
 	margin: 1.5em auto;
 	max-width: 100%;
 	height: auto;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 ul {
@@ -670,11 +648,8 @@ abbr:hover {
 }
 
 mark {
-	background-color: rgba(255,255,0, 0.65);/*#FFF380;*/
+	background-color: #FFF380;
 	font-style: normal;
-<<<<<<< HEAD
-	text-decoration:none;
-=======
 	font-weight: 300;
 	text-decoration: none;
 }
@@ -685,19 +660,8 @@ ins {
 
 .status-deleted, del, s {
 	text-decoration: line-through;
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 }
 
-<<<<<<< HEAD
-sup, sub, small { font-size: .8em; }
-sup, sub {
-	vertical-align: baseline;
-	position: relative;
-	line-height: 0;
-}
-sup { top: -.5em; }
-sub { bottom: -.25em; }
-=======
 sup, sub, small {
 	font-size: .8em;
 }
@@ -709,7 +673,6 @@ sup {
 sub {
 	vertical-align: bottom;
 }
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 
 img, svg {
 	max-width: 100%;
@@ -955,21 +918,12 @@ form {
 form.login {
 	margin: 1.5em 3em;
 	padding: 1.5em 1.5em 1.5em;
-<<<<<<< HEAD
-	background: rgba(0,0,0,0.15);
-	box-shadow: 0 2px 3px rgba(0,0,0,0.5);
-=======
 	background: rgba(0, 0, 0, 0.15);
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
-<<<<<<< HEAD
-form p { text-indent: 0; }
-form div.formcontrol { margin-bottom: 1.5em; }
-=======
 
 form p {
 	text-indent: 0;
@@ -979,11 +933,6 @@ form div.formcontrol {
 	margin-bottom: 1.5em;
 }
 
-input, select, textarea {
-	vertical-align: top;
-}
-
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 input,
 select,
 textarea {
@@ -994,22 +943,11 @@ textarea {
 	border: 1px solid #777;
 	padding: 6px 6px;
 	margin: 0 0 -4px;
-<<<<<<< HEAD
-	box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-=======
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 	font: 300 .9em/1.6667 'Source Sans Pro', sans-serif;
 	background: rgba(255, 255, 255, 0.7);
 	height: 34px;
 }
-<<<<<<< HEAD
-textarea {
-	padding: 1.6667em 2em 6px; line-height: 1.6667; margin: 0; height: 270px;
-	resize: vertical;
-}
-=======
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 
 input[type=range], input[type=image] {
 	border: 0;
@@ -1028,16 +966,14 @@ input[disabled], textarea[disabled], select[disabled] {
 	background: rgba(200, 200, 200, 0.7);
 }
 
-<<<<<<< HEAD
-=======
 textarea {
+	resize: vertical;
 	padding: 1.6667em 2em 6px;
 	line-height: 1.6667;
 	margin: 0;
 	height: 270px;
 }
 
->>>>>>> a23f8c84151738a8a2bf1c5406a3226b62f3539e
 button, input[type=submit], input[type=reset] {
 	border-radius: 4px;
 	margin: -5px 0;
