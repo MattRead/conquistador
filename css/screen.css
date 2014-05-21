@@ -506,6 +506,7 @@ canvas, video, audio, object, embed {
 	margin: 1.5em auto;
 	max-width: 100%;
 	height: auto;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
 }
 
 ul {
@@ -666,12 +667,17 @@ sup, sub, small {
 	font-size: .8em;
 }
 
+sup, sub {
+	vertical-align: baseline;
+	position: relative;
+}
+
 sup {
-	vertical-align: top;
+	top: -.5em
 }
 
 sub {
-	vertical-align: bottom;
+	bottom: -.25em;
 }
 
 img, svg {
