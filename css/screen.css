@@ -342,6 +342,7 @@ canvas, video, audio, object, embed {
 	margin: 1.5em auto;
 	max-width: 100%;
 	height: auto;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 ul {
@@ -426,17 +427,21 @@ abbr {
 abbr:hover { border-color: #2554C7; }
 
 mark {
-	background-color: #FFF380;
+	background-color: rgba(255,255,0, 0.65);/*#FFF380;*/
 	font-style: normal;
-	font-weight: 300;
 	text-decoration:none;
 }
 ins { text-decoration: underline; }
 .status-deleted, del, s { text-decoration: line-through; }
 
 sup, sub, small { font-size: .8em; }
-sup { vertical-align: top; }
-sub { vertical-align: bottom; }
+sup, sub {
+	vertical-align: baseline;
+	position: relative;
+	line-height: 0;
+}
+sup { top: -.5em; }
+sub { bottom: -.25em; }
 
 img, svg {
 	max-width: 100%;
@@ -586,26 +591,33 @@ form.login {
 	margin: 1.5em 3em;
 	padding: 1.5em 1.5em 1.5em;
 	background: rgba(0,0,0,0.15);
-    box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+	box-shadow: 0 2px 3px rgba(0,0,0,0.5);
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
 form p { text-indent: 0; }
 form div.formcontrol { margin-bottom: 1.5em; }
-input, select, textarea { vertical-align: top; }
 input,
 select,
 textarea {
+	vertical-align: top;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	border: 1px solid #777;
 	padding: 6px 6px;
 	margin: 0 0 -4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 	font: 300 .9em/1.6667 'Source Sans Pro', sans-serif;
 	background: rgba(255, 255, 255, 0.7);
-	resize: vertical;
 	height: 34px;
 }
+textarea {
+	padding: 1.6667em 2em 6px; line-height: 1.6667; margin: 0; height: 270px;
+	resize: vertical;
+}
+
 input[type=range], input[type=image] {
 border: 0;
 padding: 0;
@@ -616,10 +628,6 @@ width: auto;
 }
 input[type=checkbox], input[type=radio] { vertical-align: baseline; }
 input[disabled], textarea[disabled], select[disabled] { background: rgba(200, 200, 200, 0.7); }
-
-textarea {
-	padding: 1.6667em 2em 6px; line-height: 1.6667; margin: 0; height: 270px;
-}
 
 button, input[type=submit], input[type=reset] {
 	border-radius: 4px;
@@ -658,11 +666,13 @@ input[type=date],
 input[type=search],
 input[type=tel],
 input[type=password],
+input[type=datetime],
+input[type=time],
+input[type=week],
+input[type=month],
+input[type=datetime-local],
 textarea {
 	width: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 }
 
 fieldset {

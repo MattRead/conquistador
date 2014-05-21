@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	$(function() {
 		var $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed"),
-		$fluidEl = $("div");
+		$fluidEl = $("div.wrap");
 		$allVideos.each(function() {
 			$(this)
 				// jQuery .data does not work on object/embed elements
