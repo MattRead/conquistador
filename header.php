@@ -24,6 +24,6 @@
 	<?php echo $theme->area('site_navigation'); ?>
 </nav>
 <div class="tentacles">
-<div class="wrap">
+	<div class="wrap">
 
-<?php echo $theme->display('adminbar'); ?>
+		<?php echo $theme->display('adminbar'); ?>

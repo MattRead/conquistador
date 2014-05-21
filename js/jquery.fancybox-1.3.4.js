@@ -15,7 +15,8 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-;(function($) {
+;
+(function ($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
@@ -28,11 +29,11 @@
 
 		isIE6 = $.browser.msie && $.browser.version < 7 && !window.XMLHttpRequest,
 
-		/*
-		 * Private methods 
-		 */
+	/*
+	 * Private methods
+	 */
 
-		_abort = function() {
+		_abort = function () {
 			loading.hide();
 
 			imgPreloader.onerror = imgPreloader.onload = null;
@@ -44,7 +45,7 @@
 			tmp.empty();
 		},
 
-		_error = function() {
+		_error = function () {
 			if (false === selectedOpts.onError(selectedArray, selectedIndex, selectedOpts)) {
 				loading.hide();
 				busy = false;
@@ -56,15 +57,15 @@
 			selectedOpts.width = 'auto';
 			selectedOpts.height = 'auto';
 
-			tmp.html( '<p id="fancybox-error">The requested content cannot be loaded.<br />Please try again later.</p>' );
+			tmp.html('<p id="fancybox-error">The requested content cannot be loaded.<br />Please try again later.</p>');
 
 			_process_inline();
 		},
 
-		_start = function() {
+		_start = function () {
 			var obj = selectedArray[ selectedIndex ],
-				href, 
-				type, 
+				href,
+				type,
 				title,
 				str,
 				emb,
@@ -133,7 +134,7 @@
 			}
 
 			if (type == 'inline') {
-				obj	= href.substr(href.indexOf("#"));
+				obj = href.substr(href.indexOf("#"));
 				type = $(obj).length > 0 ? 'inline' : 'ajax';
 			}
 
@@ -146,7 +147,7 @@
 					selectedOpts.width = 'auto';
 					selectedOpts.height = 'auto';
 				} else {
-					selectedOpts.autoDimensions = false;	
+					selectedOpts.autoDimensions = false;
 				}
 			}
 
@@ -163,35 +164,35 @@
 
 			tmp.css('padding', (selectedOpts.padding + selectedOpts.margin));
 
-			$('.fancybox-inline-tmp').unbind('fancybox-cancel').bind('fancybox-change', function() {
-				$(this).replaceWith(content.children());				
+			$('.fancybox-inline-tmp').unbind('fancybox-cancel').bind('fancybox-change', function () {
+				$(this).replaceWith(content.children());
 			});
 
 			switch (type) {
 				case 'html' :
-					tmp.html( selectedOpts.content );
+					tmp.html(selectedOpts.content);
 					_process_inline();
-				break;
+					break;
 
 				case 'inline' :
-					if ( $(obj).parent().is('#fancybox-content') === true) {
+					if ($(obj).parent().is('#fancybox-content') === true) {
 						busy = false;
 						return;
 					}
 
 					$('<div class="fancybox-inline-tmp" />')
 						.hide()
-						.insertBefore( $(obj) )
-						.bind('fancybox-cleanup', function() {
+						.insertBefore($(obj))
+						.bind('fancybox-cleanup',function () {
 							$(this).replaceWith(content.children());
-						}).bind('fancybox-cancel', function() {
+						}).bind('fancybox-cancel', function () {
 							$(this).replaceWith(tmp.children());
 						});
 
 					$(obj).appendTo(tmp);
 
 					_process_inline();
-				break;
+					break;
 
 				case 'image':
 					busy = false;
@@ -200,11 +201,11 @@
 
 					imgPreloader = new Image();
 
-					imgPreloader.onerror = function() {
+					imgPreloader.onerror = function () {
 						_error();
 					};
 
-					imgPreloader.onload = function() {
+					imgPreloader.onload = function () {
 						busy = true;
 
 						imgPreloader.onerror = imgPreloader.onload = null;
@@ -213,7 +214,7 @@
 					};
 
 					imgPreloader.src = href;
-				break;
+					break;
 
 				case 'swf':
 					selectedOpts.scrolling = 'no';
@@ -221,7 +222,7 @@
 					str = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"><param name="movie" value="' + href + '"></param>';
 					emb = '';
 
-					$.each(selectedOpts.swf, function(name, val) {
+					$.each(selectedOpts.swf, function (name, val) {
 						str += '<param name="' + name + '" value="' + val + '"></param>';
 						emb += ' ' + name + '="' + val + '"';
 					});
@@ -231,7 +232,7 @@
 					tmp.html(str);
 
 					_process_inline();
-				break;
+					break;
 
 				case 'ajax':
 					busy = false;
@@ -241,17 +242,17 @@
 					selectedOpts.ajax.win = selectedOpts.ajax.success;
 
 					ajaxLoader = $.ajax($.extend({}, selectedOpts.ajax, {
-						url	: href,
-						data : selectedOpts.ajax.data || {},
-						error : function(XMLHttpRequest, textStatus, errorThrown) {
-							if ( XMLHttpRequest.status > 0 ) {
+						url: href,
+						data: selectedOpts.ajax.data || {},
+						error: function (XMLHttpRequest, textStatus, errorThrown) {
+							if (XMLHttpRequest.status > 0) {
 								_error();
 							}
 						},
-						success : function(data, textStatus, XMLHttpRequest) {
+						success: function (data, textStatus, XMLHttpRequest) {
 							var o = typeof XMLHttpRequest == 'object' ? XMLHttpRequest : ajaxLoader;
 							if (o.status == 200) {
-								if ( typeof selectedOpts.ajax.win == 'function' ) {
+								if (typeof selectedOpts.ajax.win == 'function') {
 									ret = selectedOpts.ajax.win(href, data, textStatus, XMLHttpRequest);
 
 									if (ret === false) {
@@ -262,37 +263,37 @@
 									}
 								}
 
-								tmp.html( data );
+								tmp.html(data);
 								_process_inline();
 							}
 						}
 					}));
 
-				break;
+					break;
 
 				case 'iframe':
 					_show();
-				break;
+					break;
 			}
 		},
 
-		_process_inline = function() {
+		_process_inline = function () {
 			var
 				w = selectedOpts.width,
 				h = selectedOpts.height;
 
 			if (w.toString().indexOf('%') > -1) {
-				w = parseInt( ($(window).width() - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
+				w = parseInt(($(window).width() - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
 
 			} else {
-				w = w == 'auto' ? 'auto' : w + 'px';	
+				w = w == 'auto' ? 'auto' : w + 'px';
 			}
 
 			if (h.toString().indexOf('%') > -1) {
-				h = parseInt( ($(window).height() - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
+				h = parseInt(($(window).height() - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
 
 			} else {
-				h = h == 'auto' ? 'auto' : h + 'px';	
+				h = h == 'auto' ? 'auto' : h + 'px';
 			}
 
 			tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow: ' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
@@ -303,20 +304,20 @@
 			_show();
 		},
 
-		_process_image = function() {
+		_process_image = function () {
 			selectedOpts.width = imgPreloader.width;
 			selectedOpts.height = imgPreloader.height;
 
 			$("<img />").attr({
-				'id' : 'fancybox-img',
-				'src' : imgPreloader.src,
-				'alt' : selectedOpts.title
-			}).appendTo( tmp );
+				'id': 'fancybox-img',
+				'src': imgPreloader.src,
+				'alt': selectedOpts.title
+			}).appendTo(tmp);
 
 			_show();
 		},
 
-		_show = function() {
+		_show = function () {
 			var pos, equal;
 
 			loading.hide();
@@ -330,7 +331,7 @@
 
 			busy = true;
 
-			$(content.add( overlay )).unbind();
+			$(content.add(overlay)).unbind();
 
 			$(window).unbind("resize.fb scroll.fb");
 			$(document).unbind('keydown.fb');
@@ -345,17 +346,17 @@
 
 			if (currentOpts.overlayShow) {
 				overlay.css({
-					'background-color' : currentOpts.overlayColor,
-					'opacity' : currentOpts.overlayOpacity,
-					'cursor' : currentOpts.hideOnOverlayClick ? 'pointer' : 'auto',
-					'height' : $(document).height()
+					'background-color': currentOpts.overlayColor,
+					'opacity': currentOpts.overlayOpacity,
+					'cursor': currentOpts.hideOnOverlayClick ? 'pointer' : 'auto',
+					'height': $(document).height()
 				});
 
 				if (!overlay.is(':visible')) {
 					if (isIE6) {
-						$('select:not(#fancybox-tmp select)').filter(function() {
+						$('select:not(#fancybox-tmp select)').filter(function () {
 							return this.style.visibility !== 'hidden';
-						}).css({'visibility' : 'hidden'}).one('fancybox-cleanup', function() {
+						}).css({'visibility': 'hidden'}).one('fancybox-cleanup', function () {
 							this.style.visibility = 'inherit';
 						});
 					}
@@ -371,22 +372,22 @@
 			_process_title();
 
 			if (wrap.is(":visible")) {
-				$( close.add( nav_left ).add( nav_right ) ).hide();
+				$(close.add(nav_left).add(nav_right)).hide();
 
 				pos = wrap.position(),
 
-				start_pos = {
-					top	 : pos.top,
-					left : pos.left,
-					width : wrap.width(),
-					height : wrap.height()
-				};
+					start_pos = {
+						top: pos.top,
+						left: pos.left,
+						width: wrap.width(),
+						height: wrap.height()
+					};
 
 				equal = (start_pos.width == final_pos.width && start_pos.height == final_pos.height);
 
-				content.fadeTo(currentOpts.changeFade, 0.3, function() {
-					var finish_resizing = function() {
-						content.html( tmp.contents() ).fadeTo(currentOpts.changeFade, 1, _finish);
+				content.fadeTo(currentOpts.changeFade, 0.3, function () {
+					var finish_resizing = function () {
+						content.html(tmp.contents()).fadeTo(currentOpts.changeFade, 1, _finish);
 					};
 
 					$.event.trigger('fancybox-change');
@@ -395,9 +396,9 @@
 						.empty()
 						.removeAttr('filter')
 						.css({
-							'border-width' : currentOpts.padding,
-							'width'	: final_pos.width - currentOpts.padding * 2,
-							'height' : selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+							'border-width': currentOpts.padding,
+							'width': final_pos.width - currentOpts.padding * 2,
+							'height': selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
 						});
 
 					if (equal) {
@@ -407,10 +408,10 @@
 						fx.prop = 0;
 
 						$(fx).animate({prop: 1}, {
-							 duration : currentOpts.changeSpeed,
-							 easing : currentOpts.easingChange,
-							 step : _draw,
-							 complete : finish_resizing
+							duration: currentOpts.changeSpeed,
+							easing: currentOpts.easingChange,
+							step: _draw,
+							complete: finish_resizing
 						});
 					}
 				});
@@ -425,7 +426,7 @@
 			if (currentOpts.transitionIn == 'elastic') {
 				start_pos = _get_zoom_from();
 
-				content.html( tmp.contents() );
+				content.html(tmp.contents());
 
 				wrap.show();
 
@@ -436,32 +437,32 @@
 				fx.prop = 0;
 
 				$(fx).animate({prop: 1}, {
-					 duration : currentOpts.speedIn,
-					 easing : currentOpts.easingIn,
-					 step : _draw,
-					 complete : _finish
+					duration: currentOpts.speedIn,
+					easing: currentOpts.easingIn,
+					step: _draw,
+					complete: _finish
 				});
 
 				return;
 			}
 
-			if (currentOpts.titlePosition == 'inside' && titleHeight > 0) {	
-				title.show();	
+			if (currentOpts.titlePosition == 'inside' && titleHeight > 0) {
+				title.show();
 			}
 
 			content
 				.css({
-					'width' : final_pos.width - currentOpts.padding * 2,
-					'height' : selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+					'width': final_pos.width - currentOpts.padding * 2,
+					'height': selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
 				})
-				.html( tmp.contents() );
+				.html(tmp.contents());
 
 			wrap
 				.css(final_pos)
-				.fadeIn( currentOpts.transitionIn == 'none' ? 0 : currentOpts.speedIn, _finish );
+				.fadeIn(currentOpts.transitionIn == 'none' ? 0 : currentOpts.speedIn, _finish);
 		},
 
-		_format_title = function(title) {
+		_format_title = function (title) {
 			if (title && title.length) {
 				if (currentOpts.titlePosition == 'float') {
 					return '<table id="fancybox-title-float-wrap" cellpadding="0" cellspacing="0"><tr><td id="fancybox-title-float-left"></td><td id="fancybox-title-float-main">' + title + '</td><td id="fancybox-title-float-right"></td></tr></table>';
@@ -473,7 +474,7 @@
 			return false;
 		},
 
-		_process_title = function() {
+		_process_title = function () {
 			titleStr = currentOpts.title || '';
 			titleHeight = 0;
 
@@ -496,59 +497,59 @@
 
 			title
 				.addClass('fancybox-title-' + currentOpts.titlePosition)
-				.html( titleStr )
-				.appendTo( 'body' )
+				.html(titleStr)
+				.appendTo('body')
 				.show();
 
 			switch (currentOpts.titlePosition) {
 				case 'inside':
 					title
 						.css({
-							'width' : final_pos.width - (currentOpts.padding * 2),
-							'marginLeft' : currentOpts.padding,
-							'marginRight' : currentOpts.padding
+							'width': final_pos.width - (currentOpts.padding * 2),
+							'marginLeft': currentOpts.padding,
+							'marginRight': currentOpts.padding
 						});
 
 					titleHeight = title.outerHeight(true);
 
-					title.appendTo( outer );
+					title.appendTo(outer);
 
 					final_pos.height += titleHeight;
-				break;
+					break;
 
 				case 'over':
 					title
 						.css({
-							'marginLeft' : currentOpts.padding,
-							'width'	: final_pos.width - (currentOpts.padding * 2),
-							'bottom' : currentOpts.padding
+							'marginLeft': currentOpts.padding,
+							'width': final_pos.width - (currentOpts.padding * 2),
+							'bottom': currentOpts.padding
 						})
-						.appendTo( outer );
-				break;
+						.appendTo(outer);
+					break;
 
 				case 'float':
 					title
-						.css('left', parseInt((title.width() - final_pos.width - 40)/ 2, 10) * -1)
-						.appendTo( wrap );
-				break;
+						.css('left', parseInt((title.width() - final_pos.width - 40) / 2, 10) * -1)
+						.appendTo(wrap);
+					break;
 
 				default:
 					title
 						.css({
-							'width' : final_pos.width - (currentOpts.padding * 2),
-							'paddingLeft' : currentOpts.padding,
-							'paddingRight' : currentOpts.padding
+							'width': final_pos.width - (currentOpts.padding * 2),
+							'paddingLeft': currentOpts.padding,
+							'paddingRight': currentOpts.padding
 						})
-						.appendTo( wrap );
-				break;
+						.appendTo(wrap);
+					break;
 			}
 
 			title.hide();
 		},
 
-		_set_navigation = function() {
+		_set_navigation = function () {
 			if (currentOpts.enableEscapeButton || currentOpts.enableKeyboardNav) {
-				$(document).bind('keydown.fb', function(e) {
+				$(document).bind('keydown.fb', function (e) {
 					if (e.keyCode == 27 && currentOpts.enableEscapeButton) {
 						e.preventDefault();
 						$.fancybox.close();
@@ -560,7 +561,7 @@
 				});
 			}
 
-			if (!currentOpts.showNavArrows) { 
+			if (!currentOpts.showNavArrows) {
 				nav_left.hide();
 				nav_right.hide();
 				return;
@@ -570,7 +571,7 @@
 				nav_left.show();
 			}
 
-			if ((currentOpts.cyclic && currentArray.length > 1) || currentIndex != (currentArray.length -1)) {
+			if ((currentOpts.cyclic && currentArray.length > 1) || currentIndex != (currentArray.length - 1)) {
 				nav_right.show();
 			}
 		},
@@ -596,12 +597,12 @@
 			}
 
 			_set_navigation();
-	
-			if (currentOpts.hideOnContentClick)	{
+
+			if (currentOpts.hideOnContentClick) {
 				content.bind('click', $.fancybox.close);
 			}
 
-			if (currentOpts.hideOnOverlayClick)	{
+			if (currentOpts.hideOnOverlayClick) {
 				overlay.bind('click', $.fancybox.close);
 			}
 
@@ -626,11 +627,11 @@
 			_preload_images();
 		},
 
-		_preload_images = function() {
-			var href, 
+		_preload_images = function () {
+			var href,
 				objNext;
 
-			if ((currentArray.length -1) > currentIndex) {
+			if ((currentArray.length - 1) > currentIndex) {
 				href = currentArray[ currentIndex + 1 ].href;
 
 				if (typeof href !== 'undefined' && href.match(imgRegExp)) {
@@ -649,13 +650,13 @@
 			}
 		},
 
-		_draw = function(pos) {
+		_draw = function (pos) {
 			var dim = {
-				width : parseInt(start_pos.width + (final_pos.width - start_pos.width) * pos, 10),
-				height : parseInt(start_pos.height + (final_pos.height - start_pos.height) * pos, 10),
+				width: parseInt(start_pos.width + (final_pos.width - start_pos.width) * pos, 10),
+				height: parseInt(start_pos.height + (final_pos.height - start_pos.height) * pos, 10),
 
-				top : parseInt(start_pos.top + (final_pos.top - start_pos.top) * pos, 10),
-				left : parseInt(start_pos.left + (final_pos.left - start_pos.left) * pos, 10)
+				top: parseInt(start_pos.top + (final_pos.top - start_pos.top) * pos, 10),
+				left: parseInt(start_pos.left + (final_pos.left - start_pos.left) * pos, 10)
 			};
 
 			if (typeof final_pos.opacity !== 'undefined') {
@@ -665,12 +666,12 @@
 			wrap.css(dim);
 
 			content.css({
-				'width' : dim.width - currentOpts.padding * 2,
-				'height' : dim.height - (titleHeight * pos) - currentOpts.padding * 2
+				'width': dim.width - currentOpts.padding * 2,
+				'height': dim.height - (titleHeight * pos) - currentOpts.padding * 2
 			});
 		},
 
-		_get_viewport = function() {
+		_get_viewport = function () {
 			return [
 				$(window).width() - (currentOpts.margin * 2),
 				$(window).height() - (currentOpts.margin * 2),
@@ -724,14 +725,14 @@
 			return to;
 		},
 
-		_get_obj_pos = function(obj) {
+		_get_obj_pos = function (obj) {
 			var pos = obj.offset();
 
-			pos.top += parseInt( obj.css('paddingTop'), 10 ) || 0;
-			pos.left += parseInt( obj.css('paddingLeft'), 10 ) || 0;
+			pos.top += parseInt(obj.css('paddingTop'), 10) || 0;
+			pos.left += parseInt(obj.css('paddingLeft'), 10) || 0;
 
-			pos.top += parseInt( obj.css('border-top-width'), 10 ) || 0;
-			pos.left += parseInt( obj.css('border-left-width'), 10 ) || 0;
+			pos.top += parseInt(obj.css('border-top-width'), 10) || 0;
+			pos.left += parseInt(obj.css('border-left-width'), 10) || 0;
 
 			pos.width = obj.width();
 			pos.height = obj.height();
@@ -739,7 +740,7 @@
 			return pos;
 		},
 
-		_get_zoom_from = function() {
+		_get_zoom_from = function () {
 			var orig = selectedOpts.orig ? $(selectedOpts.orig) : false,
 				from = {},
 				pos,
@@ -749,28 +750,28 @@
 				pos = _get_obj_pos(orig);
 
 				from = {
-					width : pos.width + (currentOpts.padding * 2),
-					height : pos.height + (currentOpts.padding * 2),
-					top	: pos.top - currentOpts.padding - 20,
-					left : pos.left - currentOpts.padding - 20
+					width: pos.width + (currentOpts.padding * 2),
+					height: pos.height + (currentOpts.padding * 2),
+					top: pos.top - currentOpts.padding - 20,
+					left: pos.left - currentOpts.padding - 20
 				};
 
 			} else {
 				view = _get_viewport();
 
 				from = {
-					width : currentOpts.padding * 2,
-					height : currentOpts.padding * 2,
-					top	: parseInt(view[3] + view[1] * 0.5, 10),
-					left : parseInt(view[2] + view[0] * 0.5, 10)
+					width: currentOpts.padding * 2,
+					height: currentOpts.padding * 2,
+					top: parseInt(view[3] + view[1] * 0.5, 10),
+					left: parseInt(view[2] + view[0] * 0.5, 10)
 				};
 			}
 
 			return from;
 		},
 
-		_animate_loading = function() {
-			if (!loading.is(':visible')){
+		_animate_loading = function () {
+			if (!loading.is(':visible')) {
 				clearInterval(loadingTimer);
 				return;
 			}
@@ -784,7 +785,7 @@
 	 * Public methods 
 	 */
 
-	$.fn.fancybox = function(options) {
+	$.fn.fancybox = function (options) {
 		if (!$(this).length) {
 			return this;
 		}
@@ -792,7 +793,7 @@
 		$(this)
 			.data('fancybox', $.extend({}, options, ($.metadata ? $(this).metadata() : {})))
 			.unbind('click.fb')
-			.bind('click.fb', function(e) {
+			.bind('click.fb', function (e) {
 				e.preventDefault();
 
 				if (busy) {
@@ -813,7 +814,7 @@
 
 				} else {
 					selectedArray = $("a[rel=" + rel + "], area[rel=" + rel + "]");
-					selectedIndex = selectedArray.index( this );
+					selectedIndex = selectedArray.index(this);
 				}
 
 				_start();
@@ -824,7 +825,7 @@
 		return this;
 	};
 
-	$.fancybox = function(obj) {
+	$.fancybox = function (obj) {
 		var opts;
 
 		if (busy) {
@@ -842,7 +843,7 @@
 				if (typeof obj[i] == 'object') {
 					$(obj[i]).data('fancybox', $.extend({}, opts, obj[i]));
 				} else {
-					obj[i] = $({}).data('fancybox', $.extend({content : obj[i]}, opts));
+					obj[i] = $({}).data('fancybox', $.extend({content: obj[i]}, opts));
 				}
 			}
 
@@ -852,7 +853,7 @@
 			if (typeof obj == 'object') {
 				$(obj).data('fancybox', $.extend({}, opts, obj));
 			} else {
-				obj = $({}).data('fancybox', $.extend({content : obj}, opts));
+				obj = $({}).data('fancybox', $.extend({content: obj}, opts));
 			}
 
 			selectedArray.push(obj);
@@ -865,26 +866,26 @@
 		_start();
 	};
 
-	$.fancybox.showActivity = function() {
+	$.fancybox.showActivity = function () {
 		clearInterval(loadingTimer);
 
 		loading.show();
 		loadingTimer = setInterval(_animate_loading, 66);
 	};
 
-	$.fancybox.hideActivity = function() {
+	$.fancybox.hideActivity = function () {
 		loading.hide();
 	};
 
-	$.fancybox.next = function() {
-		return $.fancybox.pos( currentIndex + 1);
+	$.fancybox.next = function () {
+		return $.fancybox.pos(currentIndex + 1);
 	};
 
-	$.fancybox.prev = function() {
-		return $.fancybox.pos( currentIndex - 1);
+	$.fancybox.prev = function () {
+		return $.fancybox.pos(currentIndex - 1);
 	};
 
-	$.fancybox.pos = function(pos) {
+	$.fancybox.pos = function (pos) {
 		if (busy) {
 			return;
 		}
@@ -905,7 +906,7 @@
 		return;
 	};
 
-	$.fancybox.cancel = function() {
+	$.fancybox.cancel = function () {
 		if (busy) {
 			return;
 		}
@@ -922,7 +923,7 @@
 	};
 
 	// Note: within an iframe use - parent.$.fancybox.close();
-	$.fancybox.close = function() {
+	$.fancybox.close = function () {
 		if (busy || wrap.is(':hidden')) {
 			return;
 		}
@@ -936,9 +937,9 @@
 
 		_abort();
 
-		$(close.add( nav_left ).add( nav_right )).hide();
+		$(close.add(nav_left).add(nav_right)).hide();
 
-		$(content.add( overlay )).unbind();
+		$(content.add(overlay)).unbind();
 
 		$(window).unbind("resize.fb scroll.fb");
 		$(document).unbind('keydown.fb');
@@ -963,9 +964,9 @@
 
 			currentOpts.onClosed(currentArray, currentIndex, currentOpts);
 
-			currentArray = selectedOpts	= [];
+			currentArray = selectedOpts = [];
 			currentIndex = selectedIndex = 0;
-			currentOpts = selectedOpts	= {};
+			currentOpts = selectedOpts = {};
 
 			busy = false;
 		}
@@ -976,10 +977,10 @@
 			var pos = wrap.position();
 
 			final_pos = {
-				top	 : pos.top ,
-				left : pos.left,
-				width :	wrap.width(),
-				height : wrap.height()
+				top: pos.top,
+				left: pos.left,
+				width: wrap.width(),
+				height: wrap.height()
 			};
 
 			if (currentOpts.opacity) {
@@ -991,18 +992,18 @@
 			fx.prop = 1;
 
 			$(fx).animate({ prop: 0 }, {
-				 duration : currentOpts.speedOut,
-				 easing : currentOpts.easingOut,
-				 step : _draw,
-				 complete : _cleanup
+				duration: currentOpts.speedOut,
+				easing: currentOpts.easingOut,
+				step: _draw,
+				complete: _cleanup
 			});
 
 		} else {
-			wrap.fadeOut( currentOpts.transitionOut == 'none' ? 0 : currentOpts.speedOut, _cleanup);
+			wrap.fadeOut(currentOpts.transitionOut == 'none' ? 0 : currentOpts.speedOut, _cleanup);
 		}
 	};
 
-	$.fancybox.resize = function() {
+	$.fancybox.resize = function () {
 		if (overlay.is(':visible')) {
 			overlay.css('height', $(document).height());
 		}
@@ -1010,43 +1011,43 @@
 		$.fancybox.center(true);
 	};
 
-	$.fancybox.center = function() {
+	$.fancybox.center = function () {
 		var view, align;
 
 		if (busy) {
-			return;	
+			return;
 		}
 
 		align = arguments[0] === true ? 1 : 0;
 		view = _get_viewport();
 
 		if (!align && (wrap.width() > view[0] || wrap.height() > view[1])) {
-			return;	
+			return;
 		}
 
 		wrap
 			.stop()
 			.animate({
-				'top' : parseInt(Math.max(view[3] - 20, view[3] + ((view[1] - content.height() - 40) * 0.5) - currentOpts.padding)),
-				'left' : parseInt(Math.max(view[2] - 20, view[2] + ((view[0] - content.width() - 40) * 0.5) - currentOpts.padding))
+				'top': parseInt(Math.max(view[3] - 20, view[3] + ((view[1] - content.height() - 40) * 0.5) - currentOpts.padding)),
+				'left': parseInt(Math.max(view[2] - 20, view[2] + ((view[0] - content.width() - 40) * 0.5) - currentOpts.padding))
 			}, typeof arguments[0] == 'number' ? arguments[0] : 200);
 	};
 
-	$.fancybox.init = function() {
+	$.fancybox.init = function () {
 		if ($("#fancybox-wrap").length) {
 			return;
 		}
 
 		$('body').append(
-			tmp	= $('<div id="fancybox-tmp"></div>'),
-			loading	= $('<div id="fancybox-loading"><div></div></div>'),
-			overlay	= $('<div id="fancybox-overlay"></div>'),
+			tmp = $('<div id="fancybox-tmp"></div>'),
+			loading = $('<div id="fancybox-loading"><div></div></div>'),
+			overlay = $('<div id="fancybox-overlay"></div>'),
 			wrap = $('<div id="fancybox-wrap"></div>')
 		);
 
 		outer = $('<div id="fancybox-outer"></div>')
 			.append('<div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div>')
-			.appendTo( wrap );
+			.appendTo(wrap);
 
 		outer.append(
 			content = $('<div id="fancybox-content"></div>'),
@@ -1060,18 +1061,18 @@
 		close.click($.fancybox.close);
 		loading.click($.fancybox.cancel);
 
-		nav_left.click(function(e) {
+		nav_left.click(function (e) {
 			e.preventDefault();
 			$.fancybox.prev();
 		});
 
-		nav_right.click(function(e) {
+		nav_right.click(function (e) {
 			e.preventDefault();
 			$.fancybox.next();
 		});
 
 		if ($.fn.mousewheel) {
-			wrap.bind('mousewheel.fb', function(e, delta) {
+			wrap.bind('mousewheel.fb', function (e, delta) {
 				if (busy) {
 					e.preventDefault();
 
@@ -1095,61 +1096,67 @@
 	};
 
 	$.fn.fancybox.defaults = {
-		padding : 10,
-		margin : 40,
-		opacity : false,
-		modal : false,
-		cyclic : false,
-		scrolling : 'auto',	// 'auto', 'yes' or 'no'
+		padding: 10,
+		margin: 40,
+		opacity: false,
+		modal: false,
+		cyclic: false,
+		scrolling: 'auto',	// 'auto', 'yes' or 'no'
 
-		width : 560,
-		height : 340,
+		width: 560,
+		height: 340,
 
-		autoScale : true,
-		autoDimensions : true,
-		centerOnScroll : false,
+		autoScale: true,
+		autoDimensions: true,
+		centerOnScroll: false,
 
-		ajax : {},
-		swf : { wmode: 'transparent' },
+		ajax: {},
+		swf: { wmode: 'transparent' },
 
-		hideOnOverlayClick : true,
-		hideOnContentClick : false,
+		hideOnOverlayClick: true,
+		hideOnContentClick: false,
 
-		overlayShow : true,
-		overlayOpacity : 0.7,
-		overlayColor : '#777',
+		overlayShow: true,
+		overlayOpacity: 0.7,
+		overlayColor: '#777',
 
-		titleShow : true,
-		titlePosition : 'float', // 'float', 'outside', 'inside' or 'over'
-		titleFormat : null,
-		titleFromAlt : false,
+		titleShow: true,
+		titlePosition: 'float', // 'float', 'outside', 'inside' or 'over'
+		titleFormat: null,
+		titleFromAlt: false,
 
-		transitionIn : 'fade', // 'elastic', 'fade' or 'none'
-		transitionOut : 'fade', // 'elastic', 'fade' or 'none'
+		transitionIn: 'fade', // 'elastic', 'fade' or 'none'
+		transitionOut: 'fade', // 'elastic', 'fade' or 'none'
 
-		speedIn : 300,
-		speedOut : 300,
+		speedIn: 300,
+		speedOut: 300,
 
-		changeSpeed : 300,
-		changeFade : 'fast',
+		changeSpeed: 300,
+		changeFade: 'fast',
 
-		easingIn : 'swing',
-		easingOut : 'swing',
+		easingIn: 'swing',
+		easingOut: 'swing',
 
-		showCloseButton	 : true,
-		showNavArrows : true,
-		enableEscapeButton : true,
-		enableKeyboardNav : true,
+		showCloseButton: true,
+		showNavArrows: true,
+		enableEscapeButton: true,
+		enableKeyboardNav: true,
 
-		onStart : function(){},
-		onCancel : function(){},
-		onComplete : function(){},
-		onCleanup : function(){},
-		onClosed : function(){},
-		onError : function(){}
+		onStart: function () {
+		},
+		onCancel: function () {
+		},
+		onComplete: function () {
+		},
+		onCleanup: function () {
+		},
+		onClosed: function () {
+		},
+		onError: function () {
+		}
 	};
 
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$.fancybox.init();
 	});
 

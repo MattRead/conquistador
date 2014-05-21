@@ -1,5 +1,5 @@
 <?php
-switch ( $content->typename ) {
+switch ($content->typename) {
 	case 'blogroll':
 		$icon = 'link';
 		break;
@@ -48,6 +48,6 @@ switch ( $content->typename ) {
 }
 ?>
 
-<?php if ( $icon ) : ?>
-<i class="icon-<?php echo $icon; ?>"></i>
+<?php if ($icon) : ?>
+	<i class="icon-<?php echo $icon; ?>"></i>
 <?php endif; ?>
