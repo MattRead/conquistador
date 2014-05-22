@@ -10,22 +10,28 @@
 		<?php echo $theme->content($post, 'pubdate'); ?>
 	</p><p>&#x2766;</p>
 </header>
-<div itemprop="articleBody">
-<table class="center">
-<tr><th>Date<td><?php echo $post->info->eventdate_out; ?> at <?php echo $post->info->eventtime_out; ?>
-<tr><th>Location<td><?php echo $post->info->location; ?>
-</table>
 
-<?php echo $post->content_out; ?>
+	<div itemprop="articleBody">
+		<table class="center">
+			<tr>
+				<th>Date
+					<td><?php echo $post->info->eventdate_out; ?> at <?php echo $post->info->eventtime_out; ?>
+						<tr>
+			<th>Location
+				<td><?php echo $post->info->location; ?>
+		</table>
 
-<h2>Map</h2>
+		<?php echo $post->content_out; ?>
 
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-        src="https://maps.google.com/maps?q=<?php echo $post->info->location; ?>&amp;source=embed&amp;output=svembed"></iframe>
-<br>
-<small><a href="https://maps.google.com/maps?q=<?php echo $post->info->location; ?>&amp;source=embed">View Larger Map</a></small>
+		<h2>Map</h2>
 
-</div>
+		<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+		        src="https://maps.google.com/maps?q=<?php echo $post->info->location; ?>&amp;source=embed&amp;output=svembed"></iframe>
+		<br>
+		<small><a href="https://maps.google.com/maps?q=<?php echo $post->info->location; ?>&amp;source=embed">View
+				Larger Map</a></small>
+
+	</div>
 <?php echo $theme->area('split'); ?>
 <?php echo $theme->content($post, 'comments'); ?>
 </div>
