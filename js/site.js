@@ -45,7 +45,8 @@ $(function () {
 });
 
 $(document).ready(function () {
-	if (form = $('nav.site form#searchform')) {
+	if ($('nav.site form#searchform').length) {
+		var form = $('nav.site form#searchform');
 		$('nav.site > ol').append('<li id="sform"><a href="" id="sreplace"><i class="icon-search"></i></a></li>');
 		$('#sreplace').click(function () {
 			$('#sform').append(form);
