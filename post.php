@@ -8,6 +8,7 @@
 		<p>
 			<?php echo $theme->content($content, 'pubdate'); ?>
 		</p>
+
 		<p>&#x2766;</p>
 	</header>
 	<div itemprop="articleBody">

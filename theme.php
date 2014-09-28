@@ -307,7 +307,7 @@ class Conquistador extends Theme
 			$block->next = $theme->post->ascend();
 			$block->previous = $theme->post->descend();
 			$block->comments_disabled = $theme->post->info->comments_disabled;
-			$block->comment_count =  $theme->post->comments->moderated->count;
+			$block->comment_count = $theme->post->comments->moderated->count;
 		}
 	}
 

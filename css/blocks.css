@@ -93,14 +93,25 @@ nav.site form#searchform {
 	width: 150px;
 	margin: 0;
 }
-#sform i { font-size: 16px; }
-nav.site form#searchform p { margin: 0; padding: 0; }
-nav.site form#searchform input[type=submit] { display: none; }
+
+#sform i {
+	font-size: 16px;
+}
+
+nav.site form#searchform p {
+	margin: 0;
+	padding: 0;
+}
+
+nav.site form#searchform input[type=submit] {
+	display: none;
+}
+
 nav.site form#searchform input[type=text] {
 	border-radius: 11px;
 	height: 22px;
 	padding: 1px 10px;
-	margin:6px 0 0;
+	margin: 6px 0 0;
 	border: 1px solid #aaa;
 	background: #fcfcfc;
 	box-shadow: none;

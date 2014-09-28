@@ -55,8 +55,8 @@ switch ($content->typename) {
 }
 ?>
 
-<?php if ( $content->typename == 'review' ) : ?>
-	<?php echo str_repeat('<i class="icon-'. $icon .'"></i>', $content->rating); ?>
-<?php elseif ( $icon ) : ?>
+<?php if ($content->typename == 'review') : ?>
+	<?php echo str_repeat('<i class="icon-' . $icon . '"></i>', $content->rating); ?>
+<?php elseif ($icon) : ?>
 	<i class="icon-<?php echo $icon; ?>"></i>
 <?php endif; ?>

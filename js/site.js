@@ -24,11 +24,11 @@ $(window).bind('load', function () {
 });
 
 $(function () {
-	$(window).scroll(function() {
+	$(window).scroll(function () {
 		var x = $('body').scrollTop();
 		$('body').css('background-position', 'center ' + parseInt(x / 1.4) + 'px');
 	});
-	
+
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 400) {
 			$('#totop').fadeIn();
@@ -45,11 +45,15 @@ $(function () {
 });
 
 $(document).ready(function () {
-	if ( form = $('nav.site form#searchform') ){
+	if (form = $('nav.site form#searchform')) {
 		$('nav.site > ol').append('<li id="sform"><a href="" id="sreplace"><i class="icon-search"></i></a></li>');
-		$('#sreplace').click(function(){
+		$('#sreplace').click(function () {
 			$('#sform').append(form);
-			$('#sreplace').fadeOut('fast', function() {$(form).fadeIn(function(){$('#s').focus()})});
+			$('#sreplace').fadeOut('fast', function () {
+				$(form).fadeIn(function () {
+					$('#s').focus()
+				})
+			});
 			$('#s').attr('placeholder', 'Search For...');
 			return false;
 		});
@@ -61,9 +65,13 @@ $(document).ready(function () {
 	});
 
 	$('details').details();
-	
-	$('.messages').click(function(){ $(this).fadeOut() });
-	setTimeout(function(){$('.messages').fadeOut()}, 8000);
+
+	$('.messages').click(function () {
+		$(this).fadeOut()
+	});
+	setTimeout(function () {
+		$('.messages').fadeOut()
+	}, 8000);
 
 	if (CONQUISTADOR_USE_FANCYBOX) {
 		$('a.fancybox').fancybox({hideOnContentClick: true});

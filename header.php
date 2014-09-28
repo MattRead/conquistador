@@ -19,7 +19,7 @@
 <div class="wrap">
 
 	<p itemprop="name" class="mast">
-		<a itemprop="url"  href="<?php Site::out_url('site'); ?>">
+		<a itemprop="url" href="<?php Site::out_url('site'); ?>">
 			<?php echo Options::get('title'); ?>
 		</a>
 		<meta itemprop="description" content="<?php echo Options::get('tagline'); ?>">
@@ -27,5 +27,6 @@
 
 	<nav class="site" id="top">
 		<?php echo $theme->area('site_navigation'); ?>
-	</nav><div style="clear:both"></div>
+	</nav>
+	<div style="clear:both"></div>
 	<?php echo $theme->display('adminbar'); ?>
