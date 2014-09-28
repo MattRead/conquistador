@@ -10,7 +10,7 @@
 			<li>
 				<a href="<?php URL::out('display_posts', 'page=posts&status=1'); ?>"
 				   title="<?php echo $user_draft_count; ?> Drafts"><i
-						class="icon-file"></i><span><?php echo $user_draft_count; ?></span><b>Drafts</b></a>
+						class="icon-file4"></i><span><?php echo $user_draft_count; ?></span><b>Drafts</b></a>
 			</li>
 		<?php endif; ?>
 
@@ -30,7 +30,7 @@
 		<?php endif; ?>
 
 		<li>
-			<a href="<?php echo URL::get('display_dashboard'); ?>"><i class="icon-console" title="Dashboard"></i><b>Dashboard</b></a>
+			<a href="<?php echo URL::get('display_dashboard'); ?>"><i class="icon-home2" title="Dashboard"></i><b>Dashboard</b></a>
 		</li>
 
 	</ul>

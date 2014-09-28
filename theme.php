@@ -9,14 +9,14 @@ class Conquistador extends Theme
 	const ARCHIVES_CACHE_EXPIRE = 3600;
 
 	private $social_media_icons = array(
-		'twitter' => array('twitter', 'https://twitter.com/%s', 'Twitter'),
-		'lastfm' => array('lastfm', 'http://www.last.fm/user/%s', 'Last.fm'),
-		'facebook' => array('facebook', 'http://facebook.com/%s', 'Facebook'),
-		'flickr' => array('flickr', 'http://www.flickr.com/photos/%s', 'Flickr'),
-		'vimeo' => array('vimeo', 'https://vimeo.com/%s', 'Vimeo'),
-		'googleplus' => array('google-plus', 'https://plus.google.com/%s/posts', 'Google+'),
+		'twitter' => array('twitter2', 'https://twitter.com/%s', 'Twitter'),
+		'lastfm' => array('lastfm2', 'http://www.last.fm/user/%s', 'Last.fm'),
+		'facebook' => array('facebook2', 'http://facebook.com/%s', 'Facebook'),
+		'flickr' => array('flickr3', 'http://www.flickr.com/photos/%s', 'Flickr'),
+		'vimeo' => array('vimeo2', 'https://vimeo.com/%s', 'Vimeo'),
+		'googleplus' => array('googleplus2', 'https://plus.google.com/%s/posts', 'Google+'),
 		'skype' => array('skype', 'skype:%s', 'Skype'),
-		'github' => array('github', 'https://github.com/%s', 'Github'),
+		'github' => array('github5', 'https://github.com/%s', 'Github'),
 	);
 
 	/**
@@ -40,11 +40,14 @@ class Conquistador extends Theme
 		Stack::dependent('template_header_javascript', 'template_footer_javascript');
 		Stack::remove('template_header_javascript', 'jquery');
 		Stack::remove('template_footer_javascript', 'jquery');
-		$this->add_script('footer', $http . '://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery');
-		$this->add_style('header', array($http . '://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro:400,600', 'screen'), 'conquistador_fonts');
-		Stack::add('template_header_javascript', array($http . '://cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
+		$this->add_script('footer', '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', 'jquery');
+		$this->add_style('header', array('//fonts.googleapis.com/css?family=Halant%3A300,400,600%7CSource+Sans+Pro%3A300,400%7CSource+Code+Pro%3A400,600%7CLife+Savers', 'screen'), 'conquistador_fonts');
+		Stack::add('template_header_javascript', array('//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
+		if (isset($_GET['rhythm'])) {
+			$this->add_style('header', array('http://basehold.it/33', 'screen'), 'conquistador-rhythm', 'conquistador-css');
+		}
 
-		if (defined("DEBUG_THEME") && DEBUG_THEME == true) {
+		if (defined("DEBUG_THEME") && DEBUG_THEME == true || isset($_GET['DEBUG'])) {
 			$this->add_script('footer', Site::get_url('theme') . '/js/site.js', 'conquistador', array('jquery', 'details', 'fancybox', 'baseline'));
 			$this->add_script('footer', Site::get_url('theme') . '/js/jquery.fancybox-1.3.4.js', 'fancybox', 'jquery');
 			$this->add_script('footer', Site::get_url('theme') . '/js/jquery.baselinealign-1.0.js', 'baseline', 'jquery');
@@ -58,18 +61,9 @@ class Conquistador extends Theme
 			$this->add_style('header', array(Site::get_url('theme') . '/css/icomoon.css', 'screen'), 'icomoon', 'conquistador-css');
 			$this->add_style('header', array(Site::get_url('theme') . '/css/handheld.css', 'screen'), 'conquistador-handheld', 'conquistador-css');
 			$this->add_style('header', array(Site::get_url('theme') . '/css/jquery.fancybox-1.3.4.css', 'screen'), 'fancybox-css', 'conquistador-css');
-			if (isset($_GET['rhythm'])) {
-				$this->add_style('header', array('http://basehold.it/33', 'screen'), 'conquistador-rhythm', 'conquistador-css');
-			}
 		} else {
 			$this->add_script('footer', Site::get_url('theme') . '/js/site-min.js', 'conquistador', 'jquery');
 			$this->add_style('header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador');
-		}
-		if ($pat = $theme->get_pattern()) {
-			$this->add_style('header', array("body { background: #fcfcfc url('$pat') repeat; }", 'screen'), 'conquistador_pattern', 'conquistador');
-		}
-		if ($pat2 = $theme->get_pattern('pattern_dark')) {
-			$this->add_style('header', array("nav.site, .bar { background: #222 url('$pat2') fixed repeat; }", 'screen'), 'conquistador_pattern_dark', 'conquistador');
 		}
 	}
 
@@ -224,56 +218,10 @@ class Conquistador extends Theme
 		$head->comments_form_disclaimer->helptext = _t("Disclaimer or paragraph to appear above comments form.");
 		$head->comments_form_disclaimer->raw = true;
 
-		$pats = $ui->append('fieldset', 'pats', 'Subtle Patterns &trade;');
-		$pats->append('select', 'pattern', __CLASS__ . '__pattern', 'Main Body Pattern', $this->get_patterns());
-		$pats->pattern->helptext = _t("The background pattern for the main body.");
-		$pats->append('select', 'pattern_dark', __CLASS__ . '__pattern_dark', 'Secondary Pattern', $this->get_patterns());
-		$pats->pattern_dark->helptext = _t("The background pattern for the top navigation bar, and split area.");
-
 		// Save
 		$ui->append('submit', 'save', _t('Save'));
 		$ui->set_option('success_message', _t('Options saved'));
 		$ui->out();
-	}
-
-	private function get_patterns()
-	{
-		if (Cache::has(self::OPTION_NAME . '_patterns')) {
-			return Cache::get(self::OPTION_NAME . '_patterns');
-		}
-		$options = array('null' => 'Default');
-		$data = RemoteRequest::get_contents('https://api.github.com/repos/subtlepatterns/SubtlePatterns/contents/');
-		$patterns = json_decode($data);
-		if ($patterns !== null) {
-			foreach ($patterns as $pattern) {
-				if (strpos($pattern->name, '.png') !== false) {
-					$options[$pattern->_links->self] = $pattern->name;
-				}
-			}
-			Cache::set(self::OPTION_NAME . '_patterns', $options, 3600);
-		}
-		return $options;
-	}
-
-	public function theme_get_pattern(Theme $theme, $pat = 'pattern')
-	{
-		if (($pattern = Options::get(__CLASS__ . '__' . $pat, 'null')) != 'null') {
-			$path = Site::get_dir('user', true) . 'files/patterns/' . basename(parse_url($pattern, PHP_URL_PATH));
-			if (!is_dir(dirname($path))) {
-				mkdir(dirname($path));
-			}
-			if (!file_exists($path)) {
-				$data = json_decode(RemoteRequest::get_contents($pattern));
-				$image = $data->content;
-				if ($data->encoding == 'base64') {
-					$image = base64_decode($image);
-				}
-				file_put_contents($path, $image);
-			}
-			return Site::get_url('user', true) . 'files/patterns/' . basename(parse_url($pattern, PHP_URL_PATH));
-		} else {
-			return false;
-		}
 	}
 
 	public function action_jambo_form(FormUI $form, Plugin $plugin)
@@ -359,6 +307,7 @@ class Conquistador extends Theme
 			$block->next = $theme->post->ascend();
 			$block->previous = $theme->post->descend();
 			$block->comments_disabled = $theme->post->info->comments_disabled;
+			$block->comment_count =  $theme->post->comments->moderated->count;
 		}
 	}
 

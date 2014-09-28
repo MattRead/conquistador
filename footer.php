@@ -4,5 +4,5 @@
 	<?php echo $theme->area('site_footer'); ?>
 	<?php echo $theme->footer(); ?>
 </footer>
-</div></div></body>
+</div></body>
 </html>

@@ -23,12 +23,12 @@
 			<meta itemprop="worstRating" content="1">
 			<meta itemprop="bestRating" content="5">
 			<meta itemprop="ratingValue" content="<?php echo $content->rating; ?>">
-			<?php echo str_repeat('<i class="icon-star-3"></i>', $content->rating);
-			echo str_repeat('<i class="icon-star-3 blank"></i>', 5 - $content->rating); ?>
+			<?php echo str_repeat('<i class="icon-star3"></i>', $content->rating);
+			echo str_repeat('<i class="icon-star3 blank"></i>', 5 - $content->rating); ?>
 		</p>
 	</header>
 
-	<?php if (false && $content->asin) : ?>
+	<?php if ($content->asin) : ?>
 		<div class="asin meta">
 			<a href="http://www.amazon.ca/dp/<?php echo $content->asin; ?>">
 				<abbr title="Amazon Standard Identification Number">ASIN</abbr> <?php echo $content->asin; ?>
@@ -41,7 +41,7 @@
 	</div>
 
 </div>
-<?php echo $theme->area('split'); ?>
+<?php echo $theme->area('split', 'single'); ?>
 <?php echo $theme->content($content, 'comments'); ?>
 <?php echo $theme->area('foot'); ?>
 

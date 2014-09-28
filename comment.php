@@ -8,8 +8,8 @@
 		<p>
 			<span itemprop="author" itemscope itemtype="http://schema.org/Person">
 				<img class="gravatar" itemprop="image"
-				     src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($content->email)); ?>?d=mm&s=60&r=g"
-				     alt="Gravatar for <?php echo $content->name; ?>">
+				     src="//www.gravatar.com/avatar/<?php echo md5(strtolower($content->email)); ?>?d=mm&amp;s=60&amp;r=g"
+				     alt="Gravatar for <?php echo htmlentities($content->name); ?>">
 				<span itemprop="name"><?php echo $theme->comment_author_link($content); ?></span>
 			</span>
 			<small>(<a href="#comment-<?php echo $content->id; ?>"

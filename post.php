@@ -8,14 +8,14 @@
 		<p>
 			<?php echo $theme->content($content, 'pubdate'); ?>
 		</p>
-
 		<p>&#x2766;</p>
 	</header>
 	<div itemprop="articleBody">
 		<?php echo $content->content_out; ?>
 	</div>
-	<?php echo $theme->area('split'); ?>
+
+	<?php echo $theme->area('split', 'single'); ?>
 	<?php echo $theme->content($content, 'comments'); ?>
 </div>
-<?php echo $theme->area('foot'); ?>
+<?php echo $theme->area('foot', 'single'); ?>
 

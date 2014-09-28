@@ -11,7 +11,7 @@
 		word-spacing: 0.1em;
 		color: #222;
 		word-wrap: break-word;
-		background: #fcfcfc url('<?php Site::out_url('theme'); ?>/images/back.png') repeat;
+		background: #fcfcfc;
 	}
 
 	nav.navnav {

@@ -5,7 +5,8 @@
 }
 
 #flickrfeed {
-	line-height: 90px;
+	margin: 1.5em 0 0;
+	padding: 0;
 }
 
 #flickrfeed li {
@@ -18,19 +19,7 @@
 	display: inline;
 	padding: 0;
 	margin: 0;
-}
-
-.bar #flickrfeed:before, .bar #twitter_litte:before {
-	font-weight: normal;
-	font-size: 1.8em;
-	color: #777;
-	opacity: 0.45;
-	position: absolute;
-	left: -1.1em;
-}
-
-.bar #twitter_litte:before {
-	margin-top: .5em;
+	border: 1px solid #222;
 }
 
 ul#meta_links li {
@@ -84,88 +73,40 @@ form#searchform p {
 
 form#searchform input[type=text] {
 	width: 60%;
+	border-radius: 15px 0 0 15px;
+	padding: 6px 15px;
 }
 
 form#searchform input[type=submit] {
-	background: #777;
+	background: #042D3C;
 	background-image: none;
 	filter: none;
 	color: #eee;
-	border-radius: 0;
+	border-radius: 0 15px 15px 0;
 	padding: 6px 1.5em;
 	margin: 0;
 }
 
 nav.site form#searchform {
-	position: absolute;
-	right: 10%;
-	top: 1em;
+	display: none;
+	padding: 0;
+	width: 150px;
 	margin: 0;
-	padding: .15em 1em;
-	height: 1.6em;
 }
-
+#sform i { font-size: 16px; }
+nav.site form#searchform p { margin: 0; padding: 0; }
+nav.site form#searchform input[type=submit] { display: none; }
 nav.site form#searchform input[type=text] {
-	width: 180px;
-	background: #666;
-	color: #eee;
-	-moz-border-radius: 4px 0 0 4px;
-	-webkit-border-radius: 4px 0 0 4px;
-	border-radius: 4px 0 0 4px;
-}
-
-nav.site form#searchform p,
-nav.site form#searchform input[type=submit],
-nav.site form#searchform input[type=text] {
-	margin: 0;
-	font-size: .8em;
-	height: 26px;
-}
-
-nav.site form#searchform input[type=submit],
-nav.site form#searchform input[type=text] {
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-nav.site form#searchform input[type=submit] {
-	background: #777;
-	padding: 4px .8em;
-	-moz-border-radius: 0 4px 4px 0;
-	-webkit-border-radius: 0 4px 4px 0;
-	border-radius: 0 4px 4px 0;
-}
-
-.twitter-tweet {
-	margin: 2em;
-	font-size: 18px;
-	line-height: 24px;
-}
-
-.tweet-text {
-	padding: 1em 2em;
-	background: #e9e9e9;
-	border-top: 5px solid #4099cc;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	word-wrap: break-word;
-}
-
-.tweet-author {
-	text-align: right;
-	padding-right: 20px;
-}
-
-.tweet-author a:link, .tweet-author a:visited {
-	color: #4099cc;
-}
-
-img.tweet-image {
-	width: 60px;
-	height: 60px;
-	float: left;
-	border: 0;
-	margin: 0 1em 1em 0;
+	border-radius: 11px;
+	height: 22px;
+	padding: 1px 10px;
+	margin:6px 0 0;
+	border: 1px solid #aaa;
+	background: #fcfcfc;
+	box-shadow: none;
+	width: 100%;
+	font-size: 12px;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .gsc table, .gsc th, .gsc td {

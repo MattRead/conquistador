@@ -16,14 +16,16 @@
 	<?php echo $theme->header(); ?>
 </head>
 <body class="<?php echo $theme->body_class(); ?>" itemscope itemtype="http://schema.org/Blog">
-<meta itemprop="name" content="<?php echo Options::get('title'); ?>">
-<meta itemprop="url" content="<?php Site::out_url('site'); ?>">
-<meta itemprop="description" content="<?php echo Options::get('tagline'); ?>">
+<div class="wrap">
 
-<nav class="site" id="top" style="position:relative">
-	<?php echo $theme->area('site_navigation'); ?>
-</nav>
-<div class="tentacles">
-	<div class="wrap">
+	<p itemprop="name" class="mast">
+		<a itemprop="url"  href="<?php Site::out_url('site'); ?>">
+			<?php echo Options::get('title'); ?>
+		</a>
+		<meta itemprop="description" content="<?php echo Options::get('tagline'); ?>">
+	</p>
 
-		<?php echo $theme->display('adminbar'); ?>
+	<nav class="site" id="top">
+		<?php echo $theme->area('site_navigation'); ?>
+	</nav><div style="clear:both"></div>
+	<?php echo $theme->display('adminbar'); ?>

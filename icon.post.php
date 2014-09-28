@@ -1,18 +1,25 @@
 <?php
 switch ($content->typename) {
 	case 'blogroll':
-		$icon = 'link';
+	case 'link':
+		$icon = 'bookmark';
 		break;
 	case 'project':
-		$icon = 'cog';
+		$icon = 'stack';
+		break;
+	case 'event':
+		$icon = 'calendar';
 		break;
 	case 'example':
-		$icon = 'attachment';
+		$icon = 'info';
 		break;
 	case 'code':
-		$icon = 'console';
+		$icon = 'code';
 		break;
 	case 'review':
+		$icon = 'star3';
+		break;
+	case 'book':
 		$icon = 'book';
 		break;
 	case 'audio':
@@ -48,6 +55,8 @@ switch ($content->typename) {
 }
 ?>
 
-<?php if ($icon) : ?>
+<?php if ( $content->typename == 'review' ) : ?>
+	<?php echo str_repeat('<i class="icon-'. $icon .'"></i>', $content->rating); ?>
+<?php elseif ( $icon ) : ?>
 	<i class="icon-<?php echo $icon; ?>"></i>
 <?php endif; ?>

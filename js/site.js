@@ -24,6 +24,11 @@ $(window).bind('load', function () {
 });
 
 $(function () {
+	$(window).scroll(function() {
+		var x = $('body').scrollTop();
+		$('body').css('background-position', 'center ' + parseInt(x / 1.4) + 'px');
+	});
+	
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 400) {
 			$('#totop').fadeIn();
@@ -40,12 +45,25 @@ $(function () {
 });
 
 $(document).ready(function () {
+	if ( form = $('nav.site form#searchform') ){
+		$('nav.site > ol').append('<li id="sform"><a href="" id="sreplace"><i class="icon-search"></i></a></li>');
+		$('#sreplace').click(function(){
+			$('#sform').append(form);
+			$('#sreplace').fadeOut('fast', function() {$(form).fadeIn(function(){$('#s').focus()})});
+			$('#s').attr('placeholder', 'Search For...');
+			return false;
+		});
+	}
+
 	$('a[href=#top]').click(function () {
 		$('html, body').animate({scrollTop: 0}, 'slow');
 		return false;
 	});
 
 	$('details').details();
+	
+	$('.messages').click(function(){ $(this).fadeOut() });
+	setTimeout(function(){$('.messages').fadeOut()}, 8000);
 
 	if (CONQUISTADOR_USE_FANCYBOX) {
 		$('a.fancybox').fancybox({hideOnContentClick: true});
@@ -80,16 +98,10 @@ $(document).ready(function () {
 		}).resize();
 	});
 
-
-	var stickyAdminTop = $('ul.admin.site').offset().top;
 	var stickyAdminLeft = $('ul.admin.site').offset().left;
 
 	$(window).scroll(function () {
-		if ($(window).scrollTop() > stickyAdminTop) {
-			$('ul.admin.site').css('position', 'fixed').css('top', '-2px').css('right', 'auto').css('left', stickyAdminLeft);
-		} else {
-			$('ul.admin.site').css('position', 'absolute').css('right', '0').css('left', 'auto');
-		}
+		$('ul.admin.site').css('position', 'fixed').css('top', '0').css('right', 'auto').css('left', stickyAdminLeft);
 	});
 	$(window).resize(function () {
 		stickyAdminLeft = $('ul.admin.site').offset().left;

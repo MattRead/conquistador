@@ -1,7 +1,7 @@
-</div>
-<div class="bar">
+<?php if ( $content ): ?>
+<div class="bar green">
 	<aside>
-		<?php echo $content; ?>
+	<?php echo $content; ?>
 	</aside>
 </div>
-<div class="wrap">
+<?php endif; ?>

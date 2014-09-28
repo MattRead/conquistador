@@ -12,24 +12,16 @@
 </header>
 
 	<div itemprop="articleBody">
-		<table class="center">
-			<tr>
-				<th>Date
-					<td><?php echo $post->info->eventdate_out; ?> at <?php echo $post->info->eventtime_out; ?>
-						<tr>
-			<th>Location
-				<td><?php echo $post->info->location; ?>
-		</table>
-
 		<?php echo $post->content_out; ?>
 
-		<h2>Map</h2>
-
-		<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+		<div class="bar darkblue"><div class="center">
+		<h4><?php echo $post->info->eventdate_out; ?> at <?php echo $post->info->eventtime_out; ?></h4>
+		<p>At <?php echo $post->info->location; ?></p>
+		</div></div>
+		<div class="bar orange">
+		<iframe height="300" style="width: 100%;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
 		        src="https://maps.google.com/maps?q=<?php echo $post->info->location; ?>&amp;source=embed&amp;output=svembed"></iframe>
-		<br>
-		<small><a href="https://maps.google.com/maps?q=<?php echo $post->info->location; ?>&amp;source=embed">View
-				Larger Map</a></small>
+		</div>
 
 	</div>
 <?php echo $theme->area('split'); ?>

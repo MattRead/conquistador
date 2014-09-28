@@ -1,3 +1,4 @@
+<?php if ( count($posts) === 1 ) Utils::redirect($post->permalink); ?>
 <?php $theme->display('header'); ?>
 <?php echo $theme->area('head'); ?>
 <h1>
