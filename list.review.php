@@ -5,7 +5,7 @@
 	<?php echo $theme->content($content, 'pubdate'); ?>
 	<span itemprop="itemreviewed">
 		<a href="<?php echo $content->permalink; ?>" itemprop="url"
-		   title="Review: <?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a>
+			title="Review: <?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a>
 		<?php echo $theme->content($content, 'icon'); ?>
 	</span>
 	<?php if ($content->comment_count) : ?>

@@ -22,12 +22,7 @@
 			<p class="meta"><?php echo $disclaimer; ?></p>
 		<?php endif; ?>
 
-		<?php
-		if (Session::has_messages()) {
-			Session::messages_out();
-		}
-		$content->comment_form()->out();
-		?>
+		<?php $content->comment_form()->out(); ?>
 	</section>
 
 <?php endif; ?>

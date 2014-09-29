@@ -12,7 +12,7 @@ echo "compressed CSS to screen-min.css"
 echo "compressing JS"
 cd js/
 rm site-min.js
-cat jquery.details.min.js jquery.fancybox-1.3.4.js jquery.baselinealign-1.0.js site.js easteregg.js > site.tmp.js
+cat jquery.fancybox-1.3.4.js jquery.baselinealign-1.0.js site.js easteregg.js > site.tmp.js
 yui-compressor --type js site.tmp.js > site-min.js
 rm site.tmp.js
 cd ..

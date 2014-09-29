@@ -1,7 +1,7 @@
 <?php //namespace Habari; ?>
 <article id="comment-<?php echo $content->id; ?>"
-         class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?> <?php echo ($content->post->author->email == $content->email) ? 'author-comment' : ''; ?>"
-         itemscope itemtype="http://schema.org/Comment">
+		class="comment type-<?php echo $content->typename; ?> status-<?php echo $content->statusname; ?> <?php echo ($content->post->author->email == $content->email) ? 'author-comment' : ''; ?>"
+		itemscope itemtype="http://schema.org/Comment">
 	<?php echo $theme->content($content, 'admin'); ?>
 	<meta itemprop="about" content="<?php echo $content->post->title_out; ?>">
 	<header>
@@ -17,7 +17,7 @@
 			</small>
 			<br>
 			<time itemprop="dateCreated"
-			      datetime="<?php echo $content->date->format('c'); ?>"><?php echo $content->date_out; ?></time>
+				datetime="<?php echo $content->date->format('c'); ?>"><?php echo $content->date_out; ?></time>
 		</p>
 	</header>
 	<div itemprop="text">
