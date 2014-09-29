@@ -861,7 +861,7 @@ ul.posts .comment-count:hover {
 	color: #E33E42;
 }
 
-.meta, .footnotes, figcaption, fieldset legend {
+.meta, .footnotes, figcaption, fieldset legend, blockquote:after {
 	font-size: .8em;
 	font-weight: 300;
 	line-height: 1.875;
@@ -959,10 +959,8 @@ img.gravatar {
 	border: 1px solid #999;
 }
 
-img.gravatar.author {
-}
-
 article.comment.author-comment {
+
 }
 
 article.comment > header {
@@ -1024,7 +1022,7 @@ input[type=image] {
 	padding: 0;
 	box-shadow: none;
 	background: transparent;
-	vertical-align: baseline;
+	vertical-align: middle;
 }
 
 input[disabled], textarea[disabled], select[disabled] {
