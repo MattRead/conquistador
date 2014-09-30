@@ -51,7 +51,6 @@ class Conquistador extends Theme
 			$this->add_script('footer', Site::get_url('theme') . '/js/site.js', 'conquistador', array('jquery', 'details', 'fancybox', 'baseline'));
 			$this->add_script('footer', Site::get_url('theme') . '/js/jquery.fancybox-1.3.4.js', 'fancybox', 'jquery');
 			$this->add_script('footer', Site::get_url('theme') . '/js/jquery.baselinealign-1.0.js', 'baseline', 'jquery');
-			$this->add_script('footer', Site::get_url('theme') . '/js/jquery.details.min.js', 'details', 'jquery');
 			$this->add_script('footer', Site::get_url('theme') . '/js/easteregg.js', 'conquistador_easteregg', 'conquistador');
 
 			$this->add_style('header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador-css', 'conquistador_fonts');

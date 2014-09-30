@@ -65,8 +65,6 @@ $(document).ready(function () {
 		return false;
 	});
 
-	$('details').details();
-
 	$('.messages').click(function () {
 		$(this).fadeOut()
 	});

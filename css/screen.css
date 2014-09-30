@@ -96,11 +96,11 @@ body.display_404 p {
 	margin: 0 auto;
 }
 
-.bar *:last-child {
+.bar:last-child, .bar .posts p {
 	margin-bottom: 0;
 }
 
-.bar *:first-child {
+.bar:first-child {
 	margin-top: 0;
 }
 
@@ -154,7 +154,7 @@ body.display_404 p {
 	border-top: 0;
 }
 
-.bar nav {
+.bar nav.posts {
 	text-align: center;
 }
 
@@ -861,7 +861,7 @@ ul.posts .comment-count:hover {
 	color: #E33E42;
 }
 
-.meta, .footnotes, figcaption, fieldset legend, blockquote:after {
+.meta, .footnotes, figcaption, fieldset legend, blockquote:after, ul.messages {
 	font-size: .8em;
 	font-weight: 300;
 	line-height: 1.875;
@@ -1129,6 +1129,10 @@ ul.messages {
 	color: #E8EEBA;
 	box-shadow: 0 0 5px rgba(0, 0, 0, .8);
 	list-style: none;
+}
+
+ul.messages:hover {
+	opacity: .8;
 }
 
 ul.messages, ul.error {
