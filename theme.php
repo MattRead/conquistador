@@ -304,8 +304,6 @@ class Conquistador extends Theme
 		if (isset($theme->post) && $theme->post->typename == 'entry') {
 			$block->next = $theme->post->ascend();
 			$block->previous = $theme->post->descend();
-			$block->comments_disabled = $theme->post->info->comments_disabled;
-			$block->comment_count = $theme->post->comments->moderated->count;
 		}
 	}
 
