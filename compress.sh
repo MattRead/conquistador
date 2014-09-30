@@ -3,7 +3,7 @@
 echo "compressing CSS"
 cd css/
 rm screen-min.css
-cat screen.css tables.css syntax.css blocks.css icomoon.css handheld.css jquery.fancybox-1.3.4.css > screen.tmp.css
+cat screen.css tables.css syntax.css blocks.css ../vendor/icomoon.css handheld.css ../vendor/jquery.fancybox.css > screen.tmp.css
 yui-compressor --type css screen.tmp.css > screen-min.css
 rm screen.tmp.css
 cd ..
@@ -12,7 +12,7 @@ echo "compressed CSS to screen-min.css"
 echo "compressing JS"
 cd js/
 rm site-min.js
-cat jquery.fancybox-1.3.4.js jquery.baselinealign-1.0.js site.js easteregg.js > site.tmp.js
+cat ../vendor/jquery.fancybox.js ../vendor/jquery.baselinealign-1.1-min site.js easteregg.js > site.tmp.js
 yui-compressor --type js site.tmp.js > site-min.js
 rm site.tmp.js
 cd ..
