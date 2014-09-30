@@ -44,13 +44,12 @@ class Conquistador extends Theme
 		$this->add_style('header', array('//fonts.googleapis.com/css?family=Halant%3A300,400,600%7CSource+Sans+Pro%3A300,400%7CSource+Code+Pro%3A400,600%7CLife+Savers', 'screen'), 'conquistador_fonts');
 		Stack::add('template_header_javascript', array('//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
 		if (isset($_GET['rhythm'])) {
-			$this->add_style('header', array('http://basehold.it/33', 'screen'), 'conquistador-rhythm', 'conquistador-css');
+			$this->add_style('header', array(Site::get_url('theme') . '/css/rhythm.css', 'screen'), 'conquistador-rhythm', 'conquistador-css');
 		}
 
 		if (defined("DEBUG_THEME") && DEBUG_THEME == true || isset($_GET['DEBUG'])) {
 			$this->add_script('footer', Site::get_url('theme') . '/js/site.js', 'conquistador', array('jquery', 'details', 'fancybox', 'baseline'));
 			$this->add_script('footer', Site::get_url('theme') . '/vendor/jquery.fancybox.js', 'fancybox', 'jquery');
-			$this->add_script('footer', Site::get_url('theme') . '/vendor/jquery.baselinealign-1.1-min', 'baseline', 'jquery');
 			$this->add_script('footer', Site::get_url('theme') . '/js/easteregg.js', 'conquistador_easteregg', 'conquistador');
 
 			$this->add_style('header', array(Site::get_url('theme') . '/css/screen.css', 'screen'), 'conquistador-css', 'conquistador_fonts');

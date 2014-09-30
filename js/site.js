@@ -5,6 +5,7 @@ String.prototype.htmlSpecialChars = function () {
 var adminKeys = new Array('g', 'o', 'i', 'n');
 var adminCurrent = 0;
 
+$(function () {
 $(window).keydown(function (e) {
 	var key = String.fromCharCode(e.keyCode).toLowerCase();
 	if (adminKeys[adminCurrent].toLowerCase() == key) {
@@ -19,11 +20,7 @@ $(window).keydown(function (e) {
 	}
 });
 
-$(window).bind('load', function () {
-	$("img").baselineAlign({container: '.card'});
-});
 
-$(function () {
 	$(window).scroll(function () {
 		var x = $('body').scrollTop();
 		$('body').css('background-position', 'center ' + parseInt(x / 1.4) + 'px');
