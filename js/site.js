@@ -6,20 +6,19 @@ var adminKeys = new Array('g', 'o', 'i', 'n');
 var adminCurrent = 0;
 
 $(function () {
-$(window).keydown(function (e) {
-	var key = String.fromCharCode(e.keyCode).toLowerCase();
-	if (adminKeys[adminCurrent].toLowerCase() == key) {
-		adminCurrent++;
-		if (adminCurrent >= adminKeys.length) {
-			document.location = HABARI_URL + '/admin';
+	$(window).keydown(function (e) {
+		var key = String.fromCharCode(e.keyCode).toLowerCase();
+		if (adminKeys[adminCurrent].toLowerCase() == key) {
+			adminCurrent++;
+			if (adminCurrent >= adminKeys.length) {
+				document.location = HABARI_URL + '/admin';
+				adminCurrent = 0;
+			}
+		}
+		else {
 			adminCurrent = 0;
 		}
-	}
-	else {
-		adminCurrent = 0;
-	}
-});
-
+	});
 
 	$(window).scroll(function () {
 		var x = $('body').scrollTop();
