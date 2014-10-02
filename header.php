@@ -19,7 +19,7 @@
 <div class="wrap">
 
 	<p itemprop="name" class="mast">
-		<a itemprop="url" href="<?php Site::out_url('site'); ?>">
+		<a itemprop="url" href="<?php Site::out_url('habari'); ?>">
 			<?php echo Options::get('title'); ?>
 		</a>
 		<meta itemprop="description" content="<?php echo Options::get('tagline'); ?>">
