@@ -26,6 +26,8 @@
 	</p>
 
 	<nav class="site" id="top">
+		<label for="show-menu" class="show-menu"><span class="icon-menu"></span>Show Menu</label>
+		<input type="checkbox" id="show-menu" role="button">
 		<?php echo $theme->area('site_navigation'); ?>
 	</nav>
 	<div style="clear:both"></div>

@@ -31,5 +31,64 @@
 		display: none !important;
 	}
 	body { font-size: 18px; }
+	samp, var, code, pre, output, kbd { font-size: 12px; }
+	ol, ul, blockquote, form { margin-left: 1em; margin-right: 1em; }
 
+
+	/*Make dropdown links appear inline*/
+	nav.site {
+		left: 0;
+		float: none;
+	}
+	nav.site ol {
+		position: realtive;
+		display: none;
+		margin: 0;
+		left: 0;
+		float: none;
+		width: 100%;
+	}
+	nav.site ol li:hover ol { display: block; position: relative; left: 10%; top:0; width: 80%; }
+	/*Create vertical spacing*/
+	nav.site ol li, nav.site ol li:hover ol li, .show-menu {
+		margin: 0;
+		left: 0;
+		padding: 0 !important;
+		border: 1px solid #ddd;
+		display:block;
+		border-radius: 7px !important;
+		width: 100%;
+	}
+	nav.site ol li:hover ol li { border: none; }
+	/*Make all menu links full width*/
+	nav.site ol li a {
+		padding: 6px 10px !important;
+		text-align: left;
+		display:block;
+	}
+	/*Display 'show menu' link*/
+	nav.site .show-menu {
+		display:block !important;
+		padding: 6px 0 !important;
+	}
+}
+
+/*Style 'show menu' label button and hide it by default*/
+nav.site .show-menu:hover { color: #777; }
+nav.site .show-menu {
+	cursor: pointer;
+	display: none;
+	background-color: rgba(255, 255, 255, .5);
+	color: #E33E42;
+}
+nav.site .show-menu span { font-size: 16px; color: #bbb; float: left; padding: 6px;  }
+
+/*Hide checkbox*/
+nav.site input[type=checkbox]{
+    display: none;
+}
+
+/*Show menu when invisible checkbox is checked*/
+nav.site input[type=checkbox]:checked ~ ol{
+    display: block !important;
 }
