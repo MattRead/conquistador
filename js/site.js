@@ -21,11 +21,6 @@ $(function () {
 	});
 
 	$(window).scroll(function () {
-		var x = $('body').scrollTop();
-		$('body').css('background-position', 'center ' + parseInt(x / 1.4) + 'px');
-	});
-
-	$(window).scroll(function () {
 		if ($(this).scrollTop() > 400) {
 			$('#totop').fadeIn();
 		} else {
