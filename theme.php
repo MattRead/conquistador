@@ -22,7 +22,7 @@ class Conquistador extends Theme
 	/**
 	 * function constructor
 	 */
-	public function action_init_theme($theme)
+	public function action_init_theme( $theme )
 	{
 		Format::apply('tag_and_list', 'post_tags_out');
 		Format::apply('nice_date', 'post_pubdate_short', 'd M Y');
@@ -36,18 +36,18 @@ class Conquistador extends Theme
 
 		$this->set_title();
 		$this->assign('tagline', Options::get('tagline'));
-		$http = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+		$http = ( !empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' ) ? 'https' : 'http';
 		Stack::dependent('template_header_javascript', 'template_footer_javascript');
 		Stack::remove('template_header_javascript', 'jquery');
 		Stack::remove('template_footer_javascript', 'jquery');
 		$this->add_script('footer', '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', 'jquery');
 		$this->add_style('header', array('//fonts.googleapis.com/css?family=Halant%3A300,400,600%7CSource+Sans+Pro%3A300,400%7CSource+Code+Pro%3A400,600%7CLife+Savers', 'screen'), 'conquistador_fonts');
 		Stack::add('template_header_javascript', array('//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.js', null, '<!--[if lt IE 9]>%s<![endif]-->'), 'html5_shiv');
-		if (isset($_GET['rhythm'])) {
+		if ( isset( $_GET['rhythm'] ) ) {
 			$this->add_style('header', array(Site::get_url('theme') . '/css/rhythm.css', 'screen'), 'conquistador-rhythm', 'conquistador-css');
 		}
 
-		if (defined("DEBUG_THEME") && DEBUG_THEME == true || isset($_GET['DEBUG'])) {
+		if ( defined("DEBUG_THEME") && DEBUG_THEME == true || isset( $_GET['DEBUG'] ) ) {
 			$this->add_script('footer', Site::get_url('theme') . '/js/site.js', 'conquistador', array('jquery', 'details', 'fancybox', 'baseline'));
 			$this->add_script('footer', Site::get_url('theme') . '/vendor/jquery.fancybox.js', 'fancybox', 'jquery');
 			$this->add_script('footer', Site::get_url('theme') . '/js/easteregg.js', 'conquistador_easteregg', 'conquistador');
@@ -65,9 +65,9 @@ class Conquistador extends Theme
 		}
 	}
 
-	public function set_title($value = null)
+	public function set_title( $value = null )
 	{
-		if ($value) {
+		if ( $value ) {
 			$this->assign('title', $value . ' - ' . Options::get('title'));
 			$this->assign('pagetitle', $value);
 		} else {
@@ -77,13 +77,13 @@ class Conquistador extends Theme
 
 	public function add_template_vars()
 	{
-		if (URL::get_matched_rule() == null) {
+		if ( URL::get_matched_rule() == null ) {
 			$this->set_title('Page Not Found');
 		}
-		if (Controller::get_matched_rule()->action == 'display_post' && isset($this->post)) {
+		if ( Controller::get_matched_rule()->action == 'display_post' && isset( $this->post ) ) {
 			$this->set_title(htmlspecialchars($this->post->title));
 		}
-		if (User::identify()->loggedin) {
+		if ( User::identify()->loggedin ) {
 			$unapproved_comment_count = User::identify()->can('manage_all_comments') ? Comments::count_total(Comment::STATUS_UNAPPROVED, false) : Comments::count_by_author(User::identify()->id, Comment::STATUS_UNAPPROVED);
 			$spam_comment_count = User::identify()->can('manage_all_comments') ? Comments::count_total(Comment::STATUS_SPAM, false) : Comments::count_by_author(User::identify()->id, Comment::STATUS_SPAM);
 			$user_draft_count = Posts::get(array('count' => 1, 'content_type' => Post::type('any'), 'status' => Post::status('draft'), 'user_id' => User::identify()->id));
@@ -97,38 +97,38 @@ class Conquistador extends Theme
 	/**
 	 * Output the custom headers
 	 */
-	public function action_template_header_16(Theme $theme)
+	public function action_template_header_16( Theme $theme )
 	{
 		echo Options::get(self::OPTION_NAME . '__custom_headers') . "\n";
 
-		if (isset($theme->posts) && $theme->posts instanceof Posts) {
+		if ( isset( $theme->posts ) && $theme->posts instanceof Posts ) {
 			$settings = array();
 			// If there's no next page, skip and return null
-			$settings['page'] = (int)($theme->page + 1);
-			$items_per_page = isset($theme->posts->get_param_cache['limit']) ?
+			$settings['page'] = (int) ( $theme->page + 1 );
+			$items_per_page = isset( $theme->posts->get_param_cache['limit'] ) ?
 				$theme->posts->get_param_cache['limit'] :
 				Options::get('pagination');
 			$total = Utils::archive_pages($theme->posts->count_all(), $items_per_page);
-			if ($settings['page'] <= $total) {
+			if ( $settings['page'] <= $total ) {
 				echo '<link rel="next" href="' . URL::get(null, $settings, false) . '">' . "\n";
 			}
 
-			$settings['page'] = (int)($theme->page - 1);
-			if ($settings['page'] >= 1) {
+			$settings['page'] = (int) ( $theme->page - 1 );
+			if ( $settings['page'] >= 1 ) {
 				echo '<link rel="prev" href="' . URL::get(null, $settings, false) . '">' . "\n";
 			}
-		} elseif ($theme->posts instanceof Post) {
-			if ($previous = $theme->posts->descend()) {
+		} elseif ( $theme->posts instanceof Post ) {
+			if ( $previous = $theme->posts->descend() ) {
 				echo '<link rel="prev" href="' . $previous->permalink . '">';
 			}
-			if ($next = $theme->posts->ascend()) {
+			if ( $next = $theme->posts->ascend() ) {
 				echo '<link rel="next" href="' . $next->permalink . '">';
 			}
 		}
 		echo '<link rel="home" href="' . Site::get_url('site') . '">' . "\n";
 	}
 
-	public function act_display_tag($user_filters = array())
+	public function act_display_tag( $user_filters = array() )
 	{
 		$this->set_title('Posts Tagged With "' . Controller::get_var('tag') . '"');
 		$tags = Tags::get_by_frequency(null, Post::type('entry'));
@@ -136,24 +136,24 @@ class Conquistador extends Theme
 		return parent::act_display_tag($user_filters);
 	}
 
-	public function act_display_date($user_filters = array())
+	public function act_display_date( $user_filters = array() )
 	{
 		$date = $format = '';
 		$this->set_title('Posts By Date');
 
-		if ($year = Controller::get_var('year')) {
+		if ( $year = Controller::get_var('year') ) {
 			$date = $year;
 			$format = 'Y';
 		}
 
-		if ($month = Controller::get_var('month')) {
+		if ( $month = Controller::get_var('month') ) {
 			$date .= "-$month";
 			$format = 'M-' . $format;
 		} else {
 			$date .= '-01';
 		}
 
-		if ($day = Controller::get_var('day')) {
+		if ( $day = Controller::get_var('day') ) {
 			$date .= "-$day";
 			$format = 'd-' . $format;
 		} else {
@@ -163,34 +163,34 @@ class Conquistador extends Theme
 		try {
 			$date = HabariDateTime::date_create($date);
 			$this->assign('date', $date->format($format));
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 		}
 		parent::act_display_date($user_filters);
 	}
 
-	public function act_search($user_filters = array())
+	public function act_search( $user_filters = array() )
 	{
 		$this->set_title('Search Results For "' . Controller::get_var('criteria') . '"');
 		return parent::act_search($user_filters);
 	}
 
-	public function theme_paged_nav($theme)
+	public function theme_paged_nav( $theme )
 	{
 		static $nav = null;
-		if ($nav == null) {
+		if ( $nav == null ) {
 			$prev = $theme->prev_page_link('&larr;');
 			$mid = $theme->page_selector(null, array('leftSide' => 2, 'rightSide' => 2, 'hideIfSinglePage' => true));
 			$next = $theme->next_page_link('&rarr;');
-			if ($prev || $mid || $next) {
+			if ( $prev || $mid || $next ) {
 				$nav = "<nav>Pages: $prev $mid $next </nav>";
 			}
 		}
 		return $nav;
 	}
 
-	public function theme_multiple_pagename($theme)
+	public function theme_multiple_pagename( $theme )
 	{
-		if ($theme->posts->get_param_cache['content_type'] && !is_array($theme->posts->get_param_cache['content_type'])) {
+		if ( $theme->posts->get_param_cache['content_type'] && !is_array($theme->posts->get_param_cache['content_type']) ) {
 			$pagename = Plugins::filter('post_type_display', Post::type_name($theme->posts->get_param_cache['content_type']), 'plural');
 			$theme->set_title($pagename);
 		} else {
@@ -199,7 +199,7 @@ class Conquistador extends Theme
 		return $pagename;
 	}
 
-	public function action_theme_ui($theme)
+	public function action_theme_ui( $theme )
 	{
 		$ui = new FormUI(__CLASS__);
 
@@ -222,21 +222,21 @@ class Conquistador extends Theme
 		$ui->out();
 	}
 
-	public function action_jambo_form(FormUI $form, Plugin $plugin)
+	public function action_jambo_form( FormUI $form, Plugin $plugin )
 	{
 		$form->jambo_name->caption = $form->jambo_name->caption . ' <span class="required">*Required</span>';
 		$form->jambo_email->caption = $form->jambo_email->caption . ' <span class="required">*Required</span>';
 		$form->jambo_message->caption = $form->jambo_message->caption . ' <span class="required">*Required</span>';
 	}
 
-	public function action_form_comment(FormUI $form, Post $post, $context)
+	public function action_form_comment( FormUI $form, Post $post, $context )
 	{
-		if ($context == 'public') {
+		if ( $context == 'public' ) {
 			$form->cf_content->caption = $form->cf_content->caption . ' <span class="required">*Required</span>';
 		}
 	}
 
-	public function filter_block_list($block_list)
+	public function filter_block_list( $block_list )
 	{
 		$block_list['conquistador_related'] = _t('Related Posts (Conquistador)');
 		$block_list['conquistador_navigation'] = _t('Post Navigation (Conquistador)');
@@ -249,24 +249,24 @@ class Conquistador extends Theme
 		return $block_list;
 	}
 
-	public function filter_post_excerpt($content, $post)
+	public function filter_post_excerpt( $content, $post )
 	{
 		return Format::more($content, $post, array('max_paragraphs' => Options::get(__CLASS__ . '__max_paragraphs', 1)));
 	}
 
-	public function action_block_form_conquistador_post_list($ui, $block)
+	public function action_block_form_conquistador_post_list( $ui, $block )
 	{
 		$options = $ui->append('fieldset', 'options', 'Otions');
 		$options->append('select', 'display_context', $block, 'Display Context', array('list' => 'List', 'excerpt' => 'Excerpts'));
 		$options->append('text', 'paras', __CLASS__ . '__max_paragraphs', 'Max Paragraphs for Excerpt');
 	}
 
-	public function action_block_form_conquistador_signature($ui, $block)
+	public function action_block_form_conquistador_signature( $ui, $block )
 	{
 		// This is a fudge as I only need to add a little bit of styling to make things look nice.
 		$ui->append('static', 'style', '<style type="text/css">#conquistador .formcontrol { line-height: 2.5em; }</style>');
 		$social = $ui->append('fieldset', 'social', 'Social Media Links');
-		foreach ($this->social_media_icons as $media => $data) {
+		foreach ( $this->social_media_icons as $media => $data ) {
 			$social->append('text', "{$media}_name", $block, "$media username:", 'optionscontrol_text');
 			$social->{$media . '_name'}->helptext = _t("Set your $media username for social media icon link.");
 		}
@@ -278,19 +278,19 @@ class Conquistador extends Theme
 		$copy->author_email->helptext = _t("Author email to appear in signature.");
 	}
 
-	public function action_block_content_conquistador_signature($block, $theme)
+	public function action_block_content_conquistador_signature( $block, $theme )
 	{
 		$social_media_icons = array();
-		foreach ($this->social_media_icons as $name => $media) {
-			list($key, $url, $label) = $media;
-			if ($option = $block->{"{$name}_name"}) {
+		foreach ( $this->social_media_icons as $name => $media ) {
+			list( $key, $url, $label ) = $media;
+			if ( $option = $block->{"{$name}_name"} ) {
 				$social_media_icons[$name] = array($key, sprintf($url, $option), $label);
 			}
 		}
 		$block->social_media_icons = $social_media_icons;
 	}
 
-	public function action_block_form_conquistador_copyright($ui, $block)
+	public function action_block_form_conquistador_copyright( $ui, $block )
 	{
 		$copy = $ui->append('fieldset', 'copy', 'Copyright Holder');
 		$copy->append('text', "copy_holder", $block, "Copyright Holder:", 'optionscontrol_text');
@@ -299,17 +299,17 @@ class Conquistador extends Theme
 		$copy->copy_year->helptext = _t("Copyright year to appear in signature.");
 	}
 
-	public function action_block_content_conquistador_navigation($block, $theme)
+	public function action_block_content_conquistador_navigation( $block, $theme )
 	{
-		if (isset($theme->post) && $theme->post->typename == 'entry') {
+		if ( isset( $theme->post ) && $theme->post->typename == 'entry' ) {
 			$block->next = $theme->post->ascend();
 			$block->previous = $theme->post->descend();
 		}
 	}
 
-	public function action_block_content_conquistador_related($block, $theme)
+	public function action_block_content_conquistador_related( $block, $theme )
 	{
-		if (isset($theme->post) && count($theme->post->tags)) {
+		if ( isset( $theme->post ) && count($theme->post->tags) ) {
 			$post = $theme->post;
 			$related = Posts::get(array(
 				'vocabulary' => array('any' => $post->tags),
@@ -325,7 +325,7 @@ class Conquistador extends Theme
 		}
 	}
 
-	public function filter_get_scopes($scopes)
+	public function filter_get_scopes( $scopes )
 	{
 		$scope = new \stdClass();
 		$scope->criteria = array(
@@ -364,10 +364,10 @@ class Conquistador extends Theme
 	/**
 	 * @TODO add block to appropriate scopes
 	 */
-	public function action_theme_activated($theme_name, $theme)
+	public function action_theme_activated( $theme_name, $theme )
 	{
 		$blocks = $this->get_blocks('site_navigation', 0, $this);
-		if (count($blocks) == 0) {
+		if ( count($blocks) == 0 ) {
 			$block = new Block(array(
 				'title' => _t('Basic Main Menu'),
 				'type' => 'conquistador_menu',
@@ -378,7 +378,7 @@ class Conquistador extends Theme
 			Session::notice(_t('Added Basic Main Menu block to site_navigation area.'));
 		}
 		$blocks = $this->get_blocks('head', 0, $this);
-		if (count($blocks) == 0) {
+		if ( count($blocks) == 0 ) {
 			$block = new Block(array(
 				'title' => _t('Blog Posts'),
 				'type' => 'conquistador_post_list',
@@ -387,7 +387,7 @@ class Conquistador extends Theme
 			Session::notice(_t('Added Posts List block to head area.'));
 		}
 		$blocks = $this->get_blocks('foot', 0, $this);
-		if (count($blocks) == 0) {
+		if ( count($blocks) == 0 ) {
 			$block = new Block(array(
 				'title' => _t('Realted Posts'),
 				'type' => 'conquistador_related',
@@ -396,7 +396,7 @@ class Conquistador extends Theme
 			Session::notice(_t('Added Realted Posts block to foot area.'));
 		}
 		$blocks = $this->get_blocks('split', 0, $this);
-		if (count($blocks) == 0) {
+		if ( count($blocks) == 0 ) {
 			$block = new Block(array(
 				'title' => _t('Previous/Next Post Navigation'),
 				'type' => 'conquistador_navigation',
@@ -412,7 +412,7 @@ class Conquistador extends Theme
 			Session::notice(_t('Added Post Navigation block to split area.'));
 		}
 		$blocks = $this->get_blocks('site_footer', 0, $this);
-		if (count($blocks) == 0) {
+		if ( count($blocks) == 0 ) {
 			$block = new Block(array(
 				'title' => _t('Copyright Declaration'),
 				'type' => 'conquistador_copyright',
@@ -423,7 +423,7 @@ class Conquistador extends Theme
 			Session::notice(_t('Added Copyright Declaration block to footer area.'));
 		}
 
-		if (!RewriteRules::by_name(self::REWRITE_NAME)) {
+		if ( !RewriteRules::by_name(self::REWRITE_NAME) ) {
 			$base = Plugins::filter(self::REWRITE_NAME . '_rewriterule_base', '');
 			$rule = new RewriteRule(array(
 				'name' => self::REWRITE_NAME,
@@ -442,7 +442,7 @@ class Conquistador extends Theme
 
 	public function act_display_archives()
 	{
-		if (Cache::has(self::OPTION_NAME . '__archives')) {
+		if ( Cache::has(self::OPTION_NAME . '__archives') ) {
 			$cache = Cache::get(self::OPTION_NAME . '__archives');
 			$collections = $cache['collections'];
 			$years = $cache['collection_years'];
@@ -455,7 +455,7 @@ class Conquistador extends Theme
 			$min_year = $years[count($years) - 1]->year;
 
 			$collections = array();
-			foreach ($years as $y) {
+			foreach ( $years as $y ) {
 				$year = $y->year;
 				$startDate = new HabariDateTime;
 				$startDate->set_date($year, 1, 1);
@@ -468,7 +468,7 @@ class Conquistador extends Theme
 					'preset' => 'home',
 					'nolimit' => 1
 				));
-				if (!count($posts)) continue;
+				if ( !count($posts) ) continue;
 
 				$collection = new \stdClass;
 				$collection->posts = $posts;
@@ -499,57 +499,57 @@ class Conquistador extends Theme
 	}
 
 
-	public function filter_menu_type_data($menu_type_data)
+	public function filter_menu_type_data( $menu_type_data )
 	{
 		$menu_type_data['conquistador_archives'] = array(
 			'label' => _t('Conquistador Archives'),
-			'form' => function ($form, $term) {
-					$archives = new FormControlText('link_name', 'null:null', 'Link Name', 'optionscontrol_text');
-					$archives->add_validator('validate_required');
-					if ($term) {
-						$archives->value = $term->term_display;
-						$form->append('hidden', 'term')->value = $term->id;
-					}
-
-					$form->append($archives);
-				},
-			'save' => function ($menu, $form) {
-					$url = URL::get('conquistador_archives');
-					if (!isset($form->term->value)) {
-						$term = new Term(array(
-							'term_display' => $form->link_name->value,
-							'term' => Utils::slugify($form->link_name->value),
-						));
-						$term->info->type = "link";
-						$term->info->url = $url;
-						$term->info->menu = $menu->id;
-						$menu->add_term($term);
-						$term->associate('menu_link', 0);
-
-						Session::notice('Archives link added.');
-					} else {
-						$term = Term::get(intval($form->term->value));
-						$updated = false;
-						if ($form->link_name->value !== $term->term_display) {
-							$term->term_display = $form->link_name->value;
-							$term->term = Utils::slugify($form->link_name->value);
-							$updated = true;
-						}
-
-						$term->info->url = $url;
-
-						if ($updated) {
-							$term->update();
-							Session::notice('Archives link updated.');
-						}
-					}
-				},
-			'render' => function ($term, $object_id, $config) {
-					$result = array(
-						'link' => $term->info->url,
-					);
-					return $result;
+			'form' => function ( $form, $term ) {
+				$archives = new FormControlText('link_name', 'null:null', 'Link Name', 'optionscontrol_text');
+				$archives->add_validator('validate_required');
+				if ( $term ) {
+					$archives->value = $term->term_display;
+					$form->append('hidden', 'term')->value = $term->id;
 				}
+
+				$form->append($archives);
+			},
+			'save' => function ( $menu, $form ) {
+				$url = URL::get('conquistador_archives');
+				if ( !isset( $form->term->value ) ) {
+					$term = new Term(array(
+						'term_display' => $form->link_name->value,
+						'term' => Utils::slugify($form->link_name->value),
+					));
+					$term->info->type = "link";
+					$term->info->url = $url;
+					$term->info->menu = $menu->id;
+					$menu->add_term($term);
+					$term->associate('menu_link', 0);
+
+					Session::notice('Archives link added.');
+				} else {
+					$term = Term::get(intval($form->term->value));
+					$updated = false;
+					if ( $form->link_name->value !== $term->term_display ) {
+						$term->term_display = $form->link_name->value;
+						$term->term = Utils::slugify($form->link_name->value);
+						$updated = true;
+					}
+
+					$term->info->url = $url;
+
+					if ( $updated ) {
+						$term->update();
+						Session::notice('Archives link updated.');
+					}
+				}
+			},
+			'render' => function ( $term, $object_id, $config ) {
+				$result = array(
+					'link' => $term->info->url,
+				);
+				return $result;
+			}
 		);
 		return $menu_type_data;
 	}

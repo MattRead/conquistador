@@ -1,5 +1,5 @@
 <?php
-switch ($content->typename) {
+switch ( $content->typename ) {
 	case 'blogroll':
 	case 'link':
 		$icon = 'bookmark';
@@ -55,8 +55,8 @@ switch ($content->typename) {
 }
 ?>
 
-<?php if ($content->typename == 'review') : ?>
+<?php if ( $content->typename == 'review' ) : ?>
 	<?php echo str_repeat('<i class="icon-' . $icon . '"></i>', $content->rating); ?>
-<?php elseif ($icon) : ?>
+<?php elseif ( $icon ) : ?>
 	<i class="icon-<?php echo $icon; ?>"></i>
 <?php endif; ?>
