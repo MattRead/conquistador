@@ -956,10 +956,9 @@ img.gravatar {
 	float: right;
 	border-radius: 33px;
 	margin: 0;
-	box-shadow: 1px 3px 3px rgba(0, 0, 0, .3);
-	padding: 3px;
+	padding: 0;
 	background: #eee;
-	border: 1px solid #999;
+	box-shadow: 0 0 0 3px #eee, 0 0 0 4px #999;
 }
 
 article.comment.author-comment {
