@@ -1124,8 +1124,9 @@ ul.messages {
 	z-index: 999;
 	cursor: pointer;
 	top: 10px;
+	left: 10px;
 	max-width: 500px;
-	padding: 30px;
+	padding: 10px 20px;
 	border-radius: 15px;
 	background: rgba(4, 45, 60, .9);
 	color: #E8EEBA;
