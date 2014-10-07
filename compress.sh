@@ -9,13 +9,6 @@ rm screen.tmp.css
 cd ..
 echo "compressed CSS to screen-min.css"
 
-echo "compressing syntax CSS"
-cd css/
-rm syntax-min.css
-yui-compressor --type css syntax.css > syntax-min.css
-cd ..
-echo "compressed CSS to syntax-min.css"
-
 echo "compressing JS"
 cd js/
 rm site-min.js
