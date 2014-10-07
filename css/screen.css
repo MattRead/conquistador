@@ -955,7 +955,7 @@ article.comment *:last-child {
 img.gravatar {
 	float: right;
 	border-radius: 33px;
-	margin: 0;
+	margin: 0 .5em;
 	padding: 0;
 	background: #eee;
 	box-shadow: 0 0 0 3px #eee, 0 0 0 4px #999;
