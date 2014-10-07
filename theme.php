@@ -61,7 +61,8 @@ class Conquistador extends Theme
 			$this->add_style('header', array(Site::get_url('theme') . '/vendor/jquery.fancybox.css', 'screen'), 'fancybox-css', 'conquistador-css');
 		} else {
 			$this->add_script('footer', Site::get_url('theme') . '/js/site-min.js', 'conquistador', 'jquery');
-			$this->add_style('header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador');
+			$this->add_style('header', array(Site::get_url('theme') . '/css/screen-min.css', 'screen'), 'conquistador-css');
+			$this->add_style('header', array(Site::get_url('theme') . '/css/syntax-min.css', 'screen'), 'conquistador-syntax', 'conquistador-css');
 		}
 	}
 

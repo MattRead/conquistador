@@ -3,11 +3,18 @@
 echo "compressing CSS"
 cd css/
 rm screen-min.css
-cat screen.css tables.css syntax.css blocks.css ../vendor/icomoon.css handheld.css ../vendor/jquery.fancybox.css > screen.tmp.css
+cat screen.css tables.css blocks.css ../vendor/icomoon.css handheld.css ../vendor/jquery.fancybox.css syntax.css > screen.tmp.css
 yui-compressor --type css screen.tmp.css > screen-min.css
 rm screen.tmp.css
 cd ..
 echo "compressed CSS to screen-min.css"
+
+echo "compressing syntax CSS"
+cd css/
+rm syntax-min.css
+yui-compressor --type css syntax.css > syntax-min.css
+cd ..
+echo "compressed CSS to syntax-min.css"
 
 echo "compressing JS"
 cd js/
