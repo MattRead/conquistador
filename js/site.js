@@ -46,7 +46,7 @@ $(function () {
 		return false;
 	});
 	$('#totop').html("<small><i class=\"icon-arrow-up\"></i></small> Back to top");
-	$(window).scroll(function () {
+	$(window).bind('scroll', function () {
 		if ($(this).scrollTop() > 400) {
 			$('#totop').fadeIn();
 		} else {
@@ -54,6 +54,18 @@ $(function () {
 		}
 	});
 
+	//stick navbar
+	var num = 300; //number of pixels before modifying styles
+
+	$(window).bind('scroll', function () {
+		if ($(window).scrollTop() > num) {
+			$('nav.site').addClass('fixed').fadeIn();
+		} else {
+			$('nav.site').removeClass('fixed');
+		}
+	});
+
+	//session messages
 	$('.messages').click(function () {
 		$(this).fadeOut()
 	});

@@ -4,9 +4,9 @@
 	<meta itemprop="interactionCount" content="UserComments:<?php echo $content->comments->moderated->count; ?>">
 	<?php echo $theme->content($content, 'pubdate'); ?>
 	<span itemprop="itemreviewed">
+		<?php echo $theme->content($content, 'icon'); ?>
 		<a href="<?php echo $content->permalink; ?>" itemprop="url"
 			title="Review: <?php echo $content->title_out; ?>"><?php echo $content->title_out; ?></a>
-		<?php echo $theme->content($content, 'icon'); ?>
 	</span>
 	<?php if ($content->comment_count) : ?>
 		<a class="comment-count" href="<?php echo $content->permalink; ?>#comments"
@@ -14,6 +14,9 @@
 			<span class="icon-bubble"></span> <?php echo $content->comment_count; ?>
 		</a>
 	<?php endif; ?>
+	<span class="comment-count" title="Rating: <?php echo $content->rating; ?> out of 5 stars">
+		<span class="icon-star3"></span> <?php echo $content->rating; ?>
+	</span>
 	<span class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 	<meta itemprop="worstRating" content="1">
 	<meta itemprop="bestRating" content="5">

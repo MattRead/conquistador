@@ -2,7 +2,7 @@
 <html>
 <title><?php echo $post->title; ?></title>
 <link type="text/css" media="screen" rel="stylesheet"
-      href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro">
+      href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro">
 <style>
 	body {
 		margin: 0;
@@ -23,8 +23,11 @@
 		font-family: 'Source Sans Pro', sans-serif;
 		font-weight: normal;
 	}
+	pre, code {
+		font-family: 'Source Code Pro', monospace;
+		font-size: 16px;
+	}
 </style>
-
 <nav class="navnav">Navigation:
 	<?php if ($prev = $post->ascend()) : ?><a href="<?php echo $prev->permalink; ?>">&larr; Previous
 		Example</a> | <?php endif; ?>

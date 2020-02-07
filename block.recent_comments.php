@@ -4,12 +4,12 @@
 	<?php echo $content->title ?>
 </h2>
 <?php endif; ?>
-<ul id="recent_comments">
+<ul class="posts left" id="recent_comments">
 	<?php $comments = $content->recent_comments; foreach( $comments as $comment): ?>
 	<li>
-		<a href="<?php echo $comment->url ?>">
-			<?php echo $comment->name; ?>
-		</a> on
+		<?php echo $theme->content($comment, 'icon'); ?>
+		<?php echo $theme->comment_author_link($comment); ?>
+		on
 		<a href="<?php echo $comment->post->permalink; ?>">
 			<?php echo $comment->post->title; ?>
 		</a>

@@ -17,7 +17,7 @@ switch ( $content->typename ) {
 		$icon = 'code';
 		break;
 	case 'review':
-		$icon = 'star3';
+		$icon = 'star';
 		break;
 	case 'book':
 		$icon = 'book';
@@ -49,14 +49,20 @@ switch ( $content->typename ) {
 	case 'person':
 		$icon = 'user';
 		break;
+	case 'page':
+		$icon = 'file2';
+		break;
+	case 'comment':
+	case 'pingback':
+		$icon = 'bubble';
+		break;
+	case 'entry':
 	default:
-		$icon = false;
+		$icon = 'blog';
 		break;
 }
 ?>
 
-<?php if ( $content->typename == 'review' ) : ?>
-	<?php echo str_repeat('<i class="icon-' . $icon . '"></i>', $content->rating); ?>
-<?php elseif ( $icon ) : ?>
-	<i class="icon-<?php echo $icon; ?>"></i>
+<?php if ( $icon ) : ?>
+	<i class="icon-<?php echo $icon; ?>" title="Type: <?php echo ucwords($content->typename); ?>"></i>
 <?php endif; ?>

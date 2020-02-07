@@ -17,7 +17,6 @@
 </head>
 <body class="<?php echo $theme->body_class(); ?>" itemscope itemtype="http://schema.org/Blog">
 <div class="wrap">
-
 	<p itemprop="name" class="mast">
 		<a itemprop="url" href="<?php Site::out_url('habari'); ?>">
 			<?php echo Options::get('title'); ?>
@@ -27,7 +26,7 @@
 
 	<nav class="site" id="top">
 		<label for="show-menu" class="show-menu"><span class="icon-menu"></span>Show Menu</label>
-		<input type="checkbox" id="show-menu" role="button">
+		<input type="checkbox" id="show-menu">
 		<?php echo $theme->area('site_navigation'); ?>
 	</nav>
 	<div style="clear:both"></div>

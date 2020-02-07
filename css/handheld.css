@@ -50,6 +50,10 @@
 		float: none;
 	}
 
+	nav.site.fixed {
+		display: none !important;
+	}
+	
 	nav.site ol {
 		position: realtive;
 		display: none;

@@ -39,11 +39,11 @@ time {
 body {
 	margin: 0;
 	padding: 0;
-	font: 400 22px/1.5em 'Halant', serif;
+	font: 400 22px/1.5em 'PT Serif', serif;
 	word-spacing: 0.1em;
 	color: #222;
 	word-wrap: break-word;
-	background: #fcfcfc url('../images/ent.png') center top no-repeat;
+	background: #fcfcfc;
 	box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
 	text-shadow: 0 0 2px rgba(0, 0, 0, .1);
 	width: 100%;
@@ -73,7 +73,7 @@ body.display_404 div.wrap {
 }
 
 body.display_404 p, body.display_404 h1 {
-	text-shadow: 2px 2px #000, 0 0 10px #000 !important;
+	text-shadow: 3px 3px #000, -1px -1px 0 #000, 0 0 10px #000 !important;
 	font-weight: 600 !important;
 	font-size: 4em;
 	font-variant: normal !important;
@@ -81,8 +81,11 @@ body.display_404 p, body.display_404 h1 {
 }
 
 body.display_404 a {
-	color: #fff !important;
-	text-shadow: 2px 2px #000, 0 0 10px #000 !important;
+	color: #000 !important;
+}
+
+body.display_404 nav.site li {
+	background-color: rgba(255, 255, 255, .8) !important;
 }
 
 body.display_404 footer {
@@ -92,6 +95,15 @@ body.display_404 footer {
 body.display_404 p {
 	line-height: .8em;
 	font-size: 2em;
+}
+
+body.display_404 p.mast {
+	line-height: 1.5;
+        margin: .75em 0 0;
+	font-size: 2.18em;
+	text-shadow: none !important;
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.7) 10%,rgba(255,255,255,0.7) 15%,rgba(255,255,255,0.7) 50%,rgba(255,255,255,0.7) 85%,rgba(255,255,255,0.7) 90%,rgba(255,255,255,0) 100%);
+	border: none !important;
 }
 
 .bar aside {
@@ -120,20 +132,19 @@ body.display_404 p {
 }
 
 .bar.green {
-	background: #E8EEBA;
-	/*box-shadow: 0 2px 0 #042D3C,0 4px 0 #31DDFC, 0 6px 0 #E8EEBA, 0 8px 0 #E33E42, 0 10px 0 #D5ED29;*/
+	background: rgba(232,238,186,0.5)
 }
 
 .bar.brightgreen {
-	background: #D5ED29;
+	background: rgba(213,237,41,0.5)
 }
 
 .bar.blue {
-	background: #31DDFC;
+	background: rgba(49,221,252,0.5)
 }
 
 .bar.darkblue {
-	background: #042D3C;
+	background: rgba(4,45,60,.7);
 }
 
 .bar.darkblue * {
@@ -145,10 +156,10 @@ body.display_404 p {
 }
 
 .bar.orange {
-	background: #E33E42;
+	background: rgba(227,62,66,.7);
 }
 
-.bar.orange a, .bar.blue a {
+.bar.orange a {
 	color: #E8EEBA;
 }
 
@@ -182,6 +193,23 @@ nav.site ol {
 	left: 50%;
 }
 
+nav.site.fixed   {
+	position: fixed;
+	width: 100%;
+	max-width: 700px;
+        margin: 0 auto;
+	left: auto;
+	top: -1px;
+	z-index: 98;
+}
+nav.site.fixed ol {
+	left: 0;
+}
+
+nav.site.fixed li {
+	background-color: rgba(250, 250, 250, .95) !important;
+}
+
 nav.site li {
 	position: relative;
 	list-style: none;
@@ -189,12 +217,9 @@ nav.site li {
 	margin: 0;
 	padding: 0 1em;
 	z-index: 999;
-	background-color: rgba(255, 255, 255, .5);
+	background-color: rgba(255, 255, 255, .35);
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
-	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, rgba(0,0,0,.02)), color-stop(1, rgba(0,0,0,.08)));
-	background: -moz-linear-gradient(center top, #31DDFC 5%, #27a2b8 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31DDFC', endColorstr='#27a2b8');*/
 }
 
 nav.site ol > li:first-child {
@@ -202,13 +227,17 @@ nav.site ol > li:first-child {
 	padding-left: 1.5em;
 	border-left: 1px solid #ddd;
 }
-
+nav.site.fixed ol > li:first-child {
+	border-radius: 0 0 0 7px;
+}
 nav.site ol > li:last-child {
 	border-radius: 0 7px 7px 0;
 	padding-right: 1.5em;
 	border-right: 1px solid #ddd;
 }
-
+nav.site.fixed ol > li:last-child {
+	border-radius: 0 0 7px 0;
+}
 nav.site ol li ol {
 	display: block;
 	visibility: hidden;
@@ -480,20 +509,20 @@ progress::-moz-progress-bar {
 }
 
 p.mast, h1, h2, h3, h4, h5 {
-	color: #042D3C;
+	color: #222; /*#042D3C;*/
 	font-weight: 400;
 	opacity: .9;
-	text-shadow: 0 0 2px rgba(0, 0, 0, .4);
+/*	text-shadow: 0 0 2px rgba(0, 0, 0, .4);*/
 	clear: both;
 }
 
-h1 {
+p.mast, h1 {
 	font-size: 2em;
 	line-height: 1.5;
 	margin: .75em 0 0;
 }
 
-p.mast, h2, h3 {
+h2, h3 {
 	font-size: 1.6em;
 	line-height: 1.875;
 	margin: .9375em 0 0;
@@ -501,16 +530,20 @@ p.mast, h2, h3 {
 
 p.mast {
 	text-align: center;
-	margin: 0;
-	font-family: 'Life Savers', serif;
+	margin: 0 0 -.2em;
+	font-family: "Rock Salt", "Londrina Sketch", serif;
+	font-size: 1.5em;
+  	text-shadow: ;
+/*        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0.5) 10%,rgba(255,255,255,0.4) 15%,rgba(255,255,255,0.4) 50%,rgba(255,255,255,0.4) 85%,rgba(255,255,255,0.4) 90%,rgba(255,255,255,0) 100%);*/
 }
-
 p.mast a {
-	color: #042D3C; /*#0091C1;*/
+	color: #222;
 }
 
 p.mast a:hover {
-	color: #999;
+	color: #777;
 }
 
 h4, h5 {
@@ -706,11 +739,11 @@ abbr[title], dfn[title] {
 abbr {
 	letter-spacing: -.03em;
 	font-size: 1em;
-	border-bottom: 1px dotted #777;
+	text-decoration: underline dotted #777;
 }
 
 abbr:hover {
-	border-color: #2554C7;
+	text-decoration: underline dotted #E33E42;
 }
 
 mark {
@@ -722,10 +755,12 @@ mark {
 
 ins {
 	text-decoration: underline;
+	color: #242;
 }
 
 .status-deleted, del, s {
 	text-decoration: line-through;
+	color: #522;
 }
 
 sup, sub, small {
@@ -853,11 +888,23 @@ ul.posts time {
 ul.posts li {
 	padding-left: 7em;
 }
+ul.posts.left li {
+	padding-left: 2em;
+}
 
 ul.posts .comment-count,
 ul.posts i {
 	font-size: 16px;
-	color: #ddd;
+	color: rgba(4,45,60,.7);
+}
+
+ul.posts i[title] {
+        cursor: help;
+}
+
+ul.posts .comment-count {
+	color: #999;
+	padding-left: 10px;
 }
 
 ul.posts .comment-count:hover {
@@ -1128,14 +1175,19 @@ ul.messages {
 	max-width: 500px;
 	padding: 10px 20px;
 	border-radius: 15px;
-	background: rgba(4, 45, 60, .9);
-	color: #E8EEBA;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .8);
+	background: rgba(0, 0, 0, .8);
+	color: #eee;
+	box-shadow: 0 0 3px rgba(0, 0, 0, .7);
 	list-style: none;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 ul.messages:hover {
 	opacity: .8;
+}
+
+ul.messages.error {
+	background: rgba(227,62,66,.95)
 }
 
 ul.messages, ul.error {
@@ -1220,7 +1272,7 @@ ul.messages, ul.error {
 }
 
 #totop {
-	background: rgba(4, 45, 60, .9);
+	background: rgba(10, 10, 10, .9);
 	color: #eee;
 	text-align: center;
 	padding: .4em 1em;

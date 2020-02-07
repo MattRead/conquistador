@@ -2,10 +2,11 @@
 <li id="post-<?php echo $content->id; ?>" class="<?php echo $content->css_class(); ?>" itemprop="blogPost" itemscope
     itemtype="http://schema.org/BlogPosting">
 	<?php echo $theme->content($content, 'pubdate'); ?>
-	<span itemprop="name"><a href="<?php echo $content->permalink; ?>" itemprop="url"
+	<span itemprop="name">
+		<?php echo $theme->content($content, 'icon'); ?>
+		<a href="<?php echo $content->permalink; ?>" itemprop="url"
 							title="<?php echo ucwords($content->typename); ?>: <?php echo $content->title_out; ?>">
 			<?php echo $content->title_out; ?></a>
-		<?php echo $theme->content($content, 'icon'); ?>
 	</span>
 	<?php if ($content->comments->moderated->count) : ?>
 		<a itemprop="interactionCount" class="comment-count" href="<?php echo $content->permalink; ?>#comments"
