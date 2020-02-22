@@ -6,7 +6,7 @@ echo $theme->display('header'); ?>
 	<header>
 		<h1>Page Not Found</h1>
 	</header>
-	<p style="text-align:center">Something has gone <b>horribly</b> wrong!</p>
+	<p style="text-align:center">Something has gone <b>horribly wrong!</b></p>
 </article>
 
 <?php echo $theme->display('footer'); ?>
